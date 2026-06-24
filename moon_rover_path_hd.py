@@ -9,8 +9,8 @@ from matplotlib.collections import LineCollection
 from scipy import stats
 import time
 
-def run_chained(n_sims=10_000, n_steps=100_000, seed=42):
-    rng = np.random.default_rng(seed)
+def run_chained(n_sims=10_000, n_steps=100_000):
+    rng = np.random.default_rng()
     pos_x = np.empty(n_sims)
     pos_y = np.empty(n_sims)
     x = y = 0.0
@@ -29,7 +29,7 @@ def run_chained(n_sims=10_000, n_steps=100_000, seed=42):
     return pos_x, pos_y
 
 print("Regenerating positions...")
-x_pos, y_pos = run_chained()
+x_pos, y_pos = run_chained()  # no seed — different path every run
 k = np.arange(1, len(x_pos) + 1)
 
 # ── Plot ───────────────────────────────────────────────────────────────────────
