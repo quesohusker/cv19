@@ -116,15 +116,17 @@ PASS_TD_TYPES         = {"Passing Touchdown"}
 PASS_INCOMPLETE_TYPES = {"Pass Incompletion"}
 # An interception is a (failed) pass attempt; yardsGained on these is the return
 # yardage and belongs to the defense, so it is NOT counted toward passing yards.
+# ("Pass Interception" is the older-season (2006-2013) spelling of the same event.)
 INTERCEPTION_TYPES    = {"Pass Interception Return", "Interception Return Touchdown",
-                         "Interception"}
+                         "Interception", "Pass Interception"}
 SACK_TYPES            = {"Sack"}
 # Fumbles LOST by the offense (a turnover). 'Fumble Recovery (Own)' is not a
 # turnover; bare 'Fumble' is ambiguous and is left out to avoid over-counting.
 FUMBLE_LOST_TYPES     = {"Fumble Recovery (Opponent)", "Fumble Return Touchdown"}
 FG_MADE_TYPES         = {"Field Goal Good"}
 FG_ATT_TYPES          = {"Field Goal Good", "Field Goal Missed", "Blocked Field Goal",
-                         "Blocked Field Goal Touchdown", "Missed Field Goal Return"}
+                         "Blocked Field Goal Touchdown", "Missed Field Goal Return",
+                         "Missed Field Goal Return Touchdown"}  # older-season spelling
 # Extra-point kicks (absent from 2025 data -> the code will warn and skip if the
 # season has no matching rows). Listed for seasons that do carry them.
 XP_MADE_TYPES         = {"Extra Point Good"}
@@ -241,6 +243,8 @@ class Stat:
 
 # fmt: off
 RANKED_STATS = [
+    # ---- record ----
+    Stat("win_pct",               +1, "rate",    num="win", den="games_played"),
     # ---- scoring ----
     Stat("points_for",            +1, "pergame", num="points_for"),
     Stat("points_against",        -1, "pergame", num="points_against"),   # allow fewer = better
@@ -491,19 +495,23 @@ def _aggregate_per_game(df, cols):
 
 
 def _points_per_game(df, cols):
-    """One row per (game_id, team): points_for / points_against, from game cols."""
+    """One row per (game_id, team): points for/against and win/loss/tie flags."""
     g = df.drop_duplicates(cols["game_id"])
+    hp = pd.to_numeric(g[cols["home_points"]], errors="coerce").to_numpy()
+    ap = pd.to_numeric(g[cols["away_points"]], errors="coerce").to_numpy()
     home = pd.DataFrame({
         cols["game_id"]: g[cols["game_id"]].to_numpy(),
         "team": g[cols["home_team"]].to_numpy(),
-        "points_for": pd.to_numeric(g[cols["home_points"]], errors="coerce").to_numpy(),
-        "points_against": pd.to_numeric(g[cols["away_points"]], errors="coerce").to_numpy(),
+        "points_for": hp, "points_against": ap,
+        "win": (hp > ap).astype(float), "loss": (hp < ap).astype(float),
+        "tie": (hp == ap).astype(float),
     })
     away = pd.DataFrame({
         cols["game_id"]: g[cols["game_id"]].to_numpy(),
         "team": g[cols["away_team"]].to_numpy(),
-        "points_for": pd.to_numeric(g[cols["away_points"]], errors="coerce").to_numpy(),
-        "points_against": pd.to_numeric(g[cols["home_points"]], errors="coerce").to_numpy(),
+        "points_for": ap, "points_against": hp,
+        "win": (ap > hp).astype(float), "loss": (ap < hp).astype(float),
+        "tie": (ap == hp).astype(float),
     })
     return pd.concat([home, away], ignore_index=True)
 
@@ -618,18 +626,48 @@ def _cumulative_by_week(per_game, season_weeks):
     weekly[max_cols] = weekly[max_cols].fillna(0.0)
 
     weekly = weekly.sort_index(level=["team", "week"])
+
+    # This week's game outcome (non-cumulative): W / L / T / bye / split (>1 game).
+    wr = _week_result(weekly)
+
     grp = weekly.groupby(level="team", observed=True)
     cum = grp[sum_cols + ["games_played"]].cumsum()
     cum[max_cols] = grp[max_cols].cummax()
 
     cum = cum[cum["games_played"] >= 1].reset_index()   # drop pre-first-game weeks
+    cum["week_result"] = cum.set_index(["team", "week"]).index.map(wr)
     return cum
+
+
+def _week_result(weekly):
+    """Series mapping (team, week) -> that week's game result string.
+
+    Uses the per-week (pre-cumsum) games count and win/loss/tie sums.
+    "bye" when no game that week; "split" for the rare two-games-one-week mix.
+    """
+    g = weekly["games_played"]
+    w = weekly.get("win", 0.0)
+    l = weekly.get("loss", 0.0)
+    t = weekly.get("tie", 0.0)
+    res = np.where(g == 0, "bye",
+          np.where((w > 0) & (l == 0) & (t == 0), "W",
+          np.where((l > 0) & (w == 0) & (t == 0), "L",
+          np.where((t > 0) & (w == 0) & (l == 0), "T", "split"))))
+    return pd.Series(res, index=weekly.index)
 
 
 def _finalize_stats(cum):
     """Turn cumulative components into the actual per-game / rate / max values."""
     out = cum[["team", "week", "games_played"]].copy()
     g = cum["games_played"].to_numpy()
+
+    # Win/loss record: cumulative counts + this week's result. win_pct is ranked
+    # (a "rate" stat) below; wins/losses/ties/week_result ride along as context.
+    for src, dst in (("win", "wins"), ("loss", "losses"), ("tie", "ties")):
+        if src in cum:
+            out[dst] = cum[src].to_numpy().astype("int64")
+    if "week_result" in cum:
+        out["week_result"] = cum["week_result"].to_numpy()
 
     def safe_div(num, den):
         num = np.asarray(num, dtype="float64")
@@ -667,23 +705,32 @@ def _rank_and_z(stats, fbs_teams):
     and a higher z-score always mean better.
     """
     df = stats[stats["team"].isin(fbs_teams)].copy()
-    id_cols = ["season", "team", "week", "games_played"] if "season" in df else ["team", "week", "games_played"]
+    base = ["season", "team", "week", "games_played"] if "season" in df else ["team", "week", "games_played"]
+    # Carry the win/loss record along as context so each file is self-contained.
+    context = [c for c in ("wins", "losses", "ties", "week_result") if c in df]
+    id_cols = base + context
 
     ranks = df[id_cols].copy()
     zs = df[id_cols].copy()
     grp_keys = ["season", "week"] if "season" in df else ["week"]
 
+    gcols = [df[k] for k in grp_keys]
     for st in RANKED_STATS:
         if st.name not in df:
             continue
         good = st.sign * df[st.name]                 # higher = better after sign
+        grp = good.groupby(gcols, observed=True)
         # rank: ascending on "good" so smallest good -> rank 1 (worst).
-        ranks[st.name] = good.groupby([df[k] for k in grp_keys], observed=True) \
-                             .rank(method=RANK_METHOD, ascending=True)
+        rank = grp.rank(method=RANK_METHOD, ascending=True)
         # z: standardize "good" within the week (ddof=1; <2 teams -> NaN).
-        mu = (st.sign * df[st.name]).groupby([df[k] for k in grp_keys], observed=True).transform("mean")
-        sd = (st.sign * df[st.name]).groupby([df[k] for k in grp_keys], observed=True).transform("std")
-        zs[st.name] = (good - mu) / sd
+        mu = grp.transform("mean")
+        sd = grp.transform("std")
+        # When a stat has no spread that week -- every team identical, which is
+        # what a season-wide data gap looks like (all 0 / all NaN) -- there is no
+        # meaningful ordering, so emit NaN rather than a fake "everyone tied at 1".
+        no_signal = sd.isna() | (sd == 0)
+        ranks[st.name] = rank.where(~no_signal)
+        zs[st.name] = ((good - mu) / sd).where(~no_signal)
     return ranks, zs
 
 

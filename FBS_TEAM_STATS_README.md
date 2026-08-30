@@ -69,10 +69,12 @@ run_all_seasons(seasons=[2019])   # force-reprocess one season (replaces its row
 
 ## What it computes
 
-Points; rushing (att/yds/TDs, longest); passing (att/yds/comp/TDs, longest,
-completion %); interceptions thrown/made; sacks made/allowed (+yards); fumbles
-lost/recovered; punt & kickoff return yards; blocked kicks; time of possession;
-and the `_approx` stats: 3rd/4th-down conversion % and red-zone scoring %.
+Win/loss record (`win_pct` ranked; `wins`/`losses`/`ties` cumulative, plus a
+`week_result` column = `W`/`L`/`T`/`bye` for that week's game); points; rushing
+(att/yds/TDs, longest); passing (att/yds/comp/TDs, longest, completion %);
+interceptions thrown/made; sacks made/allowed (+yards); fumbles lost/recovered;
+punt & kickoff return yards; blocked kicks; time of possession; and the
+`_approx` stats: 3rd/4th-down conversion % and red-zone scoring %.
 
 **Fairness:** counting stats are ranked as **per-game averages** through that
 week (not raw totals), so a team on a bye isn't unfairly compared with one that
@@ -94,6 +96,17 @@ The playType / driveResult / column mappings were built by inspecting a real
 - Worst scoring defense → rank 1; best → rank n (direction flips correct).
 - Sanity leaders line up with 2025 reality (Navy/Air Force/Army top rushing &
   TOP; North Texas top scoring; Ohio State top scoring defense).
+
+## Older-season data coverage
+
+Early seasons (roughly 2005–2013) use coarser CFBD play typing, so some stats
+are genuinely unavailable then and the code warns rather than faking them:
+sacks, fumbles, punt/kickoff returns, and blocked kicks are largely absent in
+those years, so those columns are NaN and get **no rank/z** (a stat with no
+spread in a week is left blank, not ranked "everyone tied at 1"). Older spellings
+that *are* mapped: `Pass Interception` (interceptions, 2006–2013) and
+`Missed Field Goal Return Touchdown` (FG attempt). Extra points never appear as
+their own play type in this dataset, so XP is skipped in every season.
 
 ## Approximations & known gaps (stated, not hidden)
 
