@@ -1,0 +1,9 @@
+# Local CFDB data + generated stat outputs (never committed; live on the drive)
+CFDB_sample/
+*.pyc
+__pycache__/
+team_ranks.csv
+team_zscores.csv
+team_stats.csv
+team_ranks_all_seasons.csv
+team_zscores_all_seasons.csv
