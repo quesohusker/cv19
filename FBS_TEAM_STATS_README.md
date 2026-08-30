@@ -12,7 +12,7 @@ mean better** — including defensive "against" stats (allowing fewer yards/poin
 ## Run it (Jupyter on the Mac with the drive mounted)
 
 ```python
-%run fbs_team_stats.py            # process every season found + write combined files
+%run fbs_team_stats.py            # process every season found + write master files
 ```
 
 or step by step:
@@ -21,12 +21,11 @@ or step by step:
 from fbs_team_stats import *
 inspect_season(2025)              # print schema / playType / driveResult diagnostics
 validate_season(2025)             # manual spot-checks + direction-flip checks
-run_all_seasons()                 # build all seasons + all-seasons combined files
+run_all_seasons()                 # build 2005-2025 + master files
 ```
 
 Seasons are auto-discovered from `BASE_DIR` (any numeric sub-folder containing a
-`combined.csv`), so re-running after **2026** lands just works. Point it at your
-drive with either:
+`combined.csv`). Point it at your drive with either:
 
 ```python
 import os; os.environ["CFDB_BASE_DIR"] = "/Volumes/1TB external/CFDB Stats"
@@ -42,8 +41,31 @@ Per season, in `<BASE_DIR>/<year>/`:
 - `team_stats.csv` — the underlying per-game cumulative stat values (the numbers
   to eyeball against CFBstats.com); volume-only stats live here as raw counts
 
-Combined across seasons, in `<BASE_DIR>/`:
-- `team_ranks_all_seasons.csv`, `team_zscores_all_seasons.csv`
+Master files across all seasons, in `<BASE_DIR>/`:
+- `team_ranks_all_seasons.csv` — every season's ranks stacked
+- `team_zscores_all_seasons.csv` — every season's z-scores stacked
+- `team_stats_all_seasons.csv` — **the master stats file**: the underlying
+  per-game cumulative stat values across all seasons (one row per team per week
+  per season; the numbers to compare against CFBstats.com)
+
+## Adding 2026 later (incremental append)
+
+The master files are built **incrementally**. `run_all_seasons()` only processes
+seasons that aren't already in the master, so once 2005–2025 are built, dropping
+a `2026/combined.csv` on the drive and re-running appends **only** 2026 — the
+prior 21 seasons aren't reprocessed:
+
+```python
+run_all_seasons()                 # sees 2026 is new -> processes just 2026, appends
+```
+
+This is exact: each season's ranks/z-scores are computed purely within that
+season's weeks, so no prior season changes when a new one is added. Other modes:
+
+```python
+run_all_seasons(rebuild=True)     # reprocess everything from scratch
+run_all_seasons(seasons=[2019])   # force-reprocess one season (replaces its rows)
+```
 
 ## What it computes
 

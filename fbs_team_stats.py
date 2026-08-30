@@ -21,6 +21,16 @@ Outputs (see OUTPUT below):
                                            for sanity-checking against CFBstats
   <BASE_DIR>/team_ranks_all_seasons.csv    all seasons stacked
   <BASE_DIR>/team_zscores_all_seasons.csv  all seasons stacked
+  <BASE_DIR>/team_stats_all_seasons.csv    MASTER stats file: the per-game stat
+                                           values across all seasons (the numbers
+                                           you'd compare to CFBstats)
+
+The master/all-seasons files are built INCREMENTALLY: run_all_seasons() only
+processes seasons not already in them, so once 2005-2025 are built, dropping a
+2026 folder in and re-running processes just 2026 and appends it. Each season's
+rows are independent (ranks/z are computed only within a season-week), so
+appending -- or replacing a reprocessed season -- is exact. Use rebuild=True to
+rebuild everything from scratch.
 
 HOW TO RUN
 ----------
@@ -30,7 +40,9 @@ In Jupyter (on the Mac where the external drive is mounted):
     # or, cell by cell:
     from fbs_team_stats import *
     inspect_season(2025)            # print diagnostics for one season first
-    run_all_seasons()              # build every season + combined files
+    run_all_seasons()              # build 2005-2025 + master files (incremental)
+    # later, when 2026 lands, the SAME call appends only 2026:
+    run_all_seasons()
 
 Or from a shell:  python fbs_team_stats.py
 
@@ -776,31 +788,112 @@ def _warn_empty_categories(df, cols, season):
 
 
 # %% ------------------------------------------------------------- top level
-def run_all_seasons(base_dir=BASE_DIR, seasons=None, verbose=True):
-    """Process every discovered season and write the combined all-seasons files."""
-    if seasons is None:
-        seasons = _discover_seasons(base_dir)
-    if not seasons:
+# The three master files stacked across all seasons. team_stats_all_seasons.csv
+# is the "master stats file": the underlying per-game cumulative stat values
+# (the numbers to compare against CFBstats), one row per team per week per season.
+MASTER_FILES = {
+    "ranks":   "team_ranks_all_seasons.csv",
+    "zscores": "team_zscores_all_seasons.csv",
+    "stats":   "team_stats_all_seasons.csv",
+}
+
+
+def _seasons_in_master(base_dir):
+    """Seasons already present in the master ranks file (empty set if none)."""
+    p = os.path.join(base_dir, MASTER_FILES["ranks"])
+    if not os.path.isfile(p):
+        return set()
+    m = pd.read_csv(p, usecols=["season"])
+    return set(int(s) for s in m["season"].unique())
+
+
+def _upsert_master(base_dir, key, new_rows, replace_seasons):
+    """Merge freshly computed season rows into a master file (add or replace).
+
+    Each season's rows are independent of every other season (ranks/z-scores are
+    computed only within a season-week), so appending a new season -- or
+    replacing a reprocessed one -- is exact. Rows for `replace_seasons` are
+    dropped from the existing master before the new rows are added, so a rerun
+    of a season overwrites cleanly rather than duplicating.
+    """
+    path = os.path.join(base_dir, MASTER_FILES[key])
+    frames = []
+    if os.path.isfile(path):
+        old = pd.read_csv(path)
+        if "season" in old:
+            old = old[~old["season"].isin(replace_seasons)]
+        frames.append(old)
+    if new_rows is not None and len(new_rows):
+        frames.append(new_rows)
+    if not frames:
+        return
+    out = pd.concat(frames, ignore_index=True)
+    # Keep the master tidy and stable: sorted by season, then week, then team.
+    sort_keys = [c for c in ("season", "week", "team") if c in out.columns]
+    out = out.sort_values(sort_keys).reset_index(drop=True)
+    out.to_csv(path, index=False)
+
+
+def run_all_seasons(base_dir=BASE_DIR, seasons=None, rebuild=False, verbose=True):
+    """Process seasons and (upsert-)write the per-season files and master files.
+
+    Incremental by default: only seasons NOT already in the master files are
+    processed, so once 2005-2025 are built, dropping a 2026 folder in and
+    re-running processes just 2026 and appends it -- no reprocessing of prior
+    seasons.  Pass rebuild=True to reprocess everything from scratch, or
+    seasons=[...] to force specific seasons (they are reprocessed and their rows
+    replaced in the masters).
+
+    Returns the list of seasons processed this run.
+    """
+    discovered = _discover_seasons(base_dir)
+    if not discovered:
         raise FileNotFoundError(f"No <year>/combined.csv folders found under {base_dir!r}. "
                                 f"Set CFDB_BASE_DIR or pass base_dir=.")
+    requested = discovered if seasons is None else [int(s) for s in seasons]
+
+    already = set() if rebuild else _seasons_in_master(base_dir)
+    if seasons is None and not rebuild:
+        todo = [s for s in requested if s not in already]        # incremental append
+    else:
+        todo = list(requested)                                   # explicit / rebuild
+    if rebuild:
+        # Start the masters fresh so stale seasons don't linger.
+        for fn in MASTER_FILES.values():
+            p = os.path.join(base_dir, fn)
+            if os.path.isfile(p):
+                os.remove(p)
+
     if verbose:
-        print(f"Seasons found: {seasons}")
-    all_ranks, all_z = [], []
-    for s in seasons:
+        print(f"Seasons on disk: {discovered}")
+        print(f"Already in master: {sorted(already) or '(none)'}")
+        print(f"Processing this run: {todo or '(nothing new)'}")
+
+    new_ranks, new_z, new_stats = [], [], []
+    for s in todo:
         res = process_season(s, base_dir=base_dir, verbose=verbose)
         if res is None:
             continue
-        all_ranks.append(res["ranks"])
-        all_z.append(res["zscores"])
-    if all_ranks:
-        pd.concat(all_ranks, ignore_index=True).to_csv(
-            os.path.join(base_dir, "team_ranks_all_seasons.csv"), index=False)
-        pd.concat(all_z, ignore_index=True).to_csv(
-            os.path.join(base_dir, "team_zscores_all_seasons.csv"), index=False)
-        if verbose:
-            print(f"\nWrote combined: team_ranks_all_seasons.csv / "
-                  f"team_zscores_all_seasons.csv under {base_dir}")
-    return seasons
+        new_ranks.append(res["ranks"])
+        new_z.append(res["zscores"])
+        new_stats.append(res["stats"])
+
+    processed = [r["season"].iloc[0] for r in new_ranks] if new_ranks else []
+    replace = set(processed)
+    _upsert_master(base_dir, "ranks",
+                   pd.concat(new_ranks, ignore_index=True) if new_ranks else None, replace)
+    _upsert_master(base_dir, "zscores",
+                   pd.concat(new_z, ignore_index=True) if new_z else None, replace)
+    if WRITE_STATS:
+        _upsert_master(base_dir, "stats",
+                       pd.concat(new_stats, ignore_index=True) if new_stats else None, replace)
+
+    if verbose:
+        keys = ("ranks", "zscores", "stats") if WRITE_STATS else ("ranks", "zscores")
+        names = " / ".join(MASTER_FILES[k] for k in keys)
+        print(f"\nMaster files under {base_dir}:\n   {names}")
+        print(f"   seasons now in master: {sorted(_seasons_in_master(base_dir))}")
+    return processed
 
 
 # %% -------------------------------------------------------------- diagnostics
