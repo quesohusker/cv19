@@ -298,6 +298,19 @@ RANKED_STATS = [
     Stat("fourth_down_pct_against_approx",-1, "rate", num="fourth_conv_against", den="fourth_att_against"),
     Stat("red_zone_pct_for_approx",       +1, "rate", num="rz_scored_for",      den="rz_trips_for"),
     Stat("red_zone_pct_against_approx",   -1, "rate", num="rz_scored_against",   den="rz_trips_against"),
+    # ---- efficiency & position-group support (derived) ----
+    Stat("yards_per_pass_att_for",     +1, "rate", num="pass_yds_for",         den="pass_att_for"),
+    Stat("yards_per_pass_att_against", -1, "rate", num="pass_yds_against",      den="pass_att_against"),
+    Stat("yards_per_rush_for",         +1, "rate", num="rush_yds_for",         den="rush_att_for"),
+    Stat("yards_per_rush_against",     -1, "rate", num="rush_yds_against",      den="rush_att_against"),
+    # sack rate = sacks / pass attempts (a simple rate, not dropbacks).
+    Stat("sack_rate_allowed",          -1, "rate", num="sacks_allowed",        den="pass_att_for"),
+    Stat("sack_rate_made",             +1, "rate", num="sacks_made",           den="pass_att_against"),
+    Stat("pass_ypa_3rd_down_for",      +1, "rate", num="pass_yds_3rd_for",     den="pass_att_3rd_for"),
+    Stat("pass_ypa_3rd_down_against",  -1, "rate", num="pass_yds_3rd_against",  den="pass_att_3rd_against"),
+    # tackles for loss (approx: negative-yardage runs -- see _build_play_values).
+    Stat("tfl_made_approx",            +1, "pergame", num="tfl_made"),
+    Stat("tfl_allowed_approx",         -1, "pergame", num="tfl_allowed"),
 ]
 # fmt: on
 
@@ -308,6 +321,9 @@ VOLUME_PERGAME = [
     "comp_for", "comp_against", "punt_ret_n_for", "punt_ret_n_against",
     "ko_ret_n_for", "ko_ret_n_against", "fg_made_for", "fg_att_for",
     "xp_made_for", "xp_att_for",
+    # raw ingredients for position-group grades (per-game averages)
+    "pass_att_3rd_for", "pass_att_3rd_against", "pass_yds_3rd_for", "pass_yds_3rd_against",
+    "tfl_yds_made", "tfl_yds_allowed",
 ]
 
 
@@ -388,6 +404,17 @@ def _build_play_values(df, cols):
     v["fourth_att"] = (is_scrim & (down == 4)).astype(float)
     v["fourth_conv"] = (is_scrim & (down == 4) & converted).astype(float)
 
+    # --- position-group support ---
+    # 3rd-down passing volume (exact: pass attempts / completed-pass yards on 3rd
+    # down), to isolate 3rd-down passing from general play-calling.
+    v["pass_att_3rd"] = (is_pass_att & (down == 3)).astype(float)
+    v["pass_yds_3rd"] = np.where(is_comp & (down == 3), yg, z)
+    # Tackles for loss, APPROXIMATE: a run stopped for a loss (yardsGained < 0).
+    # Sacks are tracked separately; official TFLs are charted and also include
+    # some pass plays, so this under-counts pass-rush TFLs by design.
+    v["tfl"]     = (is_rush & (yg < 0)).astype(float)
+    v["tfl_yds"] = np.where(is_rush & (yg < 0), yg.abs(), z)
+
     # --- max metrics (longest play; running max, not a sum) ---
     v["longrush"] = np.where(is_rush, yg, np.nan)
     v["longpass"] = np.where(is_comp, yg, np.nan)
@@ -400,7 +427,8 @@ _SUM_METRICS = ["rush_att", "rush_yds", "rush_td", "pass_att", "comp", "pass_yds
                 "pass_td", "intc", "sack", "sackyds", "fum", "puntret_yds",
                 "koret_yds", "puntret_n", "koret_n", "blocked", "fg_made",
                 "fg_att", "xp_made", "xp_att", "third_att", "third_conv",
-                "fourth_att", "fourth_conv"]
+                "fourth_att", "fourth_conv", "pass_att_3rd", "pass_yds_3rd",
+                "tfl", "tfl_yds"]
 _MAX_METRICS = ["longrush", "longpass"]
 
 # How a per-play metric maps onto (offense-grouped name, defense-grouped name).
@@ -420,6 +448,8 @@ _OFF_RENAME = {   # column when grouped by the offense team
     "xp_made": "xp_made_for", "xp_att": "xp_att_for",
     "third_att": "third_att_for", "third_conv": "third_conv_for",
     "fourth_att": "fourth_att_for", "fourth_conv": "fourth_conv_for",
+    "pass_att_3rd": "pass_att_3rd_for", "pass_yds_3rd": "pass_yds_3rd_for",
+    "tfl": "tfl_allowed", "tfl_yds": "tfl_yds_allowed",  # offense allowed the TFL
     "longrush": "longest_rush_for", "longpass": "longest_pass_for",
 }
 _DEF_RENAME = {   # column when grouped by the defense team
@@ -435,6 +465,8 @@ _DEF_RENAME = {   # column when grouped by the defense team
     "xp_made": "xp_made_against", "xp_att": "xp_att_against",
     "third_att": "third_att_against", "third_conv": "third_conv_against",
     "fourth_att": "fourth_att_against", "fourth_conv": "fourth_conv_against",
+    "pass_att_3rd": "pass_att_3rd_against", "pass_yds_3rd": "pass_yds_3rd_against",
+    "tfl": "tfl_made", "tfl_yds": "tfl_yds_made",  # defense made the TFL
     "longrush": "longest_rush_against", "longpass": "longest_pass_against",
 }
 

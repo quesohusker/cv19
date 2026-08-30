@@ -73,8 +73,22 @@ Win/loss record (`win_pct` ranked; `wins`/`losses`/`ties` cumulative, plus a
 `week_result` column = `W`/`L`/`T`/`bye` for that week's game); points; rushing
 (att/yds/TDs, longest); passing (att/yds/comp/TDs, longest, completion %);
 interceptions thrown/made; sacks made/allowed (+yards); fumbles lost/recovered;
-punt & kickoff return yards; blocked kicks; time of possession; and the
-`_approx` stats: 3rd/4th-down conversion % and red-zone scoring %.
+punt & kickoff return yards; blocked kicks; time of possession; the `_approx`
+stats (3rd/4th-down conversion % and red-zone scoring %); plus efficiency /
+position-group support: yards per pass attempt, yards per rush, sack rate
+(for/against), 3rd-down passing volume (`pass_att_3rd_down`, `pass_yds_3rd_down`)
+and YPA, and tackles-for-loss (`tfl_made_approx` / `tfl_allowed_approx`).
+
+**Tackles for loss are approximate**: computed as a run stopped for a loss
+(`yardsGained < 0`). Sacks stay a separate stat, and official TFLs are charted
+and include some pass plays, so this run-only figure is lower than a full TFL
+count -- hence `_approx`.
+
+**Not derivable from this data (deliberately absent):** per-position fumbles
+(e.g. fumbles lost *by the RB* -- the data has no player/position attribution;
+`fumbles_lost` is team-level), yards after contact (needs charting/tracking
+data), and passes defended (no pass-breakup flag exists; only the interception
+component, `int_made`, is available).
 
 **Fairness:** counting stats are ranked as **per-game averages** through that
 week (not raw totals), so a team on a bye isn't unfairly compared with one that
