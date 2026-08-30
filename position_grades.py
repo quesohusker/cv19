@@ -315,7 +315,7 @@ class PositionGroupEvaluator:
         for i, (tm, row) in enumerate(wide.iterrows()):
             ax.bar(x + i * w - 0.4 + w / 2, row[GROUPS].to_numpy(dtype=float),
                    width=w, label=str(tm))
-        ax.axhline(50, color="gray", linestyle="--", linewidth=1, alpha=0.7)  # avg
+        ax.axhline(self.base, color="gray", linestyle="--", linewidth=1, alpha=0.7)  # avg (C)
         ax.set_xticks(x)
         ax.set_xticklabels(GROUPS)
         ax.set_ylim(0, 100)
