@@ -99,8 +99,14 @@ GRADE_BINS = [
     (90.0, "A+"), (85.0, "A"), (80.0, "A-"),
     (77.0, "B+"), (73.0, "B"), (70.0, "B-"),
     (67.0, "C+"), (63.0, "C"), (60.0, "C-"),
-    (50.0, "D"),  (0.0,  "F"),
+    (57.0, "D+"), (53.0, "D"), (50.0, "D-"),
+    (0.0,  "F"),
 ]
+
+# Scale: score = clip(BASE + SPREAD * z, 0, 100). BASE=65 puts an average unit
+# (z=0) at 65 -> the middle of the C band, so the average team grades a C.
+# SPREAD=15 keeps the original stretch (z=+1 -> B, z~+1.7 -> A+, z<-1 -> F).
+BASE_SCORE, SPREAD = 65.0, 15.0
 
 MIN_SEASON, MAX_SEASON = 2014, 2025
 ID_COLS = ["season", "team", "week", "games_played", "wins", "losses", "ties", "week_result"]
@@ -116,9 +122,9 @@ def letter_grade(score):
     return "F"
 
 
-def score_from_z(z):
-    """0-100 score from a composite z: clip(50 + 15*z, 0, 100)."""
-    return np.clip(50.0 + 15.0 * z, 0.0, 100.0)
+def score_from_z(z, base=BASE_SCORE, spread=SPREAD):
+    """0-100 score from a composite z: clip(base + spread*z, 0, 100)."""
+    return np.clip(base + spread * z, 0.0, 100.0)
 
 
 class PositionGroupEvaluator:
@@ -136,7 +142,7 @@ class PositionGroupEvaluator:
     """
 
     def __init__(self, source, min_season=MIN_SEASON, max_season=MAX_SEASON,
-                 pre_directional=True):
+                 pre_directional=True, base=BASE_SCORE, spread=SPREAD):
         df = source if isinstance(source, pd.DataFrame) else pd.read_csv(source)
         if "season" not in df.columns:
             raise ValueError("source is missing a 'season' column -- is this the "
@@ -153,6 +159,8 @@ class PositionGroupEvaluator:
 
         self.df = df
         self.pre_directional = pre_directional
+        self.base = base          # z=0 -> this score (default 65 => average = C)
+        self.spread = spread      # points per 1 std of z (default 15)
         self._warn_missing_columns()
 
     # ---- setup / introspection ------------------------------------------
@@ -239,7 +247,7 @@ class PositionGroupEvaluator:
         base = frame[["season", "team", "week"]].reset_index(drop=True)
         for g in groups:
             z = self._composite_z(frame.reset_index(drop=True), g)
-            score = score_from_z(z)
+            score = score_from_z(z, self.base, self.spread)
             part = base.copy()
             part["group"] = g
             part["composite_z"] = z
