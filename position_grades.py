@@ -266,6 +266,40 @@ class PositionGroupEvaluator:
                                 values=value, aggfunc="first")
         return wide.reindex(columns=GROUPS)
 
+    def grade_all(self, scope="season", aggregate="final", out_path=None):
+        """Grade EVERY team across ALL seasons in one call.
+
+        scope="season" -> one row per (season, team, group), season-long
+                          (aggregate 'final' = final-week cumulative, or 'mean').
+        scope="weekly"  -> one row per (season, team, week, group), every week.
+
+        Returns the itemized long DataFrame; also writes it to `out_path` if given.
+        """
+        if scope == "season":
+            frame = self._select(season=None, week=None, team=None, aggregate=aggregate)
+        elif scope == "weekly":
+            frame = self.df.copy()
+        else:
+            raise ValueError("scope must be 'season' or 'weekly'")
+
+        frame = frame.reset_index(drop=True)
+        base = frame[["season", "team", "week"]]
+        rows = []
+        for g in GROUPS:
+            z = self._composite_z(frame, g)
+            score = score_from_z(z, self.base, self.spread)
+            part = base.copy()
+            part["group"] = g
+            part["composite_z"] = z
+            part["score"] = np.round(score, 1)
+            part["grade"] = [letter_grade(s) for s in score]
+            rows.append(part)
+        sort_keys = ["season", "team", "week", "group"]
+        out = pd.concat(rows, ignore_index=True).sort_values(sort_keys).reset_index(drop=True)
+        if out_path:
+            out.to_csv(out_path, index=False)
+        return out
+
     # ---- visualization ---------------------------------------------------
     def plot_radar(self, season, team, week=None, aggregate=None, ax=None):
         """Radar chart of one team's six position-group scores (0-100)."""
