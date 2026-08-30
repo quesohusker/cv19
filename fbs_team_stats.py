@@ -114,6 +114,11 @@ RUSH_TD_TYPES         = {"Rushing Touchdown"}
 PASS_COMPLETION_TYPES = {"Pass Reception", "Passing Touchdown", "Pass Completion"}
 PASS_TD_TYPES         = {"Passing Touchdown"}
 PASS_INCOMPLETE_TYPES = {"Pass Incompletion"}
+# Older-season coarse label (dominant in 2005, a small residual 2006-2013): a
+# bare "Pass" whose completion status isn't spelled out. We infer it from yards:
+# a "Pass" that gained/lost yards is a completion, yardsGained == 0 is an
+# incompletion. Its yardage flows into passing yards either way (0 for incomps).
+PASS_GENERIC_TYPES    = {"Pass"}
 # An interception is a (failed) pass attempt; yardsGained on these is the return
 # yardage and belongs to the defense, so it is NOT counted toward passing yards.
 # ("Pass Interception" is the older-season (2006-2013) spelling of the same event.)
@@ -152,9 +157,9 @@ PLAYTYPES_IGNORED = {
 
 # Every playType we understand (used only for the unknown-playType warning).
 PLAYTYPES_KNOWN = (
-    RUSH_TYPES | PASS_COMPLETION_TYPES | PASS_INCOMPLETE_TYPES | INTERCEPTION_TYPES
-    | SACK_TYPES | FUMBLE_LOST_TYPES | PUNT_RETURN_TYPES | KICKOFF_RETURN_TYPES
-    | BLOCKED_KICK_TYPES | PLAYTYPES_IGNORED
+    RUSH_TYPES | PASS_COMPLETION_TYPES | PASS_INCOMPLETE_TYPES | PASS_GENERIC_TYPES
+    | INTERCEPTION_TYPES | SACK_TYPES | FUMBLE_LOST_TYPES | PUNT_RETURN_TYPES
+    | KICKOFF_RETURN_TYPES | BLOCKED_KICK_TYPES | PLAYTYPES_IGNORED
 )
 
 # %% -------------------------------------------------- column-name resolution
@@ -322,8 +327,11 @@ def _build_play_values(df, cols):
 
     is_rush    = pt.isin(RUSH_TYPES)
     is_rush_td = pt.isin(RUSH_TD_TYPES)
-    is_comp    = pt.isin(PASS_COMPLETION_TYPES)
-    is_incomp  = pt.isin(PASS_INCOMPLETE_TYPES)
+    # Absorb the coarse "Pass" label: completion if it gained/lost yards, else an
+    # incompletion. This lets all downstream pass logic stay unchanged.
+    is_generic = pt.isin(PASS_GENERIC_TYPES)
+    is_comp    = pt.isin(PASS_COMPLETION_TYPES) | (is_generic & (yg != 0))
+    is_incomp  = pt.isin(PASS_INCOMPLETE_TYPES) | (is_generic & (yg == 0))
     is_int     = pt.isin(INTERCEPTION_TYPES)
     is_pass_td = pt.isin(PASS_TD_TYPES)
     is_pass_att = is_comp | is_incomp | is_int          # sacks are NOT attempts
@@ -818,7 +826,9 @@ def _warn_empty_categories(df, cols, season):
     pt = df[cols["play_type"]].astype("string")
     checks = {
         "rushing (Rush)": RUSH_TYPES,
-        "passing (completions)": PASS_COMPLETION_TYPES,
+        "passing (completions)": PASS_COMPLETION_TYPES | PASS_GENERIC_TYPES,
+        "rushing TDs": RUSH_TD_TYPES,          # folded into 'Rush' before ~2014
+        "passing TDs": PASS_TD_TYPES,          # folded into completions before ~2014
         "sacks": SACK_TYPES,
         "interceptions": INTERCEPTION_TYPES,
         "fumbles lost": FUMBLE_LOST_TYPES,
@@ -1047,7 +1057,7 @@ def _spotcheck_team_week(raw, cols, stats, team, week):
     yg = pd.to_numeric(raw[cols["yards_gained"]], errors="coerce")
     m_week = pd.to_numeric(raw[wk], errors="coerce") <= week
     is_rush = pt.isin(RUSH_TYPES)
-    is_comp = pt.isin(PASS_COMPLETION_TYPES)
+    is_comp = pt.isin(PASS_COMPLETION_TYPES) | (pt.isin(PASS_GENERIC_TYPES) & (yg != 0))
     off = raw[cols["offense"]] == team
     rush_yds = yg[m_week & off & is_rush].sum()
     pass_yds = yg[m_week & off & is_comp].sum()

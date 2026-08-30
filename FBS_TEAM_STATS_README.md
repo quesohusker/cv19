@@ -103,10 +103,22 @@ Early seasons (roughly 2005–2013) use coarser CFBD play typing, so some stats
 are genuinely unavailable then and the code warns rather than faking them:
 sacks, fumbles, punt/kickoff returns, and blocked kicks are largely absent in
 those years, so those columns are NaN and get **no rank/z** (a stat with no
-spread in a week is left blank, not ranked "everyone tied at 1"). Older spellings
-that *are* mapped: `Pass Interception` (interceptions, 2006–2013) and
-`Missed Field Goal Return Touchdown` (FG attempt). Extra points never appear as
-their own play type in this dataset, so XP is skipped in every season.
+spread in a week is left blank, not ranked "everyone tied at 1").
+
+Older spellings that *are* mapped so their stats survive:
+- `Pass Interception` → interceptions (recovers 2006–2013 INT-thrown/made).
+- `Missed Field Goal Return Touchdown` → FG attempt.
+- `Pass` → the coarse pass label (the whole passing game in 2005, a small
+  residual 2006–2013). Counted as a pass attempt; a completion when it
+  gained/lost yards, an incompletion at 0 yards; its yardage flows into passing
+  yards. 2005 is very coarse regardless and best treated with low confidence.
+
+Two more coverage notes surfaced by the warnings:
+- **Passing/rushing TD *counts* are missing before ~2014** (`Passing Touchdown`/
+  `Rushing Touchdown` weren't separate play types then — the TD yardage still
+  counts toward pass/rush yards; only the TD-count columns go blank).
+- **Extra points** never appear as their own play type in this dataset, so XP is
+  skipped in every season.
 
 ## Approximations & known gaps (stated, not hidden)
 
