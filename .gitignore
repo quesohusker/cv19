@@ -7,3 +7,6 @@ team_zscores.csv
 team_stats.csv
 team_ranks_all_seasons.csv
 team_zscores_all_seasons.csv
+
+# position-group grade outputs
+position_grades_*.csv

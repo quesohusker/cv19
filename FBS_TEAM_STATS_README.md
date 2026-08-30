@@ -48,6 +48,30 @@ Master files across all seasons, in `<BASE_DIR>/`:
   per-game cumulative stat values across all seasons (one row per team per week
   per season; the numbers to compare against CFBstats.com)
 
+## Position-group grades (`position_grades.py`)
+
+`position_grades.py` consumes `team_zscores_all_seasons.csv` and grades six
+position groups (QB, OL, RB, WR/TE, DL/EDGE, Secondary) A+..F with 0-100
+composite scores, per team, per week or season-long:
+
+```python
+from position_grades import PositionGroupEvaluator
+ev = PositionGroupEvaluator("/Volumes/1TB external/CFDB Stats/team_zscores_all_seasons.csv")
+ev.grade(season=2024, week=10)                 # every team, one week
+ev.grade(season=2024, team="Ohio State")       # season-long (final week)
+ev.grade_wide(season=2024, value="grade")      # team x group matrix
+ev.plot_radar(season=2024, team="Ohio State")  # radar of the six grades
+ev.plot_compare(["Ohio State", "Michigan"], season=2024)
+```
+
+Two things to know: (1) the z-score file is **pre-directional** (higher = better
+on every column, defense included), so the grader uses columns as-is and does
+**not** re-apply the rubric's `×-1` flips — doing so would double-invert and
+grade elite defenses as awful (`pre_directional=False` handles a raw z file).
+(2) The score formula `50 + 15·z` makes an average unit a **D** and below-average
+an **F** by construction, so grades skew low; recenter the base if you want a
+gentler curve.
+
 ## Adding 2026 later (incremental append)
 
 The master files are built **incrementally**. `run_all_seasons()` only processes
