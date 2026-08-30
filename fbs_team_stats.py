@@ -1089,10 +1089,14 @@ def _spotcheck_team_week(raw, cols, stats, team, week):
     print("   OK: pipeline matches hand calculation.")
 
 
-# %% -------------------------------------------------------------------- main
-def main():
-    run_all_seasons()
-
-
+# %% ------------------------------------------------- run it (paste-and-run)
+# Running this file top-to-bottom -- including pasting it into a Jupyter cell,
+# where __name__ == "__main__" -- executes the line below.
+#
+# rebuild=True is REQUIRED after any change to the mappings/columns above: a
+# plain run_all_seasons() is INCREMENTAL and skips every season already in the
+# master files (i.e. does nothing). Once everything is built and you later only
+# drop in a NEW season (e.g. 2026), switch this to plain run_all_seasons() so it
+# appends just that season instead of reprocessing all of them.
 if __name__ == "__main__":
-    main()
+    run_all_seasons(rebuild=True)
