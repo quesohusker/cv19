@@ -274,9 +274,18 @@ def commit_and_push(files, branch, season, push, dry_run):
     idx.close()
     env["GIT_INDEX_FILE"] = idx.name
     try:
-        parent = _git("rev-parse", "--verify", f"refs/heads/{branch}", check=False).stdout.strip()
+        # Build on top of the REMOTE branch tip so the push always fast-forwards,
+        # even if the local ref has drifted from origin (self-heals divergence;
+        # the unattended 03:00 job can't stop to resolve a rejected push).
+        if push:
+            _git("fetch", "origin", branch, check=False)
+        remote_tip = _git("rev-parse", "--verify", f"refs/remotes/origin/{branch}",
+                           check=False).stdout.strip()
+        local_tip = _git("rev-parse", "--verify", f"refs/heads/{branch}",
+                          check=False).stdout.strip()
+        parent = remote_tip or local_tip
         if parent:
-            subprocess.run(["git", "read-tree", branch], cwd=HERE, env=env,
+            subprocess.run(["git", "read-tree", parent], cwd=HERE, env=env,
                            capture_output=True, text=True, check=True)
         else:
             subprocess.run(["git", "read-tree", "--empty"], cwd=HERE, env=env,
@@ -290,8 +299,11 @@ def commit_and_push(files, branch, season, push, dry_run):
         tree = subprocess.run(["git", "write-tree"], cwd=HERE, env=env,
                               capture_output=True, text=True, check=True).stdout.strip()
         if parent:
-            parent_tree = _git("rev-parse", f"{branch}^{{tree}}", check=False).stdout.strip()
+            parent_tree = _git("rev-parse", f"{parent}^{{tree}}", check=False).stdout.strip()
             if parent_tree == tree:
+                # nothing new, but keep the local ref level with origin
+                if remote_tip and local_tip != remote_tip:
+                    _git("update-ref", f"refs/heads/{branch}", remote_tip)
                 return {"status": "no changes to commit", "branch": branch, "files": files}
         stamp = dt.datetime.now().strftime("%Y-%m-%d %H:%M")
         msg = f"data refresh {season} — {stamp}\n\nAutomated pipeline run. Allowlisted outputs only."
