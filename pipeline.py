@@ -170,7 +170,7 @@ def build_stages(season):
               optional=True, note="per-game v1 margin + win-prob forecast for the season"),
         Stage("forecast_in_game_wp", "forecast",
               ["-m", "models.in_game_wp.forecast", "--season", S],
-              enabled=False, note="TODO: live in-game WP forecast"),
+              optional=True, note="pregame win-probability forecast for the season"),
     ]
 
 
