@@ -183,7 +183,6 @@ COMMIT_GLOBS = [
     "data/cfbd/master/power_ratings_epa_weekly.csv",
     "data/cfbd/master/lines_all_seasons.csv",
     "data/cfbd/master/lines_consensus_all_seasons.csv",
-    "data/cfbd/master/win_probability_all_seasons.csv",
     "data/cfbd/master/pregame_win_probability_all_seasons.csv",
     "data/cfbd/master/season_win_totals.csv",
     "data/cfbd/predictions/*.csv",
@@ -191,9 +190,15 @@ COMMIT_GLOBS = [
     "scratchpad/benchmark_winpct_seasons.csv",
     "scratchpad/benchmark_winpct_games.csv",
 ]
-# Never commit these even if a glob above would catch them (safety net).
+# Never commit these even if a glob above would catch them (safety net). Kept
+# out on purpose: the 2 GB combined file, the 28/33 MB weekly z/stat masters,
+# the 124 MB CFBD per-play WP benchmark, and 20 MB per-play in-game-WP output --
+# all either over GitHub's 100 MB limit or pure history bloat. The leading-slash
+# forms below are surgical: "/win_probability_all_seasons.csv" excludes the big
+# master WITHOUT touching "pregame_win_probability_all_seasons.csv" (460 KB).
 COMMIT_DENY_SUBSTR = ["combined_all_seasons", "team_stats_all_seasons",
-                      "team_zscores_all_seasons", "/raw/", "/processed/", "scripts/"]
+                      "team_zscores_all_seasons", "/win_probability_all_seasons.csv",
+                      "in_game_wp_perplay", "/raw/", "/processed/", "scripts/"]
 COMMIT_BRANCH = "data-latest"
 
 
