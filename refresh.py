@@ -33,23 +33,23 @@ import fbs_team_stats as fts
 import position_grades as pg
 
 
-def _regrade(base_dir, verbose=True):
+def _regrade(master_dir, verbose=True):
     """Rerun the grading models over the refreshed z-score master file.
 
-    Writes both the season-long and the weekly grade tables next to the master
-    z-score file, and grades every season present (max_season follows the file,
-    so a freshly-added current season is included automatically).
+    Reads team_zscores_all_seasons.csv from `master_dir` and writes both the
+    season-long and weekly grade tables back into `master_dir`, grading every
+    season present (max_season follows the file, so a freshly-added current
+    season is included automatically).
     """
-    zpath = os.path.join(base_dir, fts.MASTER_FILES["zscores"])
+    zpath = os.path.join(master_dir, fts.MASTER_FILES["zscores"])
     if not os.path.isfile(zpath):
         print(f"[grades] no z-score master file at {zpath}; skipping grading.")
         return
     df = pd.read_csv(zpath)
     max_season = int(df["season"].max())
     ev = pg.PositionGroupEvaluator(df, max_season=max_season)
-    out_dir = os.path.dirname(os.path.abspath(zpath))
     for scope in ("season", "weekly"):
-        out = os.path.join(out_dir, f"position_grades_{scope}.csv")
+        out = os.path.join(master_dir, f"position_grades_{scope}.csv")
         tbl = ev.grade_all(scope=scope, out_path=out)
         if verbose:
             print(f"[grades] {scope:6s}: {len(tbl):,} rows -> {out}")
@@ -65,7 +65,13 @@ def main(argv=None):
         description="Update current-season stats and rerun the grading models.",
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     p.add_argument("--base-dir", default=fts.BASE_DIR,
-                   help="root holding <year>/combined.csv folders (or $CFDB_BASE_DIR)")
+                   help="project root; auto-resolves to data/cfbd/processed (input) and "
+                        "data/cfbd/master (output) if present, else <year>/combined.csv "
+                        "directly under it (or $CFDB_BASE_DIR)")
+    p.add_argument("--data-dir", default=None,
+                   help="override the input dir holding <year>/combined.csv")
+    p.add_argument("--master-dir", default=None,
+                   help="override where master + grade files are read/written")
     mode = p.add_mutually_exclusive_group()
     mode.add_argument("--season", type=int, metavar="YEAR",
                       help="update this season instead of the current one")
@@ -79,25 +85,33 @@ def main(argv=None):
     args = p.parse_args(argv)
     verbose = not args.quiet
 
+    # Resolve input + master dirs (auto for the data/cfbd layout; overridable).
+    resolved_data, resolved_master = fts._resolve_layout(args.base_dir)
+    data_dir = args.data_dir or resolved_data
+    master_dir = args.master_dir or resolved_master
+    print(f"Data dir:   {data_dir}")
+    print(f"Master dir: {master_dir}\n")
+
     # ---- step 1+2: stats / ranks / z-scores (per-season + master files) ----
     if args.rebuild:
         print("=== step 1: rebuilding ALL seasons ===")
-        processed = fts.run_all_seasons(base_dir=args.base_dir, rebuild=True, verbose=verbose)
+        processed = fts.run_all_seasons(base_dir=data_dir, master_dir=master_dir,
+                                        rebuild=True, verbose=verbose)
     else:
         year = args.season or fts.current_season_year()
-        if year not in fts._discover_seasons(args.base_dir):
+        if year not in fts._discover_seasons(data_dir):
             print(f"=== step 1: {year} has no "
-                  f"{os.path.join(args.base_dir, str(year), 'combined.csv')} yet ===")
-            print(f"    seasons on disk: {fts._discover_seasons(args.base_dir) or '(none)'}")
+                  f"{os.path.join(data_dir, str(year), 'combined.csv')} yet ===")
+            print(f"    seasons on disk: {fts._discover_seasons(data_dir) or '(none)'}")
             processed = []
         else:
             print(f"=== step 1: updating {year} only (prior seasons untouched) ===")
-            processed = fts.run_all_seasons(base_dir=args.base_dir, seasons=[year],
-                                            verbose=verbose)
+            processed = fts.run_all_seasons(base_dir=data_dir, master_dir=master_dir,
+                                            seasons=[year], verbose=verbose)
 
     if args.validate and processed:
         for s in processed:
-            fts.validate_season(s, base_dir=args.base_dir)
+            fts.validate_season(s, base_dir=data_dir)
 
     if not processed and not args.rebuild:
         print("\nNothing was processed, so the grading step is skipped.")
@@ -108,7 +122,7 @@ def main(argv=None):
         print("\n(--skip-grades) grading models not rerun.")
         return
     print("\n=== step 3: rerunning grading models on refreshed z-scores ===")
-    _regrade(args.base_dir, verbose=verbose)
+    _regrade(master_dir, verbose=verbose)
     print("\nDone.")
 
 

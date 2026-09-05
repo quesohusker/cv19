@@ -38,8 +38,18 @@ python position_grades.py --scope weekly # one row per team per week -> CSV
 
 Seasons are auto-discovered from the base dir (any numeric sub-folder containing
 a `combined.csv`). The base dir **defaults to the folder the scripts live in**
-(this project), so `<project>/<year>/combined.csv` is found automatically. Point
-it elsewhere with `--base-dir "..."` or the `CFDB_BASE_DIR` env var.
+(this project). Two layouts are auto-detected from there:
+
+- **Project layout** — if `data/cfbd/processed/<year>/combined.csv` exists, input
+  is read from `data/cfbd/processed/` and the master files are read/written in
+  `data/cfbd/master/` (the position-grade CSVs land there too). This is the
+  layout in this repo, so running from the project root needs no flags.
+- **Simple layout** — otherwise `<base>/<year>/combined.csv` is used, with the
+  master files written alongside in `<base>/`.
+
+Override either explicitly with `--data-dir` (input) and `--master-dir` (output),
+or point the whole thing elsewhere with `--base-dir "..."` / the `CFDB_BASE_DIR`
+env var.
 
 ## Outputs
 

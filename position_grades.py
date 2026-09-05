@@ -372,14 +372,18 @@ class PositionGroupEvaluator:
 def _default_zscores_path():
     """Where to find team_zscores_all_seasons.csv by default.
 
-    $CFDB_ZSCORES wins; else $CFDB_BASE_DIR/team_zscores_all_seasons.csv; else
-    the file sitting next to this script (the project directory).
+    $CFDB_ZSCORES wins; else look under $CFDB_BASE_DIR (or the script's own dir)
+    for data/cfbd/master/team_zscores_all_seasons.csv (this project's layout),
+    then fall back to the file sitting directly in that base.
     """
     z = os.environ.get("CFDB_ZSCORES")
     if z:
         return z
     here = os.path.dirname(os.path.abspath(__file__))
     base = os.environ.get("CFDB_BASE_DIR", here)
+    nested = os.path.join(base, "data", "cfbd", "master", "team_zscores_all_seasons.csv")
+    if os.path.isfile(nested):
+        return nested
     return os.path.join(base, "team_zscores_all_seasons.csv")
 
 

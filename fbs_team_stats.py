@@ -794,6 +794,35 @@ def _discover_seasons(base_dir):
     return sorted(out)
 
 
+# Conventional CFBD sub-layout: <root>/data/cfbd/processed/<year>/combined.csv
+# with master files in <root>/data/cfbd/master. Kept as module constants so the
+# resolver and any caller share one definition.
+_CFBD_PROCESSED = os.path.join("data", "cfbd", "processed")
+_CFBD_MASTER = os.path.join("data", "cfbd", "master")
+
+
+def _resolve_layout(base_dir):
+    """Return (data_dir, master_dir) for a given root directory.
+
+    - If <base_dir>/<year>/combined.csv folders exist, read and write masters
+      right there (the simple/self-contained layout).
+    - Else if <base_dir>/data/cfbd/processed holds the season folders (this
+      project's layout), read from there and put the master files in
+      <base_dir>/data/cfbd/master.
+    - Else fall back to base_dir (discovery then reports nothing found).
+
+    This lets `... --base-dir <project root>` (or just running from the project)
+    find data/cfbd/processed for input and data/cfbd/master for output with no
+    extra flags, while a plain <base>/<year>/combined.csv tree still works.
+    """
+    if _discover_seasons(base_dir):
+        return base_dir, base_dir
+    proc = os.path.join(base_dir, _CFBD_PROCESSED)
+    if _discover_seasons(proc):
+        return proc, os.path.join(base_dir, _CFBD_MASTER)
+    return base_dir, base_dir
+
+
 def _read_combined(path):
     """Read only the columns we need (keeps memory sane on 100MB+ files)."""
     header = pd.read_csv(path, nrows=0)
@@ -930,7 +959,8 @@ def _upsert_master(base_dir, key, new_rows, replace_seasons):
     out.to_csv(path, index=False)
 
 
-def run_all_seasons(base_dir=BASE_DIR, seasons=None, rebuild=False, verbose=True):
+def run_all_seasons(base_dir=BASE_DIR, seasons=None, rebuild=False, verbose=True,
+                    master_dir=None):
     """Process seasons and (upsert-)write the per-season files and master files.
 
     Incremental by default: only seasons NOT already in the master files are
@@ -940,15 +970,24 @@ def run_all_seasons(base_dir=BASE_DIR, seasons=None, rebuild=False, verbose=True
     seasons=[...] to force specific seasons (they are reprocessed and their rows
     replaced in the masters).
 
+    `base_dir` is the ROOT: input season folders and the master files are located
+    via _resolve_layout() (so a project root with data/cfbd/{processed,master}
+    works), unless `master_dir` is given to override where the master files go.
+    Per-season output files are always written next to each combined.csv.
+
     Returns the list of seasons processed this run.
     """
-    discovered = _discover_seasons(base_dir)
+    data_dir, resolved_master = _resolve_layout(base_dir)
+    master_dir = master_dir or resolved_master
+
+    discovered = _discover_seasons(data_dir)
     if not discovered:
-        raise FileNotFoundError(f"No <year>/combined.csv folders found under {base_dir!r}. "
-                                f"Set CFDB_BASE_DIR or pass base_dir=.")
+        raise FileNotFoundError(f"No <year>/combined.csv folders found under {data_dir!r} "
+                                f"(root {base_dir!r}). Set CFDB_BASE_DIR or pass base_dir=/"
+                                f"--base-dir, or --data-dir.")
     requested = discovered if seasons is None else [int(s) for s in seasons]
 
-    already = set() if rebuild else _seasons_in_master(base_dir)
+    already = set() if rebuild else _seasons_in_master(master_dir)
     if seasons is None and not rebuild:
         todo = [s for s in requested if s not in already]        # incremental append
     else:
@@ -956,18 +995,21 @@ def run_all_seasons(base_dir=BASE_DIR, seasons=None, rebuild=False, verbose=True
     if rebuild:
         # Start the masters fresh so stale seasons don't linger.
         for fn in MASTER_FILES.values():
-            p = os.path.join(base_dir, fn)
+            p = os.path.join(master_dir, fn)
             if os.path.isfile(p):
                 os.remove(p)
 
     if verbose:
+        print(f"Data dir:   {data_dir}")
+        if master_dir != data_dir:
+            print(f"Master dir: {master_dir}")
         print(f"Seasons on disk: {discovered}")
         print(f"Already in master: {sorted(already) or '(none)'}")
         print(f"Processing this run: {todo or '(nothing new)'}")
 
     new_ranks, new_z, new_stats = [], [], []
     for s in todo:
-        res = process_season(s, base_dir=base_dir, verbose=verbose)
+        res = process_season(s, base_dir=data_dir, verbose=verbose)
         if res is None:
             continue
         new_ranks.append(res["ranks"])
@@ -976,19 +1018,20 @@ def run_all_seasons(base_dir=BASE_DIR, seasons=None, rebuild=False, verbose=True
 
     processed = [r["season"].iloc[0] for r in new_ranks] if new_ranks else []
     replace = set(processed)
-    _upsert_master(base_dir, "ranks",
+    os.makedirs(master_dir, exist_ok=True)
+    _upsert_master(master_dir, "ranks",
                    pd.concat(new_ranks, ignore_index=True) if new_ranks else None, replace)
-    _upsert_master(base_dir, "zscores",
+    _upsert_master(master_dir, "zscores",
                    pd.concat(new_z, ignore_index=True) if new_z else None, replace)
     if WRITE_STATS:
-        _upsert_master(base_dir, "stats",
+        _upsert_master(master_dir, "stats",
                        pd.concat(new_stats, ignore_index=True) if new_stats else None, replace)
 
     if verbose:
         keys = ("ranks", "zscores", "stats") if WRITE_STATS else ("ranks", "zscores")
         names = " / ".join(MASTER_FILES[k] for k in keys)
-        print(f"\nMaster files under {base_dir}:\n   {names}")
-        print(f"   seasons now in master: {sorted(_seasons_in_master(base_dir))}")
+        print(f"\nMaster files under {master_dir}:\n   {names}")
+        print(f"   seasons now in master: {sorted(_seasons_in_master(master_dir))}")
     return processed
 
 
@@ -1158,8 +1201,15 @@ def _build_arg_parser():
         description="Build cumulative-by-week FBS team stats, ranks, and z-scores, "
                     "and (upsert-)write the per-season and master files.")
     p.add_argument("--base-dir", default=BASE_DIR,
-                   help=f"root holding <year>/combined.csv folders "
-                        f"(default: $CFDB_BASE_DIR or {BASE_DIR!r})")
+                   help=f"project root; resolves to data/cfbd/processed (input) and "
+                        f"data/cfbd/master (output) if present, else <year>/combined.csv "
+                        f"directly under it (default: $CFDB_BASE_DIR or {BASE_DIR!r})")
+    p.add_argument("--data-dir", default=None,
+                   help="override the input dir holding <year>/combined.csv "
+                        "(default: auto-resolved from --base-dir)")
+    p.add_argument("--master-dir", default=None,
+                   help="override where the *_all_seasons.csv master files are read/written "
+                        "(default: auto-resolved from --base-dir)")
     mode = p.add_mutually_exclusive_group()
     mode.add_argument("--current-year", action="store_true",
                       help="process ONLY the current season and replace just its rows "
@@ -1187,34 +1237,41 @@ def main(argv=None):
     if args.no_stats:
         WRITE_STATS = False
 
+    # Resolve where seasons are read from and where masters are written. An
+    # explicit --data-dir/--master-dir wins; otherwise auto-resolve from the root.
+    resolved_data, resolved_master = _resolve_layout(args.base_dir)
+    data_dir = args.data_dir or resolved_data
+    master_dir = args.master_dir or resolved_master
+    common = dict(base_dir=data_dir, master_dir=master_dir, verbose=verbose)
+
     if args.inspect:
         for s in args.inspect:
-            inspect_season(s, base_dir=args.base_dir)
+            inspect_season(s, base_dir=data_dir)
         return None
     if args.validate:
         for s in args.validate:
-            validate_season(s, base_dir=args.base_dir)
+            validate_season(s, base_dir=data_dir)
         return None
 
     if args.rebuild:
-        return run_all_seasons(base_dir=args.base_dir, rebuild=True, verbose=verbose)
+        return run_all_seasons(rebuild=True, **common)
     if args.seasons:
-        return run_all_seasons(base_dir=args.base_dir, seasons=args.seasons, verbose=verbose)
+        return run_all_seasons(seasons=args.seasons, **common)
     if args.all_new:
-        return run_all_seasons(base_dir=args.base_dir, verbose=verbose)
+        return run_all_seasons(**common)
 
     # Default (and explicit --current-year): update ONLY the current season,
     # replacing just its rows in the masters -- prior seasons are untouched.
     year = current_season_year()
-    discovered = _discover_seasons(args.base_dir)
+    discovered = _discover_seasons(data_dir)
     if year not in discovered:
         print(f"[current-year] {year}: no "
-              f"{os.path.join(args.base_dir, str(year), 'combined.csv')} found yet.")
+              f"{os.path.join(data_dir, str(year), 'combined.csv')} found yet.")
         print(f"   seasons on disk: {discovered or '(none)'}")
         return []
     if verbose:
         print(f"[current-year] processing {year} only (prior seasons untouched)\n")
-    return run_all_seasons(base_dir=args.base_dir, seasons=[year], verbose=verbose)
+    return run_all_seasons(seasons=[year], **common)
 
 
 if __name__ == "__main__":
