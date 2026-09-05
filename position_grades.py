@@ -23,14 +23,22 @@ If you ever point this at a RAW z-score file (against-metrics NOT pre-flipped),
 construct with `pre_directional=False` and the columns in RAW_LOWER_IS_BETTER
 will be negated for you.
 
-HOW TO RUN (Jupyter on the Mac with the drive mounted)
-------------------------------------------------------
+HOW TO RUN
+----------
+From a terminal / Claude Code on the machine where the drive is mounted (reads
+$CFDB_ZSCORES or $CFDB_BASE_DIR/team_zscores_all_seasons.csv by default):
+
+    python position_grades.py                      # season-long grades, all teams/years -> CSV
+    python position_grades.py --scope weekly       # one row per team per week -> CSV
+    python position_grades.py --season 2026 --wide # quick view: 2026 team x group letters
+    python position_grades.py --season 2026 --team "Ohio State"
+
+Or import the class directly:
+
     from position_grades import PositionGroupEvaluator
     ev = PositionGroupEvaluator("/Volumes/1TB external/CFDB Stats/team_zscores_all_seasons.csv")
-
     ev.grade(season=2024, week=10)                 # every team, week 10 of 2024
     ev.grade(season=2024, team="Ohio State")       # season-long (final week)
-    ev.grade(season=2024, aggregate="mean")        # season-long via weekly mean
     ev.grade_wide(season=2024)                      # team x group score matrix
     ev.plot_radar(season=2024, team="Ohio State")  # radar of the 6 grades
     ev.plot_compare(["Ohio State", "Michigan"], season=2024)  # grouped bars
@@ -360,14 +368,90 @@ class PositionGroupEvaluator:
         return ax
 
 
-# ---------------------------------------------------------- demo / self-test
+# ----------------------------------------------------------- command-line entry
+def _default_zscores_path():
+    """Where to find team_zscores_all_seasons.csv by default.
+
+    $CFDB_ZSCORES wins; else $CFDB_BASE_DIR/team_zscores_all_seasons.csv; else
+    the file sitting next to this script (the project directory).
+    """
+    z = os.environ.get("CFDB_ZSCORES")
+    if z:
+        return z
+    here = os.path.dirname(os.path.abspath(__file__))
+    base = os.environ.get("CFDB_BASE_DIR", here)
+    return os.path.join(base, "team_zscores_all_seasons.csv")
+
+
+# Run from a terminal / Claude Code (no Jupyter needed):
+#
+#   python position_grades.py                      # write season-long grades for all teams/years
+#   python position_grades.py --scope weekly       # every team, every week
+#   python position_grades.py --season 2026 --wide # quick view: 2026 team x group letters
+#   python position_grades.py --season 2026 --team "Ohio State"
+#
+# Reads $CFDB_ZSCORES or $CFDB_BASE_DIR/team_zscores_all_seasons.csv unless
+# --zscores is given; writes next to the z-score file unless --out is given.
+def main(argv=None):
+    import argparse
+    p = argparse.ArgumentParser(
+        prog="position_grades.py",
+        description="Grade six FBS position groups (A+..F, 0-100) from the "
+                    "pre-directional z-score master file.")
+    p.add_argument("--zscores", default=_default_zscores_path(),
+                   help="path to team_zscores_all_seasons.csv "
+                        "(default: $CFDB_ZSCORES or $CFDB_BASE_DIR/team_zscores_all_seasons.csv)")
+    p.add_argument("--out", default=None,
+                   help="output CSV for the full grade table "
+                        "(default: <zscores dir>/position_grades_<scope>.csv)")
+    p.add_argument("--scope", choices=["season", "weekly"], default="season",
+                   help="season-long (default) or one row per team per week")
+    p.add_argument("--aggregate", choices=["final", "mean"], default="final",
+                   help="season scope only: final-week cumulative (default) or weekly mean")
+    p.add_argument("--min-season", type=int, default=MIN_SEASON,
+                   help=f"earliest season to grade (default {MIN_SEASON})")
+    p.add_argument("--max-season", type=int, default=None,
+                   help="latest season to grade (default: the newest season in the file)")
+    p.add_argument("--base", type=float, default=BASE_SCORE,
+                   help=f"score at z=0 (default {BASE_SCORE:g} -> average unit = C)")
+    p.add_argument("--spread", type=float, default=SPREAD,
+                   help=f"points per 1 std of z (default {SPREAD:g})")
+    p.add_argument("--raw", dest="pre_directional", action="store_false", default=True,
+                   help="the z file is RAW (against-metrics not pre-flipped); negate them")
+    # quick-view (print instead of writing a file):
+    p.add_argument("--season", type=int, help="print grades for one season and exit")
+    p.add_argument("--team", help="quick view: restrict to one team")
+    p.add_argument("--week", type=int, help="quick view: restrict to one week")
+    p.add_argument("--wide", action="store_true",
+                   help="quick view as a team x group letter-grade matrix")
+    args = p.parse_args(argv)
+
+    df = pd.read_csv(args.zscores)
+    max_season = args.max_season if args.max_season is not None else int(df["season"].max())
+    ev = PositionGroupEvaluator(df, min_season=args.min_season, max_season=max_season,
+                                pre_directional=args.pre_directional,
+                                base=args.base, spread=args.spread)
+
+    # Quick view: print one season and exit (no file written).
+    if args.season is not None:
+        if args.wide:
+            print(ev.grade_wide(season=args.season, week=args.week,
+                                team=args.team, value="grade").to_string())
+        else:
+            print(ev.grade(season=args.season, week=args.week,
+                           team=args.team).to_string(index=False))
+        return
+
+    out = args.out or os.path.join(os.path.dirname(os.path.abspath(args.zscores)),
+                                   f"position_grades_{args.scope}.csv")
+    tbl = ev.grade_all(scope=args.scope, aggregate=args.aggregate, out_path=out)
+    seasons_present = sorted(int(s) for s in ev.df["season"].unique())
+    print(f"Wrote {len(tbl):,} rows -> {out}")
+    print(f"   scope={args.scope}"
+          f"{', aggregate=' + args.aggregate if args.scope == 'season' else ''}, "
+          f"seasons {args.min_season}-{max_season}")
+    print(f"   seasons in file: {seasons_present}")
+
+
 if __name__ == "__main__":
-    path = os.environ.get(
-        "CFDB_ZSCORES",
-        "/Volumes/1TB external/CFDB Stats/team_zscores_all_seasons.csv")
-    ev = PositionGroupEvaluator(path)
-    latest = int(ev.df["season"].max())
-    print(f"Loaded {len(ev.df):,} team-week rows, seasons "
-          f"{int(ev.df['season'].min())}-{latest}.\n")
-    print(f"Season-long grades, {latest}, sample:")
-    print(ev.grade_wide(season=latest, value="grade").head(10).to_string())
+    main()

@@ -9,29 +9,37 @@ Everything is normalized so a **higher rank number and a higher z-score always
 mean better** — including defensive "against" stats (allowing fewer yards/points
 → higher rank/z). Rank 1 = worst that week, rank n = best.
 
-## Run it (Jupyter on the Mac with the drive mounted)
+## Run it (Claude Code / terminal — no Jupyter)
 
-```python
-%run fbs_team_stats.py            # process every season found + write master files
+From the project folder, one command does everything — update the current
+season's data/stats, then rerun the grading models:
+
+```bash
+./run.sh                    # update the current season + rerun the grades
+./run.sh --season 2026      # a specific season instead of "current"
+./run.sh --rebuild          # rebuild every season from scratch, then regrade
+./run.sh --validate         # also spot-check the season after building it
 ```
 
-or step by step:
+`run.sh` just calls `python refresh.py`; run that directly if you prefer.
+Drive the two stages yourself instead:
 
-```python
-from fbs_team_stats import *
-inspect_season(2025)              # print schema / playType / driveResult diagnostics
-validate_season(2025)             # manual spot-checks + direction-flip checks
-run_all_seasons()                 # build 2005-2025 + master files
+```bash
+python fbs_team_stats.py                 # update just the CURRENT season
+python fbs_team_stats.py --seasons 2026  # a specific season (replaces its rows)
+python fbs_team_stats.py --all-new       # append every not-yet-built season
+python fbs_team_stats.py --rebuild       # rebuild ALL master files from scratch
+python fbs_team_stats.py --inspect 2026  # schema/playType diagnostics, then exit
+python fbs_team_stats.py --validate 2026 # spot-check validation, then exit
+
+python position_grades.py                # season-long grades, all teams/years -> CSV
+python position_grades.py --scope weekly # one row per team per week -> CSV
 ```
 
-Seasons are auto-discovered from `BASE_DIR` (any numeric sub-folder containing a
-`combined.csv`). Point it at your drive with either:
-
-```python
-import os; os.environ["CFDB_BASE_DIR"] = "/Volumes/1TB external/CFDB Stats"
-```
-
-or by editing `BASE_DIR` at the top of the file (that path is the default).
+Seasons are auto-discovered from the base dir (any numeric sub-folder containing
+a `combined.csv`). The base dir **defaults to the folder the scripts live in**
+(this project), so `<project>/<year>/combined.csv` is found automatically. Point
+it elsewhere with `--base-dir "..."` or the `CFDB_BASE_DIR` env var.
 
 ## Outputs
 
@@ -54,42 +62,53 @@ Master files across all seasons, in `<BASE_DIR>/`:
 position groups (QB, OL, RB, WR/TE, DL/EDGE, Secondary) A+..F with 0-100
 composite scores, per team, per week or season-long:
 
-```python
-from position_grades import PositionGroupEvaluator
-ev = PositionGroupEvaluator("/Volumes/1TB external/CFDB Stats/team_zscores_all_seasons.csv")
-ev.grade(season=2024, week=10)                 # every team, one week
-ev.grade(season=2024, team="Ohio State")       # season-long (final week)
-ev.grade_wide(season=2024, value="grade")      # team x group matrix
-ev.plot_radar(season=2024, team="Ohio State")  # radar of the six grades
-ev.plot_compare(["Ohio State", "Michigan"], season=2024)
+```bash
+python position_grades.py                          # season-long, all teams/years -> CSV
+python position_grades.py --scope weekly           # every team, every week -> CSV
+python position_grades.py --season 2026 --wide     # quick view: team x group letters
+python position_grades.py --season 2026 --team "Ohio State"
 ```
+
+Or import `PositionGroupEvaluator` for `grade`, `grade_wide`, `grade_all`,
+`plot_radar`, and `plot_compare` (see its module docstring).
 
 Two things to know: (1) the z-score file is **pre-directional** (higher = better
 on every column, defense included), so the grader uses columns as-is and does
 **not** re-apply the rubric's `×-1` flips — doing so would double-invert and
-grade elite defenses as awful (`pre_directional=False` handles a raw z file).
-(2) The score formula `50 + 15·z` makes an average unit a **D** and below-average
-an **F** by construction, so grades skew low; recenter the base if you want a
-gentler curve.
+grade elite defenses as awful (`--raw` / `pre_directional=False` handles a
+non-pre-directional z file). (2) The score formula is `clip(65 + 15·z, 0, 100)`,
+so an **average** unit (z=0) lands at 65 — the middle of the C band — i.e. the
+average team grades a **C**. Tune the curve with `--base` / `--spread`.
 
-## Adding 2026 later (incremental append)
+## Updating the current season (e.g. 2026 as it plays out)
 
-The master files are built **incrementally**. `run_all_seasons()` only processes
-seasons that aren't already in the master, so once 2005–2025 are built, dropping
-a `2026/combined.csv` on the drive and re-running appends **only** 2026 — the
-prior 21 seasons aren't reprocessed:
+The master files are built **incrementally**, and each season's rows are
+independent (ranks/z-scores are computed only within that season's weeks), so
+updating one season never touches the others. The **default** command
+reprocesses just the current season and *replaces* its rows — the right thing
+for an in-progress season that gains games week to week:
 
-```python
-run_all_seasons()                 # sees 2026 is new -> processes just 2026, appends
+```bash
+./run.sh                          # update current season's data + regrade
+# equivalently, the two stages:
+python fbs_team_stats.py          # current season only -> stats/ranks/z masters
+python position_grades.py         # regrade off the refreshed z-scores
+python position_grades.py --scope weekly
 ```
 
-This is exact: each season's ranks/z-scores are computed purely within that
-season's weeks, so no prior season changes when a new one is added. Other modes:
+Other modes:
 
-```python
-run_all_seasons(rebuild=True)     # reprocess everything from scratch
-run_all_seasons(seasons=[2019])   # force-reprocess one season (replaces its rows)
+```bash
+python fbs_team_stats.py --seasons 2026   # force one specific season (replace its rows)
+python fbs_team_stats.py --all-new        # first time a brand-new season appears: append it
+python fbs_team_stats.py --rebuild        # reprocess everything from scratch
 ```
+
+`--all-new` appends any on-disk season not yet in the master (no reprocessing of
+prior seasons); the default current-season mode instead *replaces* the current
+season's rows so an in-progress season refreshes cleanly. Which season is
+"current" is date-derived (`current_season_year()`): August onward = this
+calendar year, otherwise last year.
 
 ## What it computes
 

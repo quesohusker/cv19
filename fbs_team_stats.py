@@ -34,17 +34,21 @@ rebuild everything from scratch.
 
 HOW TO RUN
 ----------
-In Jupyter (on the Mac where the external drive is mounted):
+From a terminal / Claude Code on the machine where the external drive is
+mounted (point it at the drive with --base-dir or the CFDB_BASE_DIR env var):
 
-    %run fbs_team_stats.py          # runs main() over every season it finds
-    # or, cell by cell:
-    from fbs_team_stats import *
-    inspect_season(2025)            # print diagnostics for one season first
-    run_all_seasons()              # build 2005-2025 + master files (incremental)
-    # later, when 2026 lands, the SAME call appends only 2026:
-    run_all_seasons()
+    python fbs_team_stats.py                    # update just the CURRENT season
+    python fbs_team_stats.py --seasons 2026     # a specific season (replaces its rows)
+    python fbs_team_stats.py --all-new          # append every not-yet-built season
+    python fbs_team_stats.py --rebuild          # rebuild ALL master files from scratch
+    python fbs_team_stats.py --inspect 2026     # schema/playType diagnostics, then exit
+    python fbs_team_stats.py --validate 2026    # spot-check validation, then exit
 
-Or from a shell:  python fbs_team_stats.py
+Or import the library functions directly:
+
+    from fbs_team_stats import run_all_seasons, inspect_season, current_season_year
+    inspect_season(2025)                          # diagnostics for one season first
+    run_all_seasons(seasons=[current_season_year()])   # update the current season only
 
 The seasons are auto-discovered from BASE_DIR (any numeric sub-folder that
 contains a combined.csv), so when 2026 lands, re-running "just works".
@@ -82,9 +86,12 @@ import pandas as pd
 
 # %% ------------------------------------------------------------------ config
 
-# Root that holds one sub-folder per season (e.g. .../CFDB Stats/2025/combined.csv).
-# Override with the env var CFDB_BASE_DIR, or just edit this string.
-BASE_DIR = os.environ.get("CFDB_BASE_DIR", "/Volumes/1TB external/CFDB Stats")
+# Root that holds one sub-folder per season (e.g. <BASE_DIR>/2026/combined.csv).
+# Defaults to the folder this script lives in (the project directory), so running
+# `python fbs_team_stats.py` from the project finds <project>/<year>/combined.csv.
+# Override with the env var CFDB_BASE_DIR or the --base-dir flag.
+_SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+BASE_DIR = os.environ.get("CFDB_BASE_DIR", _SCRIPT_DIR)
 
 # Write the underlying per-game cumulative stat values too (not just ranks/z).
 # These are the numbers you'd eyeball against CFBstats.com. Cheap; leave on.
@@ -1121,14 +1128,94 @@ def _spotcheck_team_week(raw, cols, stats, team, week):
     print("   OK: pipeline matches hand calculation.")
 
 
-# %% ------------------------------------------------- run it (paste-and-run)
-# Running this file top-to-bottom -- including pasting it into a Jupyter cell,
-# where __name__ == "__main__" -- executes the line below.
+# %% ------------------------------------------------------- current season
+def current_season_year(today=None):
+    """Best-guess current CFB season year (seasons are named for the fall year).
+
+    From August onward the current season is this calendar year; January-July
+    still belongs to the previous fall's season, so we roll back to last year.
+    """
+    from datetime import date
+    today = today or date.today()
+    return today.year if today.month >= 8 else today.year - 1
+
+
+# %% ------------------------------------------------------ command-line entry
+# Run from a terminal / Claude Code (no Jupyter needed):
 #
-# rebuild=True is REQUIRED after any change to the mappings/columns above: a
-# plain run_all_seasons() is INCREMENTAL and skips every season already in the
-# master files (i.e. does nothing). Once everything is built and you later only
-# drop in a NEW season (e.g. 2026), switch this to plain run_all_seasons() so it
-# appends just that season instead of reprocessing all of them.
+#   python fbs_team_stats.py                       # update just the CURRENT season
+#   python fbs_team_stats.py --seasons 2026        # a specific season (replaces its rows)
+#   python fbs_team_stats.py --all-new             # append every not-yet-built season
+#   python fbs_team_stats.py --rebuild             # rebuild ALL master files from scratch
+#   python fbs_team_stats.py --inspect 2026        # schema/playType diagnostics, then exit
+#   python fbs_team_stats.py --validate 2026       # spot-check validation, then exit
+#
+# Point it at the drive with --base-dir "..." or the CFDB_BASE_DIR env var.
+def _build_arg_parser():
+    import argparse
+    p = argparse.ArgumentParser(
+        prog="fbs_team_stats.py",
+        description="Build cumulative-by-week FBS team stats, ranks, and z-scores, "
+                    "and (upsert-)write the per-season and master files.")
+    p.add_argument("--base-dir", default=BASE_DIR,
+                   help=f"root holding <year>/combined.csv folders "
+                        f"(default: $CFDB_BASE_DIR or {BASE_DIR!r})")
+    mode = p.add_mutually_exclusive_group()
+    mode.add_argument("--current-year", action="store_true",
+                      help="process ONLY the current season and replace just its rows "
+                           "in the master files (this is the default when no mode is given)")
+    mode.add_argument("--seasons", nargs="+", type=int, metavar="YEAR",
+                      help="process only these seasons (force-reprocess, replace their rows)")
+    mode.add_argument("--all-new", action="store_true",
+                      help="incrementally process every on-disk season not yet in the master")
+    mode.add_argument("--rebuild", action="store_true",
+                      help="rebuild ALL master files from scratch (reprocess every season)")
+    p.add_argument("--inspect", nargs="+", type=int, metavar="YEAR",
+                   help="print schema/playType diagnostics for these seasons and exit")
+    p.add_argument("--validate", nargs="+", type=int, metavar="YEAR",
+                   help="run spot-check validation for these seasons and exit")
+    p.add_argument("--no-stats", action="store_true",
+                   help="don't write the underlying team_stats files (ranks/z only)")
+    p.add_argument("-q", "--quiet", action="store_true", help="less output")
+    return p
+
+
+def main(argv=None):
+    global WRITE_STATS
+    args = _build_arg_parser().parse_args(argv)
+    verbose = not args.quiet
+    if args.no_stats:
+        WRITE_STATS = False
+
+    if args.inspect:
+        for s in args.inspect:
+            inspect_season(s, base_dir=args.base_dir)
+        return None
+    if args.validate:
+        for s in args.validate:
+            validate_season(s, base_dir=args.base_dir)
+        return None
+
+    if args.rebuild:
+        return run_all_seasons(base_dir=args.base_dir, rebuild=True, verbose=verbose)
+    if args.seasons:
+        return run_all_seasons(base_dir=args.base_dir, seasons=args.seasons, verbose=verbose)
+    if args.all_new:
+        return run_all_seasons(base_dir=args.base_dir, verbose=verbose)
+
+    # Default (and explicit --current-year): update ONLY the current season,
+    # replacing just its rows in the masters -- prior seasons are untouched.
+    year = current_season_year()
+    discovered = _discover_seasons(args.base_dir)
+    if year not in discovered:
+        print(f"[current-year] {year}: no "
+              f"{os.path.join(args.base_dir, str(year), 'combined.csv')} found yet.")
+        print(f"   seasons on disk: {discovered or '(none)'}")
+        return []
+    if verbose:
+        print(f"[current-year] processing {year} only (prior seasons untouched)\n")
+    return run_all_seasons(base_dir=args.base_dir, seasons=[year], verbose=verbose)
+
+
 if __name__ == "__main__":
-    run_all_seasons(rebuild=True)
+    main()
