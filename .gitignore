@@ -20,3 +20,6 @@ team_stats_all_seasons.csv
 
 # position-group grade outputs
 position_grades_*.csv
+
+# pipeline run logs
+logs/
