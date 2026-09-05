@@ -147,7 +147,14 @@ def build_stages(season):
         # ---- build source files ----
         Stage("combine",         "build", ["-m", "scripts.cfbd.combine"]),
         Stage("verify",          "build", ["-m", "scripts.cfbd.verify"]),
-        Stage("compute_stats",   "build", ["-m", "scripts.cfbd.compute_stats"]),
+        # compute_stats is incremental (skips seasons already in the master), so
+        # a plain run would freeze the in-progress season. Force-reprocess just
+        # the current season each run -- run_all_seasons(seasons=[S]) replaces
+        # its master rows with the latest week's data.
+        Stage("compute_stats",   "build",
+              ["-c", f"from scripts.cfbd.compute_stats import run_all_seasons; "
+                     f"run_all_seasons(seasons=[{S}])"],
+              note=f"force-reprocess {S} into the stat masters"),
         Stage("position_grades", "build", ["-m", "scripts.cfbd.position_grades"]),
         # ---- models / evaluation artifacts (refit + score) ----
         Stage("power_ratings",     "model", ["-m", "models.power_ratings.ratings"]),
