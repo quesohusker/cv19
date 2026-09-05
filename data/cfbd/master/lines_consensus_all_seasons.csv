@@ -9309,7 +9309,7 @@ id,season,seasonType,week,startDate,homeTeam,awayTeam,homeConference,awayConfere
 401762521,2025,regular,16,2025-12-13T20:00:00.000Z,Navy,Army,American Athletic,American Athletic,17.0,16.0,-5.5,avg_4_market,38.0,avg_4_market,-4.0,avg_2_market,38.5,avg_2_market,-198.0,167.0,4,4,Bovada;Draft Kings;DraftKings;ESPN Bet
 401856634,2026,regular,1,2026-09-05T16:00:00.000Z,Alabama,East Carolina,SEC,American Athletic,48.0,10.0,-28.0,avg_3_market,52.5,avg_3_market,-25.5,avg_2_market,53.5,single:Bovada,-6250.0,1600.0,3,3,Bovada;Draft Kings;DraftKings
 401856636,2026,regular,1,2026-09-05T19:30:00.000Z,Auburn,Baylor,SEC,Big 12,,,-6.5,avg_2_market,58.5,avg_2_market,-7.0,avg_2_market,58.5,single:Bovada,-270.0,220.0,2,2,Bovada;DraftKings
-401856637,2026,regular,1,2026-09-05T23:45:00.000Z,Florida,Florida Atlantic,SEC,American Athletic,,,-26.0,avg_2_market,59.5,avg_2_market,-25.5,avg_2_market,56.5,single:Bovada,-4650.0,1300.0,2,2,Bovada;DraftKings
+401856637,2026,regular,1,2026-09-05T23:45:00.000Z,Florida,Florida Atlantic,SEC,American Athletic,,,-26.0,avg_2_market,59.5,avg_2_market,-25.5,avg_2_market,56.5,single:Bovada,-4450.0,1250.0,2,2,Bovada;DraftKings
 401856660,2026,regular,1,2026-09-05T23:30:00.000Z,LSU,Clemson,SEC,ACC,,,-10.0,avg_2_market,50.0,avg_2_market,-11.5,single:Bovada,51.5,single:Bovada,-420.0,318.0,2,2,Bovada;DraftKings
 401856661,2026,regular,1,2026-09-06T23:30:00.000Z,Ole Miss,Louisville,SEC,ACC,,,-6.5,avg_2_market,55.0,avg_2_market,-8.5,single:Bovada,52.5,single:Bovada,-268.0,218.0,2,2,Bovada;DraftKings
 401856662,2026,regular,1,2026-09-05T23:30:00.000Z,Mississippi State,UL Monroe,SEC,Sun Belt,,,-28.5,avg_2_market,55.0,avg_2_market,-28.5,avg_2_market,55.5,single:Bovada,-52000.0,2050.0,2,2,Bovada;DraftKings

@@ -1564,19 +1564,68 @@ season,team,QB,OL,RB,WR/TE,DL/EDGE,Secondary
 2025,Western Michigan,D-,C-,C,D,B-,B+
 2025,Wisconsin,F,D,C,D-,B-,D
 2025,Wyoming,D-,C,D+,F,D+,B+
-2026,Eastern Michigan,C+,D,D-,C,C+,B+
-2026,Florida State,B-,A-,A,B,D+,C-
-2026,Hawai'i,C-,D+,F,D,C-,F
-2026,Jacksonville State,F,D,D+,F,B-,B-
-2026,Memphis,C-,A-,B,B-,C,D+
-2026,NC State,D-,C-,D-,F,C+,F
-2026,New Mexico State,B-,C+,D,C+,F,D+
-2026,North Carolina,C-,D+,F,C,C+,C+
-2026,North Dakota State,C-,C-,B-,C+,B,A-
-2026,Sacramento State,D,C-,C,F,B-,C
-2026,San José State,C+,C-,C,C+,C-,C-
-2026,Stanford,B+,C,C+,A-,C,C+
-2026,TCU,C-,C-,B,C-,B,C
-2026,UNLV,C+,C+,A,C,F,C
-2026,USC,B+,C+,C,B,C+,C-
-2026,Virginia,A-,C,C,A,C,A-
+2026,Air Force,F,B+,B-,F,D+,A
+2026,Akron,C-,D+,D+,F,F,F
+2026,Alabama,C+,C-,D+,B-,A,C+
+2026,Army,D,A+,A+,C-,B,B
+2026,Ball State,F,F,D-,F,D+,D
+2026,Bowling Green,B,D+,F,C,F,C-
+2026,Buffalo,D,C+,B-,D-,B-,B
+2026,Coastal Carolina,C-,D,D,C+,C+,F
+2026,Colorado,D,C,C-,F,A-,D-
+2026,Delaware,B,B-,C-,A-,B-,B+
+2026,East Carolina,D,F,F,C,C,D-
+2026,Eastern Michigan,D,C,C,D,C,C+
+2026,Florida State,C,C+,B,C,D+,C
+2026,Fresno State,F,F,D-,F,C+,F
+2026,Georgia State,C+,A-,A-,C,A-,C+
+2026,Georgia Tech,B-,F,F,C+,C-,B-
+2026,Hawai'i,D+,C-,F,D,D+,D-
+2026,Houston,B,B-,B-,B-,D+,C-
+2026,Illinois,B,B-,B,B,C,C-
+2026,Indiana,A,B-,C+,A-,C,C
+2026,Iowa State,D+,D,D+,C+,A-,C
+2026,Jacksonville State,F,D+,D,F,C,B-
+2026,James Madison,D+,C+,B,D,C,C-
+2026,Kansas,A-,B+,C,A-,A+,C
+2026,Kennesaw State,C,C+,B,C-,C,B
+2026,Kent State,D-,C,C-,F,F,F
+2026,Kentucky,B+,C+,C+,B-,C,C+
+2026,Liberty,C,D+,D,C-,D,B-
+2026,Massachusetts,B-,C,C,C-,C+,B
+2026,Memphis,D+,B+,C+,C,C,C-
+2026,Miami,A-,C,D+,A-,D,B-
+2026,Miami (OH),D,C-,D-,C+,F,F
+2026,Michigan State,C,D,D+,D,C+,C
+2026,Minnesota,A-,D-,D,B+,B+,B-
+2026,Missouri,B+,C-,D,B,C-,A-
+2026,NC State,F,C,D-,F,C-,D-
+2026,Nebraska,C,B,B+,B-,D,B-
+2026,New Mexico State,C-,C,D,C-,C-,C-
+2026,North Carolina,D+,D+,F,D+,C-,C+
+2026,North Dakota State,D+,C-,C,C-,C+,B+
+2026,North Texas,C,C-,C-,C-,D,F
+2026,Ohio,F,C+,C-,C,D,D
+2026,Ohio State,B,B-,A,B,B+,B+
+2026,Oklahoma,B+,C,C-,B+,A,B-
+2026,Oregon State,C-,C,D,B-,D,D-
+2026,Pittsburgh,A-,B,B,B+,C-,C
+2026,Purdue,B,C+,C,B,B,D-
+2026,Rutgers,D-,D,F,B,C-,C-
+2026,Sacramento State,D-,C-,C,F,C,C
+2026,San José State,C-,C-,C-,C,D,B-
+2026,South Carolina,A-,B+,A-,B+,D+,B+
+2026,Stanford,C-,C+,C,C,D+,C-
+2026,Syracuse,C+,C,B,C+,A-,B+
+2026,TCU,D,C-,C+,D+,C,C
+2026,Toledo,D+,D+,B+,C+,B-,C
+2026,UAB,C,D+,C-,C,D,D-
+2026,UCF,C+,A,A+,C,B,A-
+2026,UConn,B,B+,A-,B+,C-,B+
+2026,UNLV,C-,C-,B+,D+,F,C
+2026,USC,B,C-,D,A-,C+,C+
+2026,UTEP,D-,F,C-,F,C-,F
+2026,Utah,B-,B+,B+,B-,C+,B+
+2026,Virginia,B,C,C,B,C-,B+
+2026,Wake Forest,B,B+,A-,A-,C+,B-
+2026,West Virginia,B,D+,B-,B-,B-,D+
