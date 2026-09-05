@@ -189,6 +189,12 @@ COMMIT_GLOBS = [
     "data/cfbd/projections/*.csv",
     "scratchpad/benchmark_winpct_seasons.csv",
     "scratchpad/benchmark_winpct_games.csv",
+    # season stat values the Streamlit app reads (28 MB; needed on data-latest
+    # so the deployed app's Stat Comparison view works)
+    "data/cfbd/master/team_stats_all_seasons.csv",
+    # the app + its deps, so `data-latest` is directly deployable on Streamlit
+    "app.py",
+    "requirements.txt",
 ]
 # Never commit these even if a glob above would catch them (safety net). Kept
 # out on purpose: the 2 GB combined file, the 28/33 MB weekly z/stat masters,
@@ -196,7 +202,7 @@ COMMIT_GLOBS = [
 # all either over GitHub's 100 MB limit or pure history bloat. The leading-slash
 # forms below are surgical: "/win_probability_all_seasons.csv" excludes the big
 # master WITHOUT touching "pregame_win_probability_all_seasons.csv" (460 KB).
-COMMIT_DENY_SUBSTR = ["combined_all_seasons", "team_stats_all_seasons",
+COMMIT_DENY_SUBSTR = ["combined_all_seasons",
                       "team_zscores_all_seasons", "/win_probability_all_seasons.csv",
                       "in_game_wp_perplay", "/raw/", "/processed/", "scripts/"]
 COMMIT_BRANCH = "data-latest"
@@ -392,10 +398,21 @@ def main(argv=None):
     p.add_argument("--no-commit", action="store_true", help="don't touch git")
     p.add_argument("--no-push", action="store_true", help="commit locally but don't push")
     p.add_argument("--commit-anyway", action="store_true", help="commit even if a stage failed")
+    p.add_argument("--commit-only", action="store_true",
+                   help="skip all stages; just publish the current output allowlist to the "
+                        "deploy branch (fast way to push an app.py change to the live site)")
     p.add_argument("--branch", default=COMMIT_BRANCH, help="branch for committed outputs")
     args = p.parse_args(argv)
 
     season = args.season or current_season()
+
+    # Fast path: publish the allowlist without running any stage.
+    if args.commit_only:
+        commit = commit_and_push(resolve_commit_files(), args.branch, season,
+                                 push=not args.no_push, dry_run=False)
+        print(commit)
+        return 0
+
     gate = (True, "gate ignored (--ignore-gate)") if args.ignore_gate \
         else game_played_yesterday(season)
 
