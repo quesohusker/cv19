@@ -156,6 +156,8 @@ def build_stages(season):
                      f"run_all_seasons(seasons=[{S}])"],
               note=f"force-reprocess {S} into the stat masters"),
         Stage("position_grades", "build", ["-m", "scripts.cfbd.position_grades"]),
+        Stage("build_conferences", "build", ["-m", "scripts.cfbd.build_conferences"],
+              optional=True, note="season-accurate team->conference lookup for the app"),
         # ---- models / evaluation artifacts (refit + score) ----
         Stage("power_ratings",     "model", ["-m", "models.power_ratings.ratings"]),
         Stage("power_ratings_epa", "model", ["-m", "models.power_ratings_epa.ratings"]),
@@ -192,6 +194,7 @@ COMMIT_GLOBS = [
     "data/cfbd/master/lines_consensus_all_seasons.csv",
     "data/cfbd/master/pregame_win_probability_all_seasons.csv",
     "data/cfbd/master/season_win_totals.csv",
+    "data/cfbd/master/team_conferences.csv",
     "data/cfbd/predictions/*.csv",
     "data/cfbd/projections/*.csv",
     "scratchpad/benchmark_winpct_seasons.csv",
