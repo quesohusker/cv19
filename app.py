@@ -283,6 +283,11 @@ with tab_bench:
                     f"(benchmarks cover 2014–latest completed).")
         else:
             ba, bb = ba.iloc[0], bb.iloc[0]
+            ga, gb = int(ba.get("games", 0)), int(bb.get("games", 0))
+            if min(ga, gb) < 8:
+                st.caption(f"Season in progress — averages are through "
+                           f"{team_a}: {ga} game{'s' if ga != 1 else ''}, "
+                           f"{team_b}: {gb} game{'s' if gb != 1 else ''}.")
             head = st.columns([3, 1, 1])
             head[0].markdown("**Benchmark**")
             head[1].markdown(chip(team_a), unsafe_allow_html=True)
