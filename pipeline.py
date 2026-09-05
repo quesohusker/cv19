@@ -163,14 +163,14 @@ def build_stages(season):
         Stage("forecast_season_wins", "forecast",
               ["-m", "scripts.cfbd.project_season_wins", "--seasons", S, "--update"],
               note=f"live {S} season win-total forecast"),
-        # Phase-2 placeholders: per-game 2026 forecasts. Disabled until the
-        # forecast entry points are added to each model (see README_PIPELINE.md).
+        # Per-game season forecasts. margin (v1) is live; the others are Phase-2
+        # placeholders, disabled until their forecast entry points exist.
         Stage("forecast_margin", "forecast",
               ["-m", "models.margin_predictor.forecast", "--season", S],
-              enabled=False, note="TODO: per-game 2026 margin/win-prob forecast"),
+              optional=True, note="per-game v1 margin + win-prob forecast for the season"),
         Stage("forecast_in_game_wp", "forecast",
               ["-m", "models.in_game_wp.forecast", "--season", S],
-              enabled=False, note="TODO: live 2026 in-game WP"),
+              enabled=False, note="TODO: live in-game WP forecast"),
     ]
 
 
