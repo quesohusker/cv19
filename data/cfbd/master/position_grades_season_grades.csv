@@ -1,0 +1,1582 @@
+season,team,QB,OL,RB,WR/TE,DL/EDGE,Secondary
+2014,Air Force,A-,D,D-,A-,B-,D+
+2014,Akron,F,B-,C-,F,B-,B
+2014,Alabama,A,B-,C-,A,B,B-
+2014,App State,B,B-,B,C+,C,B
+2014,Arizona,C,B-,B,B-,C+,D+
+2014,Arizona State,C,D+,C+,C+,A-,C
+2014,Arkansas,C,B,B,D+,B-,D+
+2014,Arkansas State,C,C,C+,C+,B-,B-
+2014,Army,D+,F,C+,D,F,C
+2014,Auburn,A,C+,B,A-,C,B-
+2014,BYU,C+,C,D+,B,C-,C+
+2014,Ball State,C-,C,D+,D,D-,C
+2014,Baylor,A-,B,C,A,B+,D
+2014,Boise State,B,C-,B-,B+,B-,B
+2014,Boston College,D+,D,B,D,B+,D+
+2014,Bowling Green,C-,C,C+,C-,C,C+
+2014,Buffalo,B,C,C+,B+,B,F
+2014,California,B-,B-,D+,B+,D-,D-
+2014,Central Michigan,C+,C-,D,C,C,B-
+2014,Cincinnati,B,B+,C,B,D,F
+2014,Clemson,B-,D,D-,C+,A+,A-
+2014,Colorado,C,C,C-,C-,D-,D-
+2014,Colorado State,A,B-,B,A,D-,C
+2014,Duke,D+,A-,B-,F,C,B+
+2014,East Carolina,B,B+,B,C,C-,B-
+2014,Eastern Michigan,F,D-,D-,D,D+,F
+2014,Florida,D,D+,D+,C-,B-,B+
+2014,Florida Atlantic,C-,C+,D-,C-,F,D+
+2014,Florida International,F,F,F,D+,C+,D+
+2014,Florida State,B,C+,C,B,C,C+
+2014,Fresno State,D,C,B-,C-,C,F
+2014,Georgia,B+,B,A-,C,C,A-
+2014,Georgia Southern,B,A,A,B-,D+,B-
+2014,Georgia State,C+,D,F,B-,F,D
+2014,Georgia Tech,B+,B-,B,A,D,C
+2014,Hawai'i,F,D,D,F,C,D-
+2014,Houston,C-,C,B-,C+,C,B+
+2014,Idaho,D+,C,D-,C,B,F
+2014,Illinois,C,D+,C-,D+,C,D-
+2014,Indiana,F,B,A,D-,D,B+
+2014,Iowa,C+,C-,D,C,B-,B-
+2014,Iowa State,D,C+,D+,D-,F,C-
+2014,Kansas,D+,D+,C-,D+,D,C-
+2014,Kansas State,A,D,D+,A-,C-,C+
+2014,Kent State,F,C-,C-,F,D,D+
+2014,Kentucky,D+,C,B-,C,D+,B
+2014,LSU,D+,C-,D+,B,D+,B+
+2014,Louisiana,C-,B+,B+,D+,C,D
+2014,Louisiana Tech,C+,C,B-,B,B,A-
+2014,Louisville,C,D-,D+,C+,B,A-
+2014,Marshall,B+,A+,A,B+,C+,A-
+2014,Maryland,D+,C-,C,C-,C+,C+
+2014,Massachusetts,C+,C-,D-,C+,C,C+
+2014,Memphis,B-,D,D,D,B,A-
+2014,Miami,B-,A-,B,B-,C-,B
+2014,Miami (OH),D,C,C-,C-,D+,C-
+2014,Michigan,D-,C+,C+,F,A-,C-
+2014,Michigan State,B+,C+,B-,B+,C,A-
+2014,Middle Tennessee,B,C,C,C,D,D+
+2014,Minnesota,D+,C-,C,D+,D+,C+
+2014,Mississippi State,A-,B,B,B,C,B
+2014,Missouri,D+,C-,C+,C-,B+,B+
+2014,NC State,D+,B+,A-,D+,B,C-
+2014,Navy,C+,C,B,B,F,C
+2014,Nebraska,C+,B,C+,C+,C,A-
+2014,Nevada,C,C+,C+,D+,D,B-
+2014,New Mexico,D,C+,A-,C-,D+,F
+2014,New Mexico State,C-,C+,C+,C,F,B-
+2014,North Carolina,C,C,D+,B,C,F
+2014,North Texas,D-,C-,C-,F,C-,C
+2014,Northern Illinois,C,C+,C+,C,C-,C
+2014,Northwestern,D,D+,D,D-,C-,B-
+2014,Notre Dame,B-,C,D+,B,B-,C
+2014,Ohio,D,C,C-,D+,D+,C-
+2014,Ohio State,A-,B,A-,A,B-,A-
+2014,Oklahoma,C-,A-,A-,C,C,C
+2014,Oklahoma State,C-,D-,D+,C+,B-,D
+2014,Old Dominion,B-,A-,A-,C+,D,F
+2014,Ole Miss,C+,C+,B,B,B+,A-
+2014,Oregon,A+,B,B+,A+,C,C+
+2014,Oregon State,C,C,B-,D+,D+,C-
+2014,Penn State,D-,F,C,D+,A-,A-
+2014,Pittsburgh,B,C,B-,C,F,C
+2014,Purdue,F,B-,B,D-,C,C+
+2014,Rice,B,D-,D,A-,C,D
+2014,Rutgers,B,D,D,B+,D+,F
+2014,SMU,F,D+,D-,F,F,F
+2014,San Diego State,C-,B,A-,D+,C+,C
+2014,San José State,C+,D+,C-,B-,D+,A-
+2014,South Alabama,D-,D+,C,D-,D+,D
+2014,South Carolina,B-,B-,C,B,F,C
+2014,South Florida,D,D,D+,C-,C,D
+2014,Southern Miss,C-,D+,D,D-,D,D
+2014,Stanford,C+,B-,D+,D,B-,A-
+2014,Syracuse,D-,D+,C+,F,A-,C-
+2014,TCU,B,B+,B-,B+,A-,B
+2014,Temple,F,C,D+,F,B,B
+2014,Tennessee,D+,D,D,D-,B+,C+
+2014,Texas,D+,D+,F,D+,B-,A
+2014,Texas A&M,C+,B-,C+,B,C-,C-
+2014,Texas State,C+,C,A-,C-,D,C
+2014,Texas Tech,B-,B+,B-,B-,D,F
+2014,Toledo,B-,B+,A-,B+,C,C-
+2014,Troy,B-,C-,D+,D,F,D
+2014,Tulane,F,C-,B,F,C+,C-
+2014,Tulsa,D,C+,D-,C,C-,F
+2014,UAB,C+,D-,D+,B+,B-,C-
+2014,UCF,C,D-,F,B-,B,A
+2014,UCLA,B-,D+,B,B,C-,B
+2014,UConn,D,D-,D-,C-,C,B-
+2014,UL Monroe,D,D,F,D-,A-,C+
+2014,UNLV,D,C,C,C-,C,D
+2014,USC,A,D,D+,A-,C-,B
+2014,UTEP,C,B-,C+,C,D,C-
+2014,UTSA,D-,D-,C-,F,B-,D
+2014,Utah,C-,D,C-,D+,A-,C
+2014,Utah State,C,D+,B-,C,A-,B+
+2014,Vanderbilt,F,C-,F,F,C-,D+
+2014,Virginia,D+,C,F,D,B,C
+2014,Virginia Tech,D+,D,F,F,A,B-
+2014,Wake Forest,F,F,F,F,B+,C
+2014,Washington,B-,C-,C,B-,C,C
+2014,Washington State,B-,C+,F,B,C+,F
+2014,West Virginia,B,C+,D+,B-,C,B-
+2014,Western Kentucky,A-,A-,B,B+,D+,F
+2014,Western Michigan,A+,B-,C+,A-,C-,C
+2014,Wisconsin,D+,B,A,D+,B+,C
+2014,Wyoming,C-,D+,B,B-,D,D-
+2015,Air Force,A-,B,C,A,B,D+
+2015,Akron,C-,C-,D-,C-,C,B
+2015,Alabama,C,C+,B,C,A-,B
+2015,App State,B+,B,B-,C+,A-,B
+2015,Arizona,C+,B+,A-,B,C-,D-
+2015,Arizona State,C,C,C,B,B+,D-
+2015,Arkansas,A-,B-,B,B,C,D-
+2015,Arkansas State,C,C-,B,C+,C+,B+
+2015,Army,B+,D,C-,A,D+,F
+2015,Auburn,C+,C,C,C+,F,C+
+2015,BYU,B-,C+,C,B,B+,B-
+2015,Ball State,D,B,D-,F,D,F
+2015,Baylor,A-,B-,B,A,B,C
+2015,Boise State,C+,C-,B-,B-,C+,C+
+2015,Boston College,F,F,C-,F,A+,B+
+2015,Bowling Green,A,B,A-,A,C,C+
+2015,Buffalo,C-,C+,D-,C-,C-,C+
+2015,California,B,B,C+,B+,C,C
+2015,Central Michigan,B,D-,F,B,D+,B-
+2015,Charlotte,F,F,F,F,C-,C
+2015,Cincinnati,B,B,C+,A,F,C+
+2015,Clemson,A-,B+,C,B-,A,B+
+2015,Colorado,C,D,D+,C-,D-,C+
+2015,Colorado State,C+,B-,D,C+,B-,C
+2015,Duke,C,B-,D+,C+,B-,D+
+2015,East Carolina,C+,D,D,C,C-,C-
+2015,Eastern Michigan,C-,C,C+,D,D,F
+2015,Florida,C-,D,D,C,B+,A-
+2015,Florida Atlantic,D-,C-,D-,C,C,D+
+2015,Florida International,C,C+,F,C+,C-,C+
+2015,Florida State,B+,A-,A+,C+,C-,B+
+2015,Fresno State,D-,D-,C-,D,C,D
+2015,Georgia,C,B,B,F,C,A-
+2015,Georgia Southern,F,B,A-,D-,C-,B
+2015,Georgia State,A-,D-,F,B+,D,B-
+2015,Georgia Tech,D-,C,C-,D+,F,C
+2015,Hawai'i,F,B-,C,D,C+,F
+2015,Houston,B+,C+,C,B-,B-,C-
+2015,Idaho,C,C,D+,C,D-,D+
+2015,Illinois,D,C+,C-,F,B-,A-
+2015,Indiana,B-,C,C+,C+,D-,D
+2015,Iowa,B,C,C,B,D,A-
+2015,Iowa State,D+,C+,C,C-,C+,F
+2015,Kansas,D,D,F,F,D-,D-
+2015,Kansas State,D-,D,F,C,C,D-
+2015,Kent State,F,F,F,F,B+,C+
+2015,Kentucky,D+,C+,B,F,D-,C
+2015,LSU,B-,B,A,C,D+,B
+2015,Louisiana,D,B,B,D,C,F
+2015,Louisiana Tech,B+,B,C,B-,C+,C+
+2015,Louisville,C-,D+,B-,C-,B+,C
+2015,Marshall,D,C,C,D,C,A
+2015,Maryland,F,B,B+,F,A-,D+
+2015,Massachusetts,D+,C+,C+,D-,C-,C-
+2015,Memphis,A-,D+,D-,A-,C,D+
+2015,Miami,B-,C-,F,C,F,A-
+2015,Miami (OH),F,D,D,C-,B,C+
+2015,Michigan,C+,C,C,C,B-,A
+2015,Michigan State,C+,C-,D,B-,C,C
+2015,Middle Tennessee,B,C+,F,B,C-,B
+2015,Minnesota,D+,B,D+,D-,C,B
+2015,Mississippi State,B+,C+,D+,C,C+,B-
+2015,Missouri,F,D-,C-,D-,A,B
+2015,NC State,C-,C,B+,C,B-,B
+2015,Navy,A-,C-,B,A,D+,D
+2015,Nebraska,C,C+,C,C-,C,D+
+2015,Nevada,C-,C,B,D+,D+,B-
+2015,New Mexico,C,C-,B-,B-,B-,F
+2015,New Mexico State,C-,C+,B+,C-,D-,D
+2015,North Carolina,A-,A,B+,A,D,A-
+2015,North Texas,F,C+,D,D+,D,F
+2015,Northern Illinois,C,C-,C,C,C,B
+2015,Northwestern,F,D-,D,D-,B-,A-
+2015,Notre Dame,B+,B-,A,B,D+,C
+2015,Ohio,C,C+,C,C,F,B-
+2015,Ohio State,C+,B,B+,D+,B,A-
+2015,Oklahoma,B+,C,B,A-,B,B+
+2015,Oklahoma State,A-,C-,D+,A-,B+,C
+2015,Old Dominion,D,B-,B-,D,D,C
+2015,Ole Miss,B,B+,B+,B,C+,B-
+2015,Oregon,B+,B,A+,C,D+,C
+2015,Oregon State,F,C+,B-,D-,F,D-
+2015,Penn State,D,D,C+,F,A-,B+
+2015,Pittsburgh,C,C+,C+,D+,C+,C
+2015,Purdue,D-,B-,D+,D+,D+,C
+2015,Rice,C-,D+,D+,C,D+,F
+2015,Rutgers,C-,C,C,D+,C-,D-
+2015,SMU,C-,D,D,D+,D-,F
+2015,San Diego State,C+,C-,C+,C-,B,B+
+2015,San José State,B,C,B-,C-,D+,C+
+2015,South Alabama,D,D-,C+,C-,D-,C
+2015,South Carolina,C-,C,C,C,D+,C-
+2015,South Florida,C,C,B-,C+,B,B-
+2015,Southern Miss,A-,A-,B,B,C+,B-
+2015,Stanford,A,B-,B-,A+,C-,C
+2015,Syracuse,D,D,C,C-,C,D+
+2015,TCU,B,B-,B,A-,C-,C+
+2015,Temple,C,D+,C,C,B,B+
+2015,Tennessee,C+,C,C,C+,D+,B
+2015,Texas,D,D,A-,C,B,C
+2015,Texas A&M,D+,B-,C-,B,B,B
+2015,Texas State,C-,C,C-,D,D,F
+2015,Texas Tech,B+,A,A-,B,F,D
+2015,Toledo,C+,B,B,B,B-,B-
+2015,Troy,C-,D+,C,C-,B,C-
+2015,Tulane,D+,C-,C,C,B+,D
+2015,Tulsa,A-,C,D,B+,C,D
+2015,UCF,F,D,F,F,C-,F
+2015,UCLA,B-,B-,B,C+,D,A-
+2015,UConn,C,F,D+,C-,C,A-
+2015,UL Monroe,F,D+,C-,D-,B+,F
+2015,UNLV,D,C,C+,C,F,B-
+2015,USC,B+,C-,B,B,C+,C-
+2015,UTEP,C-,D+,D+,D+,D,F
+2015,UTSA,D+,D-,C+,D,D,D+
+2015,Utah,C,D+,D,C-,B-,C+
+2015,Utah State,C-,C,C-,D,B+,C-
+2015,Vanderbilt,F,D+,D+,F,B-,C-
+2015,Virginia,C,C,C-,C+,C,D-
+2015,Virginia Tech,D+,D,D,C-,C,B-
+2015,Wake Forest,D,D,D,C-,C+,D-
+2015,Washington,C+,D+,C+,C+,B-,B-
+2015,Washington State,B-,A-,D+,C,B-,B-
+2015,West Virginia,C-,C-,C,C,C+,A-
+2015,Western Kentucky,A,B,D+,A-,C-,D+
+2015,Western Michigan,A-,B,B,B+,D,D+
+2015,Wisconsin,C-,D+,D,D-,C+,A-
+2015,Wyoming,C-,D+,C,B-,D,D-
+2016,Air Force,B-,D,D,A+,B,D-
+2016,Akron,C,C,C-,B-,C-,C-
+2016,Alabama,B,B,B+,C+,B+,A-
+2016,App State,C+,B-,B-,D,D+,A
+2016,Arizona,D+,B-,B+,C-,F,D
+2016,Arizona State,C-,D,C-,C-,D+,F
+2016,Arkansas,C+,D+,C,B-,F,D
+2016,Arkansas State,C-,D,D,C,A,C+
+2016,Army,D,C,C-,C,C,B+
+2016,Auburn,C+,C+,B+,D+,C+,B+
+2016,BYU,D,B-,C+,C-,C+,D
+2016,Ball State,D+,B,C+,D,C,D
+2016,Baylor,C-,B,C,B,B+,D
+2016,Boise State,A,C+,C+,A,C,B
+2016,Boston College,F,F,D,F,B+,C
+2016,Bowling Green,F,C+,C+,D-,C-,D-
+2016,Buffalo,D-,C+,D+,D,C-,C-
+2016,California,C,B+,C-,C-,F,C
+2016,Central Michigan,C+,C-,D+,B,C-,C+
+2016,Charlotte,D-,C-,C,D-,D-,C+
+2016,Cincinnati,D+,C,C-,C,C+,B-
+2016,Clemson,A-,B-,D,B-,A-,A
+2016,Colorado,C,D+,D+,C,D+,A
+2016,Colorado State,B-,B-,B-,C,B-,D-
+2016,Duke,C,C+,F,D+,B+,F
+2016,East Carolina,B,C,C,C,D,D-
+2016,Eastern Michigan,C,B-,D,C+,D,C
+2016,Florida,D+,C,D,B-,B-,B+
+2016,Florida Atlantic,D+,C+,C,C,D+,F
+2016,Florida International,D+,C+,D+,D-,F,C
+2016,Florida State,B-,C+,B,C,B,D+
+2016,Fresno State,D,F,F,C-,C-,C-
+2016,Georgia,C-,C-,C-,D,C,B
+2016,Georgia Southern,C+,D-,C-,C-,D+,C
+2016,Georgia State,C,C-,F,C,D,A-
+2016,Georgia Tech,A,C-,B-,A+,D,C
+2016,Hawai'i,C-,B-,C-,D,C+,D
+2016,Houston,B,D-,F,C-,B,C+
+2016,Idaho,D+,C-,D,D+,D,C-
+2016,Illinois,F,B,C+,F,A-,C-
+2016,Indiana,C+,D,D,B-,B,B
+2016,Iowa,D,C-,B-,D+,D+,B
+2016,Iowa State,C+,C,D-,C,C,C
+2016,Kansas,D,C,D-,C,B,C+
+2016,Kansas State,C,C-,C+,C+,C-,C
+2016,Kent State,D-,D+,B,F,C,C+
+2016,Kentucky,C,C+,B-,C+,D,D+
+2016,LSU,C+,A-,A,B-,B-,C+
+2016,Louisiana,D+,D-,C,D+,C,C+
+2016,Louisiana Tech,A-,A,B,A,C+,D+
+2016,Louisville,B,A-,A,B,B+,B+
+2016,Marshall,D-,D+,F,D+,C,F
+2016,Maryland,D+,D-,B,C+,B-,C
+2016,Massachusetts,C-,D+,C,D+,C+,D
+2016,Memphis,B,C-,C,B,D-,A-
+2016,Miami,B-,C,B,C+,B+,C+
+2016,Miami (OH),C+,D-,C-,B-,C-,B
+2016,Michigan,B,C,C+,C-,A+,A
+2016,Michigan State,C-,D+,C-,C+,C,C
+2016,Middle Tennessee,B-,A,A-,C+,D-,B
+2016,Minnesota,D+,D+,C,D,A-,D+
+2016,Mississippi State,C-,B-,B+,C-,C-,C-
+2016,Missouri,C+,B,C-,B,C-,C+
+2016,NC State,B-,C,D-,B-,B+,C
+2016,Navy,A+,D+,B,A,D-,F
+2016,Nebraska,C-,D+,D+,C,C-,B-
+2016,Nevada,C+,C-,C-,C-,D-,D
+2016,New Mexico,C,B,A-,C,C+,F
+2016,New Mexico State,D-,C+,C,F,D+,D+
+2016,North Carolina,A-,B,C-,B,C,D
+2016,North Texas,D-,C-,B-,D,C,C
+2016,Northern Illinois,C-,B,B,C-,D+,C
+2016,Northwestern,C-,D-,D+,D-,C,B-
+2016,Notre Dame,C,C+,C,C+,C,D+
+2016,Ohio,C,C-,D+,C-,A-,C-
+2016,Ohio State,C,B-,B+,C+,B,A+
+2016,Oklahoma,A+,B-,B,A+,D,D
+2016,Oklahoma State,A-,C,C,A-,C,C
+2016,Old Dominion,C+,B,B,C+,C-,C+
+2016,Ole Miss,C+,B,C-,C-,D,B-
+2016,Oregon,B,B-,B+,C+,D,C-
+2016,Oregon State,D-,B,A-,D,D-,B
+2016,Penn State,B,D,C,B,A-,B
+2016,Pittsburgh,A-,C,B-,B+,C,D
+2016,Purdue,D,C,F,C+,C,D+
+2016,Rice,D,C,D-,D-,C-,F
+2016,Rutgers,F,F,D,F,C,C
+2016,SMU,C-,C-,C-,B-,C-,B
+2016,San Diego State,C,C,A-,D-,C,B
+2016,San José State,C-,F,B,C-,C,D
+2016,South Alabama,C-,C-,C-,C,C+,B-
+2016,South Carolina,C-,D-,C,F,D+,B
+2016,South Florida,B-,A-,A+,B+,D+,C+
+2016,Southern Miss,C+,D+,C-,B,B,C+
+2016,Stanford,C-,B-,A-,D,C-,C+
+2016,Syracuse,B-,D,F,C+,D,F
+2016,TCU,C,B,B,C,B-,D+
+2016,Temple,B-,D+,C+,C+,A-,B
+2016,Tennessee,C+,B,C+,C,B-,C+
+2016,Texas,C-,C+,C+,C,B,D+
+2016,Texas A&M,C-,A-,A-,B-,B-,C
+2016,Texas State,D-,F,F,D-,D,D+
+2016,Texas Tech,A-,C+,F,A-,F,F
+2016,Toledo,A+,B-,C,A+,D+,C
+2016,Troy,C,C+,C-,C-,B,B
+2016,Tulane,F,D,C+,F,A-,C-
+2016,Tulsa,C,B-,C,C+,D+,C-
+2016,UCF,D+,D,C-,D-,B,A-
+2016,UCLA,C-,D+,F,C,D+,A+
+2016,UConn,D,F,D,D,D+,D
+2016,UL Monroe,D,C,D,D+,D+,D
+2016,UNLV,D-,B,A-,D,D,D-
+2016,USC,B-,B-,B-,C,D+,B-
+2016,UTEP,D,B-,B,F,F,C
+2016,UTSA,C,D-,C+,C+,C-,C-
+2016,Utah,D+,C+,C-,D+,B-,C+
+2016,Utah State,C-,B,B+,D,C+,C+
+2016,Vanderbilt,D,C-,C-,C-,C-,D+
+2016,Virginia,D-,C-,F,D+,C,F
+2016,Virginia Tech,B,D,D,C,B,B
+2016,Wake Forest,F,D-,D,F,B-,C
+2016,Washington,B+,B-,B,A-,C,A
+2016,Washington State,B,A-,C,C+,C,C-
+2016,West Virginia,B,B-,C+,B-,D-,C-
+2016,Western Kentucky,A-,A,B+,A,C,C
+2016,Western Michigan,A,B-,C,A-,D+,B+
+2016,Wisconsin,C+,D-,C,C-,C+,A-
+2016,Wyoming,B-,D+,D+,C-,D+,D
+2017,Air Force,B-,F,D,B+,F,D
+2017,Akron,D+,D,D-,C-,D+,A-
+2017,Alabama,A-,A-,A-,B+,B,A
+2017,App State,B-,B-,C,B,B-,C+
+2017,Arizona,B-,A,A+,C,C-,B-
+2017,Arizona State,B,C-,C,B-,D+,C
+2017,Arkansas,C-,C-,B,C-,D-,F
+2017,Arkansas State,C+,C+,C+,B-,A-,C-
+2017,Army,D,A-,B+,D-,D-,D+
+2017,Auburn,A-,C+,C,B,C+,B
+2017,BYU,D-,B,C,F,C,C-
+2017,Ball State,F,C,C-,F,D+,F
+2017,Baylor,C-,D,D+,C,C+,D
+2017,Boise State,B,D,C,B+,C-,B
+2017,Boston College,D-,C,C,D,D-,A
+2017,Bowling Green,C,C,C,C-,F,C-
+2017,Buffalo,B,C,D+,B-,C-,C+
+2017,California,C-,C-,C,C-,C,C
+2017,Central Michigan,D+,C,C-,D+,C,A
+2017,Charlotte,F,C-,B,F,D-,D
+2017,Cincinnati,D,B,C+,D+,D+,D-
+2017,Clemson,B,B,B,B-,A-,A-
+2017,Coastal Carolina,C-,D+,C,B-,C-,F
+2017,Colorado,C,D,C,B-,F,B-
+2017,Colorado State,B+,B+,B-,B+,D,D
+2017,Duke,D-,C-,C-,F,B,B
+2017,East Carolina,C-,D+,F,B,F,F
+2017,Eastern Michigan,D+,C,D,C-,C+,B-
+2017,Florida,D-,C,B,F,B,C+
+2017,Florida Atlantic,B,B,A-,B+,D+,B
+2017,Florida International,B,C+,D+,B-,D,D
+2017,Florida State,D,D+,C+,D,C+,B
+2017,Fresno State,C+,B-,D+,C+,C+,B
+2017,Georgia,A,C+,A-,A-,C-,A-
+2017,Georgia Southern,D-,F,D+,D-,C-,D
+2017,Georgia State,B-,D,F,C+,D+,D
+2017,Georgia Tech,F,D-,B-,B,D-,B
+2017,Hawai'i,C,B,B,C,D+,F
+2017,Houston,B,B,D+,B-,C+,B
+2017,Idaho,D+,D-,D+,D+,B,C
+2017,Illinois,F,D,C-,D+,C-,C+
+2017,Indiana,C-,C,D,D+,A-,B-
+2017,Iowa,D+,C-,D-,D+,C-,A-
+2017,Iowa State,C+,B-,C-,C,C+,C
+2017,Kansas,F,D,D,D-,B-,F
+2017,Kansas State,C+,D-,B-,B-,D,D+
+2017,Kent State,F,F,D-,D,B-,C
+2017,Kentucky,C,C,C,C-,D-,C
+2017,LSU,B,C-,B-,A-,B-,C
+2017,Louisiana,D+,C,B,D-,D,D-
+2017,Louisiana Tech,C-,B-,C,B-,D-,B+
+2017,Louisville,B+,A+,A,B+,C,C
+2017,Marshall,C+,C-,F,C,B,C+
+2017,Maryland,D,C-,B,F,D,C+
+2017,Massachusetts,B-,C-,B-,C,C+,B-
+2017,Memphis,B+,B,A-,A,C,C
+2017,Miami,D+,C+,B+,C-,A-,B+
+2017,Miami (OH),C-,C,F,D,D,C+
+2017,Michigan,D,D+,C+,F,A+,B
+2017,Michigan State,C-,C-,D-,D,C-,B+
+2017,Middle Tennessee,C-,C+,D+,D+,B-,D+
+2017,Minnesota,F,D+,C-,D,D+,B
+2017,Mississippi State,D,B-,C,D,B+,D
+2017,Missouri,A-,A-,B-,A-,B,D
+2017,NC State,B-,C,C+,C+,B-,B-
+2017,Navy,C-,C,B,A-,C-,F
+2017,Nebraska,C-,C,D-,C,F,C
+2017,Nevada,C+,B,C,C+,B,F
+2017,New Mexico,F,B,C,D-,D,C-
+2017,New Mexico State,C,C+,D+,B-,B,B+
+2017,North Carolina,F,C,C,F,C+,D+
+2017,North Texas,B-,C+,C+,B,D+,D
+2017,Northern Illinois,D,C,D+,C,A+,B
+2017,Northwestern,D+,C-,C,D,B,B-
+2017,Notre Dame,D+,B+,A+,C,C+,B+
+2017,Ohio,C-,C+,B,C-,B-,C+
+2017,Ohio State,B+,A-,A-,A-,B+,B
+2017,Oklahoma,A+,B,A-,A+,C-,D+
+2017,Oklahoma State,A,B-,C,A+,B,C
+2017,Old Dominion,F,D+,C,D-,B-,C
+2017,Ole Miss,B,B-,B-,B,C+,C-
+2017,Oregon,B,C,C+,C-,B-,B-
+2017,Oregon State,D,C,D-,D-,D-,F
+2017,Penn State,A-,D+,B+,B+,B,B
+2017,Pittsburgh,C-,D,C+,C-,D,D+
+2017,Purdue,D,B,C-,F,B,B
+2017,Rice,D,D+,C-,C-,C-,F
+2017,Rutgers,F,D,C-,F,D-,C-
+2017,SMU,B,B,B,B+,C+,D-
+2017,San Diego State,C+,D+,A-,B+,C-,C+
+2017,San José State,D-,D+,F,F,D,D+
+2017,South Alabama,D,F,F,C-,D-,D
+2017,South Carolina,C-,C,D,C-,C-,C
+2017,South Florida,B-,D,B-,A-,A-,B
+2017,Southern Miss,C,C+,B-,C+,B+,B-
+2017,Stanford,B-,B+,A,D+,C-,D+
+2017,Syracuse,C-,C,C-,D,D+,D-
+2017,TCU,A-,C-,D+,B-,B+,C-
+2017,Temple,C+,C-,D,C,B,C
+2017,Tennessee,D,D,D,D-,C-,C
+2017,Texas,C-,C-,D,C+,B,B
+2017,Texas A&M,C-,D+,C,C,B,C
+2017,Texas State,D,F,D+,D+,D+,F
+2017,Texas Tech,B,C,C,B,F,B-
+2017,Toledo,A-,B+,B,A,D+,B
+2017,Troy,B-,B,C,D+,A,B
+2017,Tulane,B-,D+,B-,B-,F,D
+2017,Tulsa,D+,C+,B,C,F,F
+2017,UAB,C+,C,C-,C+,C+,B
+2017,UCF,A+,C,B+,A+,D+,C-
+2017,UCLA,B-,C,D,C+,C-,C
+2017,UConn,C,D,D+,B-,D-,F
+2017,UL Monroe,B+,B-,C,B+,D,F
+2017,UNLV,C-,B-,A-,B,D,C-
+2017,USC,B,B-,B,C,C,C+
+2017,UTEP,F,D+,F,F,D-,D+
+2017,UTSA,C,D,C,D,B+,B-
+2017,Utah,C,D+,D,C,D+,B
+2017,Utah State,D+,C+,C,C-,C+,B
+2017,Vanderbilt,C,B-,D,C,B-,D+
+2017,Virginia,D+,C-,D,C-,C,B
+2017,Virginia Tech,C+,D+,D-,C,A-,C+
+2017,Wake Forest,B,C,B-,C,C+,B-
+2017,Washington,A-,B-,B-,B,B+,B+
+2017,Washington State,C,B,F,D+,A-,A-
+2017,West Virginia,B-,B,D,B-,C-,C-
+2017,Western Kentucky,B-,D,F,B+,D,C+
+2017,Western Michigan,D,C,C+,D+,C,C+
+2017,Wisconsin,B,C,C+,B-,B,A-
+2017,Wyoming,D,D-,F,F,A-,B+
+2018,Air Force,B+,D+,D-,B+,C+,F
+2018,Akron,F,D,F,F,C,B-
+2018,Alabama,A+,A-,B-,A+,B+,B+
+2018,App State,D+,B,A-,B,C+,A
+2018,Arizona,B-,B+,B-,B-,C,D
+2018,Arizona State,B,C-,C-,C+,B,C-
+2018,Arkansas,F,D+,C,F,C,D+
+2018,Arkansas State,B-,B,C,B-,B,C
+2018,Army,A,C,D,A,D+,C-
+2018,Auburn,C,C,D,C,B,C+
+2018,BYU,C-,D,D,D-,D+,B
+2018,Ball State,D+,B-,C,D,D,C
+2018,Baylor,C,C-,C+,D+,D,D
+2018,Boise State,B+,C-,B-,B+,B-,D+
+2018,Boston College,C,D-,C-,C-,B,B
+2018,Bowling Green,C,D+,D,C,F,D+
+2018,Buffalo,C+,C+,C,C+,C+,B
+2018,California,D-,C-,D+,F,C+,A-
+2018,Central Michigan,F,F,F,F,B,B+
+2018,Charlotte,C,F,D,C,C,D
+2018,Cincinnati,B-,B-,B-,B,B-,B
+2018,Clemson,B+,A+,A,C+,A+,B-
+2018,Coastal Carolina,C,D+,C+,B,F,F
+2018,Colorado,C,D-,C-,C+,B-,C+
+2018,Colorado State,C-,C-,D,C,D,F
+2018,Duke,D+,C+,C,D+,C-,C+
+2018,East Carolina,D-,D+,D-,D+,A-,D-
+2018,Eastern Michigan,B,D-,F,C,C-,B
+2018,Florida,C,B+,B-,C,C+,B
+2018,Florida Atlantic,C-,C-,B,D-,C-,C
+2018,Florida International,B+,B,C,B,D,B+
+2018,Florida State,D+,F,D,D+,C,C
+2018,Fresno State,A-,C,D+,A-,D+,B+
+2018,Georgia,A-,B+,A,A-,D,B
+2018,Georgia Southern,C+,F,C+,C+,C-,C
+2018,Georgia State,B-,C,C,D+,F,F
+2018,Georgia Tech,C,C-,C+,A,F,D+
+2018,Hawai'i,C+,B-,D,C+,C-,F
+2018,Houston,B,B,B,B,C+,D+
+2018,Illinois,F,B-,A-,D+,F,D-
+2018,Indiana,D+,B-,D+,D,D+,D
+2018,Iowa,B-,C+,D-,C-,C+,A
+2018,Iowa State,C+,D,D-,B,B-,C
+2018,Kansas,C-,C+,B-,D-,C,D+
+2018,Kansas State,D+,D+,C-,C-,F,C+
+2018,Kent State,D-,F,C-,D,D-,D
+2018,Kentucky,C-,C+,C+,D,C,C+
+2018,LSU,D+,D+,C-,C-,C,A-
+2018,Liberty,D,C,D+,D,D,C-
+2018,Louisiana,B+,B,A,B+,D,F
+2018,Louisiana Tech,D+,C,D+,D,B,B-
+2018,Louisville,D,C-,C+,F,D-,D-
+2018,Marshall,D,B-,C-,C,B,B
+2018,Maryland,C,C-,A-,D+,D,C+
+2018,Massachusetts,B,C,C-,B+,D+,D
+2018,Memphis,B,B+,A,B,B,C-
+2018,Miami,D+,B-,B,D,A+,A+
+2018,Miami (OH),C,C+,C,D,B-,C+
+2018,Michigan,B-,C+,B,B+,A-,A-
+2018,Michigan State,F,C,C-,F,B,B
+2018,Middle Tennessee,B-,C,C-,C-,B-,C
+2018,Minnesota,C-,B-,D+,B-,D,C+
+2018,Mississippi State,D+,B+,A,B-,A-,A
+2018,Missouri,B,B,C-,B-,C,C-
+2018,NC State,A-,D+,C-,B+,C+,D+
+2018,Navy,F,F,C-,C,F,F
+2018,Nebraska,D+,B,B,C-,D,B
+2018,Nevada,C,B-,C,C-,A-,C-
+2018,New Mexico,D,D-,D-,C,D,D
+2018,New Mexico State,D-,C,C,F,B,D
+2018,North Carolina,D+,B+,B-,C-,C,C-
+2018,North Texas,B,C,C+,C,B,B+
+2018,Northern Illinois,F,C-,C,F,A,C-
+2018,Northwestern,D,D+,C-,C-,D+,C+
+2018,Notre Dame,B,D,B,C+,C-,A-
+2018,Ohio,B-,B+,B+,B+,C-,D
+2018,Ohio State,A,C,C,A-,C+,C
+2018,Oklahoma,A+,A-,A+,A+,D+,F
+2018,Oklahoma State,C+,C+,B+,C,B-,C-
+2018,Old Dominion,C,C-,D,C+,D+,C-
+2018,Ole Miss,B+,B-,C+,A-,C,F
+2018,Oregon,C+,C+,C,B,C-,B-
+2018,Oregon State,D+,C-,B-,D,F,D-
+2018,Penn State,C,B,B-,B,A-,A
+2018,Pittsburgh,D+,B-,A-,D+,C,C-
+2018,Purdue,C+,B-,C+,B-,D-,B-
+2018,Rice,D-,D+,C-,F,F,F
+2018,Rutgers,F,C,C-,F,D+,C+
+2018,SMU,C,C-,D,C+,B,D
+2018,San Diego State,C,D-,D+,C+,B-,D+
+2018,San José State,D+,F,F,C-,D-,C-
+2018,South Alabama,C,D-,F,D+,C-,D+
+2018,South Carolina,B,B-,C-,A-,C,B-
+2018,South Florida,C-,B-,B+,C,C+,C
+2018,Southern Miss,C-,D-,F,C-,C+,A
+2018,Stanford,A-,C,D+,B,C-,C-
+2018,Syracuse,C,C,C,C+,C,B
+2018,TCU,C-,C,C,D+,B+,B
+2018,Temple,C-,C,C+,C,C+,A-
+2018,Tennessee,C+,F,D+,D+,C,C
+2018,Texas,B,C,F,D+,C,D
+2018,Texas A&M,C,C,C+,C,B,F
+2018,Texas State,D+,D,D-,C+,D,C+
+2018,Texas Tech,B-,D,F,C+,C,D+
+2018,Toledo,D+,B,B+,C+,C+,C+
+2018,Troy,C,C+,C+,C,A,C+
+2018,Tulane,C-,F,C,B-,C,C
+2018,Tulsa,D,D-,D+,C-,C-,B-
+2018,UAB,C+,C,C+,A-,A-,B+
+2018,UCF,A-,B+,A-,B+,C+,B
+2018,UCLA,C-,C,C+,D+,D,D+
+2018,UConn,F,C+,C+,C-,F,F
+2018,UL Monroe,C,B-,D+,B-,B+,F
+2018,UNLV,F,C,B,D,D+,D
+2018,USC,C,C+,C,C-,B-,C-
+2018,UTEP,D-,D-,F,C,D+,C
+2018,UTSA,F,D+,F,F,B-,F
+2018,Utah,C,C-,B-,C-,A-,B
+2018,Utah State,A-,B+,B-,B+,B,B+
+2018,Vanderbilt,B,C+,B-,C,D-,C-
+2018,Virginia,B,C,B-,B+,D,B
+2018,Virginia Tech,C,C,B-,C,C+,D
+2018,Wake Forest,D+,C-,C+,D,C-,D
+2018,Washington,B+,C-,C+,C+,D,A-
+2018,Washington State,B-,A-,D,B,C+,B-
+2018,West Virginia,A,B-,B-,A-,B-,C
+2018,Western Kentucky,D,C,D+,D+,D+,C-
+2018,Western Michigan,C+,C,C-,B-,B-,C-
+2018,Wisconsin,C-,A,A-,D,D+,C
+2018,Wyoming,F,C+,C+,D-,C-,B
+2019,Air Force,A+,C+,D,A+,D+,C
+2019,Akron,F,F,F,D,D,C
+2019,Alabama,A+,B-,B-,A+,B-,A
+2019,App State,B-,C+,A-,C+,C-,A-
+2019,Arizona,C+,C+,B+,C+,D-,D
+2019,Arizona State,B+,D,F,B,C-,D
+2019,Arkansas,F,B,B,F,D,D-
+2019,Arkansas State,B-,C,D+,B+,D,C-
+2019,Army,D,B-,B-,B+,D-,D
+2019,Auburn,C-,B-,C,C,B-,A-
+2019,BYU,B-,C,C-,B-,D+,B+
+2019,Ball State,C+,C+,B-,C,D+,B-
+2019,Baylor,C+,C,B-,B-,B,B
+2019,Boise State,B-,B-,C-,B,C+,C
+2019,Boston College,C,C+,B-,C+,C+,F
+2019,Bowling Green,F,D+,D,F,D+,F
+2019,Buffalo,C-,C,C+,D+,B+,B-
+2019,California,D+,D-,D-,D,C,C+
+2019,Central Michigan,C,B,C+,C+,B+,C+
+2019,Charlotte,B-,C+,B-,C,B,C-
+2019,Cincinnati,D+,D+,C+,C,B-,B
+2019,Clemson,B,A+,A+,A-,A-,A
+2019,Coastal Carolina,C,C+,C,D,C,D
+2019,Colorado,C-,C,D,B-,D-,D
+2019,Colorado State,B-,C,D+,B-,C,B-
+2019,Duke,F,C-,F,F,B,C
+2019,East Carolina,C+,D,F,C+,C-,D
+2019,Eastern Michigan,B-,C-,D,B-,D,D
+2019,Florida,B,C+,C+,C+,B+,A-
+2019,Florida Atlantic,C+,C-,C+,C+,C,B+
+2019,Florida International,C-,C+,C,D+,D-,B+
+2019,Florida State,C+,D+,C,C+,C-,C-
+2019,Fresno State,C,B+,B,D,D+,C
+2019,Georgia,C+,B-,C+,D+,C,B+
+2019,Georgia Southern,F,F,C+,F,B-,C-
+2019,Georgia State,C-,C+,B,D-,F,D-
+2019,Georgia Tech,F,D+,D,F,D+,D+
+2019,Hawai'i,C+,A-,B-,C+,F,B
+2019,Houston,C-,C-,B-,B,D+,F
+2019,Illinois,D,D,C-,C-,A-,C
+2019,Indiana,B+,D+,D,B,C,C
+2019,Iowa,C-,C-,D+,C,C,A-
+2019,Iowa State,B-,C+,C+,B,C+,C+
+2019,Kansas,C-,C+,B,C,D,D-
+2019,Kansas State,C+,D,C,C+,D-,B-
+2019,Kent State,B,D-,C+,C+,C-,F
+2019,Kentucky,D-,A-,B+,F,C-,B-
+2019,LSU,A+,B-,B+,A,C,B
+2019,Liberty,C+,B,B-,C+,C+,C-
+2019,Louisiana,B,A+,A,B-,D+,B+
+2019,Louisiana Tech,C+,B,C+,B-,D+,A-
+2019,Louisville,B+,F,B-,A,D-,C
+2019,Marshall,C,C+,C,C,D+,C+
+2019,Maryland,F,C,B,D,B-,D
+2019,Massachusetts,F,D,D+,F,F,F
+2019,Memphis,A,C-,B,A-,B,B-
+2019,Miami,C-,C,B-,D,A+,C-
+2019,Miami (OH),D+,F,D,D,A-,A-
+2019,Michigan,C,C+,D+,C+,B+,B
+2019,Michigan State,D+,D,F,F,B+,C
+2019,Middle Tennessee,C-,B,B+,B-,D,D+
+2019,Minnesota,A,D,C-,A,D+,B-
+2019,Mississippi State,D+,B,B,C+,C-,C-
+2019,Missouri,C,D+,D,C-,C,B-
+2019,NC State,F,C+,D,F,C+,D
+2019,Navy,A-,D,B+,A+,B,D+
+2019,Nebraska,B-,D,D+,C+,C,B-
+2019,Nevada,D+,D+,F,D+,D,C
+2019,New Mexico,F,C+,C-,D,C-,F
+2019,New Mexico State,D-,B,C-,F,F,C+
+2019,North Carolina,B-,C-,B-,C+,C,C+
+2019,North Texas,C,C+,D+,C,C,D
+2019,Northern Illinois,C-,D,D+,D+,C-,C
+2019,Northwestern,F,C,C,F,C+,C+
+2019,Notre Dame,C,C,C+,C,B-,A
+2019,Ohio,B,B+,B+,C+,D,D+
+2019,Ohio State,A,B,B+,B+,A+,A+
+2019,Oklahoma,A+,B,A-,A,B,C+
+2019,Oklahoma State,B-,B-,A-,B,C,C+
+2019,Old Dominion,F,F,F,F,B,D
+2019,Ole Miss,C-,C+,B,D,C-,D+
+2019,Oregon,B,B,A-,C+,B-,B+
+2019,Oregon State,C+,B-,B,C,C+,D+
+2019,Penn State,C+,C,B,C+,A-,C-
+2019,Pittsburgh,D+,C-,D-,D+,A,C+
+2019,Purdue,C,D+,F,C,C-,D+
+2019,Rice,D+,D+,D-,D-,C+,D
+2019,Rutgers,D-,D-,D-,D,D,D
+2019,SMU,B,C+,C,B-,B,D-
+2019,San Diego State,C,F,F,F,B-,B+
+2019,San José State,B-,C,D-,B-,D+,C+
+2019,South Alabama,D-,D+,D-,D,C+,D+
+2019,South Carolina,D,B,C+,D-,C,C+
+2019,South Florida,D-,C,C,D-,A-,C
+2019,Southern Miss,B,D,D+,B-,B-,C
+2019,Stanford,C,C+,D,C,C-,C-
+2019,Syracuse,C,D,D+,B-,C-,C-
+2019,TCU,D,C+,B,D-,C+,B
+2019,Temple,C,C+,D,C+,B,B
+2019,Tennessee,C+,C-,C+,C+,C,C+
+2019,Texas,B-,B,B,B-,C-,D+
+2019,Texas A&M,C-,B+,B,D,C+,B+
+2019,Texas State,D,D,D,D+,D-,D
+2019,Texas Tech,C,B,C-,C,C+,F
+2019,Toledo,C-,B,B-,C+,D+,D-
+2019,Troy,B-,B,C+,C,C-,D
+2019,Tulane,C-,C,B,B-,D+,C
+2019,Tulsa,C,D-,D-,C,C,D+
+2019,UAB,D,D,C-,D+,B,B
+2019,UCF,B-,C,B,B-,A,A-
+2019,UCLA,C-,D+,C-,B,C+,F
+2019,UConn,D+,D+,D+,C,F,D-
+2019,UL Monroe,C-,A-,B,B,D,D
+2019,UNLV,F,B,B-,D,D,D+
+2019,USC,A-,C,C-,A-,D+,C-
+2019,UTEP,D,D,C,C-,F,F
+2019,UTSA,D-,C,D,D,C+,D
+2019,Utah,A+,C-,B,A,C,B+
+2019,Utah State,C,C+,C-,C,D+,C
+2019,Vanderbilt,D-,C+,B-,D-,D+,D-
+2019,Virginia,C,C,C,C,B,C
+2019,Virginia Tech,B-,D,D-,B-,C,B
+2019,Wake Forest,C+,D+,C,B,C,B-
+2019,Washington,C+,C,C+,D,C-,B
+2019,Washington State,C+,A,C+,D+,D+,F
+2019,West Virginia,C-,F,F,C-,B+,C
+2019,Western Kentucky,C,C,D+,C,C+,B-
+2019,Western Michigan,C+,B,B+,C,C,C+
+2019,Wisconsin,A-,B,B-,B-,C+,B
+2019,Wyoming,D-,C,B,D,B+,C+
+2020,Air Force,B,A-,C,C+,D,B
+2020,Akron,D-,C-,C+,F,F,F
+2020,Alabama,A+,B+,B,A+,C+,B
+2020,App State,C+,B-,B,C,C-,B
+2020,Arizona,D-,C+,D+,D,D+,F
+2020,Arizona State,C+,C-,B,B-,C,A-
+2020,Arkansas,C+,C-,C+,B,D,B-
+2020,Arkansas State,B-,C-,D,B+,B-,D
+2020,Army,F,D-,C,C-,C+,B+
+2020,Auburn,C-,B-,C+,B-,C-,C
+2020,BYU,A+,B,A-,A,C,B-
+2020,Ball State,B,C,C,B-,C,D+
+2020,Baylor,D,F,F,D-,C+,B
+2020,Boise State,B-,D,D-,B,B,B
+2020,Boston College,B,C-,D-,B,D+,D+
+2020,Bowling Green,F,B-,C+,F,D+,D+
+2020,Buffalo,B,A+,A+,A-,D+,A-
+2020,California,D,D-,D+,F,C-,C-
+2020,Central Michigan,D+,C,B,D,B+,F
+2020,Charlotte,C-,D,C,C,F,C
+2020,Cincinnati,B-,B+,B+,B-,B-,A-
+2020,Clemson,B+,B-,C,B+,A,B-
+2020,Coastal Carolina,A-,C+,C,A,C,C
+2020,Colorado,C,D+,C,C-,B-,B-
+2020,Colorado State,D-,F,D,F,A+,D-
+2020,Duke,D,C,C-,D,C,C-
+2020,East Carolina,C,C-,C,C,D,C+
+2020,Eastern Michigan,B,D+,F,B,D,D
+2020,Florida,A-,B,D+,A-,C+,C-
+2020,Florida Atlantic,D-,D+,B-,F,B,B
+2020,Florida International,F,C+,B+,F,B,C+
+2020,Florida State,D-,B-,A,D,D+,D-
+2020,Fresno State,B,D,C+,B-,B,D
+2020,Georgia,C+,B,B,B,C,C+
+2020,Georgia Southern,D,C+,B,C+,B-,C+
+2020,Georgia State,C,C,D,C,B-,C+
+2020,Georgia Tech,D,C,C+,C-,C-,D+
+2020,Hawai'i,C-,C+,C,C,C,B-
+2020,Houston,C,C,D,D+,B,D+
+2020,Illinois,D,B-,B-,D,C-,D
+2020,Indiana,C,D,F,C,C-,A
+2020,Iowa,D,C,B-,D-,B-,A-
+2020,Iowa State,B-,B,B,C+,B,C
+2020,Kansas,F,F,D,F,D-,D+
+2020,Kansas State,C-,C,C+,C,C,C
+2020,Kent State,A,B,B,A,C,C+
+2020,Kentucky,D-,B,B,F,D+,B
+2020,LSU,C-,C,D+,C,C-,F
+2020,Liberty,B,C+,A-,B+,D+,B+
+2020,Louisiana,C,B,B,C+,D+,A+
+2020,Louisiana Tech,D+,D,F,D+,C-,C-
+2020,Louisville,B,C,B+,B+,C,C
+2020,Marshall,C+,B+,C,B-,B-,A-
+2020,Maryland,C+,C+,B,B-,C,B
+2020,Massachusetts,F,F,F,F,C,D+
+2020,Memphis,C+,D+,D+,B+,C-,C-
+2020,Miami,B,D+,B-,B+,C+,C+
+2020,Miami (OH),B,C+,D-,C,C,F
+2020,Michigan,C,B,B-,D,D,C
+2020,Michigan State,D-,D-,F,C-,C+,C
+2020,Middle Tennessee,C,C-,C-,D-,D+,C+
+2020,Minnesota,C+,C,C+,C-,F,D+
+2020,Mississippi State,D+,C,F,D,C,D+
+2020,Missouri,B,C-,D,C+,C-,D-
+2020,NC State,B-,D,D+,C,C+,C
+2020,Navy,C,F,D-,C,D,D+
+2020,Nebraska,C-,C+,C-,F,C+,D+
+2020,Nevada,B+,B,C+,B,C-,B-
+2020,New Mexico,D-,C+,C+,D,D+,F
+2020,North Carolina,A-,B+,A,A+,C,D+
+2020,North Texas,C+,A-,B+,B+,D+,D
+2020,Northern Illinois,D+,C-,F,F,C,D
+2020,Northwestern,D+,C-,D,F,D+,A+
+2020,Notre Dame,B,C+,B,B,B+,C
+2020,Ohio,C,C+,B,C-,D,B+
+2020,Ohio State,A,B-,A-,A-,C,B-
+2020,Oklahoma,A-,D+,D,B,B+,B
+2020,Oklahoma State,C,D,C,B-,B,B-
+2020,Ole Miss,A+,C-,C-,A+,F,D+
+2020,Oregon,A-,B,C-,A-,C-,C
+2020,Oregon State,D,A-,A-,D,D,C
+2020,Penn State,D+,D+,D,C+,B-,C-
+2020,Pittsburgh,D+,C-,C,C,A,C
+2020,Purdue,B-,C,D,B-,C+,D+
+2020,Rice,C,D-,F,B-,D+,C+
+2020,Rutgers,D,D+,D+,D,B-,C
+2020,SMU,A-,B-,B,A-,B,C-
+2020,San Diego State,D,F,C+,F,B+,B+
+2020,San José State,B+,B-,B,B,C+,B
+2020,South Alabama,C+,F,D-,B-,D,D
+2020,South Carolina,D+,C,B,D,D-,D-
+2020,South Florida,D,D+,D,D+,D,D+
+2020,Southern Miss,C+,C,C+,B,D,D+
+2020,Stanford,B+,B,C+,C,F,D-
+2020,Syracuse,F,D,C-,D,C,C-
+2020,TCU,C,C,A-,C,B,C
+2020,Temple,D,C-,D-,C-,C,F
+2020,Tennessee,D+,C,D+,C-,C+,D
+2020,Texas,C,B-,B,C+,C+,B-
+2020,Texas A&M,B-,B,B-,C+,C,B-
+2020,Texas State,C,C,C,C,D-,D
+2020,Texas Tech,C-,B,C+,C,C-,C
+2020,Toledo,B+,D,D+,B+,C+,B
+2020,Troy,C,B-,D+,C-,C,C
+2020,Tulane,D-,C,B-,D,A-,F
+2020,Tulsa,C,D+,C-,C,A-,A
+2020,UAB,C-,C,C+,C-,C,A
+2020,UCF,B,C+,C,A,B-,C-
+2020,UCLA,C+,C,C,B-,B+,B+
+2020,UL Monroe,D-,C,F,F,D+,F
+2020,UNLV,D,D,C+,D-,D+,F
+2020,USC,C+,C-,F,C,C,B
+2020,UTEP,C-,C-,F,C+,C,D+
+2020,UTSA,C-,B-,B,D,C+,C
+2020,Utah,D+,C,C+,F,D+,B
+2020,Utah State,F,C+,C+,F,C-,D+
+2020,Vanderbilt,D+,C-,F,D,F,F
+2020,Virginia,D+,B,C+,C+,B-,D-
+2020,Virginia Tech,C+,B-,A-,C+,C,C
+2020,Wake Forest,B,D,C+,B,C+,B-
+2020,Washington,B+,B-,C,B-,D,B-
+2020,Washington State,C,B,B-,D,F,F
+2020,West Virginia,B-,C-,C,C,B+,B
+2020,Western Kentucky,D-,C-,D,F,C,C+
+2020,Western Michigan,A,B,C,A+,B,D
+2020,Wisconsin,D,C+,D+,D,C,A-
+2020,Wyoming,D-,C,B-,D,B+,B-
+2021,Air Force,B-,C,B,A,C,C-
+2021,Akron,C+,D+,C,C-,F,F
+2021,Alabama,A+,D+,C-,A+,A+,B-
+2021,App State,B-,C,D,B-,A+,B
+2021,Arizona,D,D+,C,D,B-,F
+2021,Arizona State,B-,B,B-,C+,C-,A-
+2021,Arkansas,B+,D+,C,A-,B,C+
+2021,Arkansas State,D+,D,D-,C+,D-,D-
+2021,Army,A-,C+,B-,A+,C+,D
+2021,Auburn,C,B-,A-,C-,B+,C+
+2021,BYU,B,B-,B-,B,C-,B-
+2021,Ball State,D,C+,D+,D,D,C+
+2021,Baylor,C+,B-,B,B-,C+,C+
+2021,Boise State,C+,D-,F,C,B-,D+
+2021,Boston College,C,D-,C-,D,C-,B-
+2021,Bowling Green,D+,D+,C,D+,C,B
+2021,Buffalo,D,C+,D,D+,B,F
+2021,California,C-,B,B+,C+,D,B
+2021,Central Michigan,C+,B-,B-,C+,C+,D+
+2021,Charlotte,C,C-,D,D+,D,F
+2021,Cincinnati,B-,B,B,B+,A,A-
+2021,Clemson,D,B,D+,F,A-,B+
+2021,Coastal Carolina,A+,A-,A-,A+,C+,D+
+2021,Colorado,D-,D-,D,F,D,C
+2021,Colorado State,C,D,D+,C,B+,C
+2021,Duke,C,B-,D,C+,F,F
+2021,East Carolina,C,D,C,C,C,C+
+2021,Eastern Michigan,B-,C-,D+,C,D-,D+
+2021,Florida,B-,B,B,B-,D+,B-
+2021,Florida Atlantic,B-,C,C-,B+,C-,B+
+2021,Florida International,D,D+,F,B-,F,F
+2021,Florida State,C,B,A-,C,B-,C+
+2021,Fresno State,B,C-,D-,B+,B+,B-
+2021,Georgia,B-,B-,C,A-,A-,B+
+2021,Georgia Southern,F,D+,C+,F,C-,F
+2021,Georgia State,D,B-,B-,D+,C+,D
+2021,Georgia Tech,C-,C+,B,C-,D+,F
+2021,Hawai'i,D,C,B-,B-,C,C-
+2021,Houston,B,D-,C+,C-,A-,A-
+2021,Illinois,F,C+,C+,F,C-,B
+2021,Indiana,F,D,D,D,D+,C
+2021,Iowa,D-,F,F,D,C,A
+2021,Iowa State,B-,B,B,C,B+,C
+2021,Kansas,C,C,D,D,F,F
+2021,Kansas State,B-,B+,B+,B-,C,C
+2021,Kent State,C+,B-,A-,C+,D-,C
+2021,Kentucky,B,B+,C,B+,C+,C-
+2021,LSU,C,D+,F,C-,A-,C-
+2021,Liberty,C-,C+,B,B-,B,B
+2021,Louisiana,C,C,B+,D,C+,C
+2021,Louisiana Tech,C-,C,D+,C,D,C-
+2021,Louisville,B-,B-,B+,B+,C-,B-
+2021,Marshall,C-,B,D,C-,C+,B
+2021,Maryland,C+,C-,D+,C,C+,D-
+2021,Massachusetts,F,C,B-,D-,D,F
+2021,Memphis,C,C,C,C+,C,C
+2021,Miami,B-,D+,D+,B,B-,C-
+2021,Miami (OH),C+,C+,D,B,B,C-
+2021,Michigan,A-,B,B-,A-,C,A-
+2021,Michigan State,C+,C,B,B+,C,D
+2021,Middle Tennessee,C-,C,F,F,D,B+
+2021,Minnesota,C,D+,D+,C+,C,B-
+2021,Mississippi State,B-,C+,F,D+,C,C-
+2021,Missouri,C,B-,B+,D+,B-,D+
+2021,NC State,C+,B+,C-,C+,C-,B+
+2021,Navy,F,F,C,D-,B,D-
+2021,Nebraska,B,C,B-,B+,C-,B-
+2021,Nevada,B,C+,C-,C+,D,B
+2021,New Mexico,F,F,D+,F,C+,D+
+2021,New Mexico State,D,C+,D+,D+,F,F
+2021,North Carolina,B+,B-,B,B,C-,D+
+2021,North Texas,D,C+,B-,C-,C+,C
+2021,Northern Illinois,C,A-,A-,C,F,D
+2021,Northwestern,F,C,C,F,F,C+
+2021,Notre Dame,B,D+,B,B-,B,B
+2021,Ohio,D,B+,A,D,D-,C
+2021,Ohio State,A,B,A-,A+,B,B-
+2021,Oklahoma,B+,C,B+,C+,B,C
+2021,Oklahoma State,C,D,C,D,A,B
+2021,Old Dominion,D,C-,C-,D+,D+,C
+2021,Ole Miss,B-,C,B-,C+,C+,B
+2021,Oregon,B-,B,B,C+,C,B
+2021,Oregon State,B-,B+,B,B-,D,C+
+2021,Penn State,C,F,F,C+,B,A-
+2021,Pittsburgh,B+,C,C-,B-,B+,B-
+2021,Purdue,B,D+,F,C,C+,B
+2021,Rice,C-,C,C,C-,F,C-
+2021,Rutgers,D-,C,F,D-,D-,D
+2021,SMU,B,C,B-,C+,C-,D+
+2021,San Diego State,D-,C-,D+,D-,B,B+
+2021,San José State,D,C-,D-,D,B,C
+2021,South Alabama,B-,D-,F,C-,B-,C
+2021,South Carolina,D+,D+,D,C-,D+,B
+2021,South Florida,D,D+,D-,C-,D-,C-
+2021,Southern Miss,D,F,F,F,D,D
+2021,Stanford,C-,B-,B-,D-,F,D+
+2021,Syracuse,D,B,B+,D,B,D+
+2021,TCU,A-,C,B,A-,F,F
+2021,Temple,D-,C,D+,F,C-,C
+2021,Tennessee,A-,B-,A-,B+,C-,C
+2021,Texas,B-,B,B+,B-,C-,C-
+2021,Texas A&M,D-,C,B-,D+,B+,B+
+2021,Texas State,F,C+,D+,D,D-,C-
+2021,Texas Tech,B+,B-,C,B,D+,D+
+2021,Toledo,C+,B+,A-,B-,C,B-
+2021,Troy,C,C-,D-,D+,A,C-
+2021,Tulane,D+,C,C,D,B+,D
+2021,Tulsa,C-,D+,C-,B,B-,C
+2021,UAB,B,C-,C+,B+,C-,C+
+2021,UCF,C-,B,B-,D-,B-,B+
+2021,UCLA,C,C,B,B-,C-,B
+2021,UConn,F,D-,D-,F,D+,D+
+2021,UL Monroe,D+,F,D,D+,D,D
+2021,UNLV,D+,D,C,C,D+,D+
+2021,USC,C-,C+,D+,C-,C+,D
+2021,UTEP,B-,C,C,B-,C+,B
+2021,UTSA,B,C,B-,B-,C+,D+
+2021,Utah,C,B+,A,D+,B-,B
+2021,Utah State,B,D+,D+,B,B,C-
+2021,Vanderbilt,F,D+,D+,F,F,C
+2021,Virginia,B,A-,C+,B,F,D+
+2021,Virginia Tech,C-,C,C+,C-,C,B-
+2021,Wake Forest,C+,D+,D,B+,C,C
+2021,Washington,D+,C,F,D-,D-,A
+2021,Washington State,B-,C+,C+,C+,D,B+
+2021,West Virginia,C,C,C,D,C+,C-
+2021,Western Kentucky,B+,B-,F,B,C,B
+2021,Western Michigan,B+,B-,C,B+,B+,D+
+2021,Wisconsin,D,B,C+,D+,A-,A-
+2021,Wyoming,D,B-,B+,C-,D,B+
+2022,Air Force,A-,C+,B,A+,C-,B-
+2022,Akron,D+,C-,F,C,D,D-
+2022,Alabama,B,B-,A,C+,B+,A-
+2022,App State,B,B,B+,B,C,D
+2022,Arizona,B-,A-,B+,B,F,D+
+2022,Arizona State,C+,C+,C,C,F,C+
+2022,Arkansas,B,D+,C,B,C+,F
+2022,Arkansas State,C-,F,D+,F,B,F
+2022,Army,D-,C+,B,B,D,C+
+2022,Auburn,D,C-,B-,D,C+,C+
+2022,BYU,B+,B,B,B-,F,D-
+2022,Ball State,D-,A-,C,F,D,B
+2022,Baylor,C+,C-,D+,B-,C-,C
+2022,Boise State,C,B,B,D,C+,B+
+2022,Boston College,D+,F,F,D,C,C
+2022,Bowling Green,C-,C-,F,D-,C,C-
+2022,Buffalo,D,C-,C,D+,D+,C
+2022,California,C,C,B-,D,D-,C+
+2022,Central Michigan,D-,B-,B-,F,C,C-
+2022,Charlotte,C-,C-,C-,D+,D,F
+2022,Cincinnati,C,B,B,C+,C+,B-
+2022,Clemson,C+,C+,C,C,A-,B-
+2022,Coastal Carolina,A-,D+,D-,A-,C,F
+2022,Colorado,F,D+,F,D,F,F
+2022,Colorado State,C-,F,D+,D+,C,B
+2022,Duke,B-,A-,B+,D,C-,C
+2022,East Carolina,B+,B,A-,B-,C+,F
+2022,Eastern Michigan,C-,C,D+,B-,D-,B-
+2022,Florida,C-,B+,A,B,D,D
+2022,Florida Atlantic,C,C+,C-,D+,D,C-
+2022,Florida International,F,C+,D-,D-,D,D
+2022,Florida State,B-,B-,B+,A-,B,A-
+2022,Fresno State,B,C-,C+,B,C-,B-
+2022,Georgia,A-,B-,B-,A,C+,B
+2022,Georgia Southern,C-,B,C+,C+,F,C-
+2022,Georgia State,C+,D,D,B,B,C
+2022,Georgia Tech,F,F,C,F,C+,C+
+2022,Hawai'i,F,B+,C+,F,F,D+
+2022,Houston,B,B,C,C+,C,C-
+2022,Illinois,C+,C-,D,D+,B-,A+
+2022,Indiana,F,C,C+,F,C-,D-
+2022,Iowa,F,F,D+,F,B+,A
+2022,Iowa State,D+,D+,D,F,B,B-
+2022,James Madison,C+,D,F,C+,A+,C
+2022,Kansas,A-,A-,B+,A-,D,C-
+2022,Kansas State,B,B,B+,B-,C,A-
+2022,Kent State,C-,C+,C+,D,C,D
+2022,Kentucky,B,D-,C-,C+,C-,B
+2022,LSU,B-,C+,C+,C,C+,C-
+2022,Liberty,D,D+,B-,D,A,A-
+2022,Louisiana,D,C,D,D-,C-,B
+2022,Louisiana Tech,C,D+,C-,C+,F,C
+2022,Louisville,C-,C+,B-,D,B+,C+
+2022,Marshall,C-,D,B-,C,A-,A-
+2022,Maryland,C+,C-,C+,C,C-,B
+2022,Massachusetts,F,D-,D,F,C+,C
+2022,Memphis,B+,D,D-,B,D+,C-
+2022,Miami,C-,C,C-,C,A,D-
+2022,Miami (OH),D,D+,C,D+,D,C
+2022,Michigan,B,C+,A-,B,B,B+
+2022,Michigan State,C-,D+,D-,C-,B-,F
+2022,Middle Tennessee,C,D+,C-,B,B-,B-
+2022,Minnesota,C+,C,C,B,D,A-
+2022,Mississippi State,C,C+,D-,D+,B,B
+2022,Missouri,C,D-,D,B-,A-,C
+2022,NC State,D+,C-,F,C-,C,B
+2022,Navy,C,D,C-,C+,B-,F
+2022,Nebraska,B-,C-,D+,B+,D+,B
+2022,Nevada,F,D,F,D,C-,F
+2022,New Mexico,F,F,D,F,C+,C-
+2022,New Mexico State,D-,D+,C+,C-,B,B
+2022,North Carolina,B+,C,C+,A-,D-,F
+2022,North Texas,B-,B,B,B,D-,D
+2022,Northern Illinois,D+,A,A-,C-,D+,F
+2022,Northwestern,F,D-,F,F,C+,C-
+2022,Notre Dame,B-,D+,D+,B-,B+,C-
+2022,Ohio,A-,D+,D+,B,C-,D
+2022,Ohio State,A+,B+,A-,A,A-,B-
+2022,Oklahoma,C,C,C,B-,C+,B-
+2022,Oklahoma State,D,D,D-,C+,D+,B-
+2022,Old Dominion,D+,C,C-,C-,B,D
+2022,Ole Miss,C+,C-,C+,B-,B-,C
+2022,Oregon,A-,B,B+,B,C-,C-
+2022,Oregon State,C,C+,C,B-,D+,A-
+2022,Penn State,C+,C+,C+,C-,B+,A-
+2022,Pittsburgh,C-,C+,C+,C,B,B
+2022,Purdue,C,C+,D+,D,C-,B+
+2022,Rice,D+,C+,D+,B-,D,D-
+2022,Rutgers,F,D+,D-,F,C,B
+2022,SMU,B,C+,C-,B,D,C-
+2022,San Diego State,C-,C-,C-,D,C+,C
+2022,San José State,C,D+,D+,B-,A,C
+2022,South Alabama,B,B-,C,C+,C-,B-
+2022,South Carolina,B,C-,D,B-,D-,B
+2022,South Florida,C-,A-,B,B,D-,F
+2022,Southern Miss,C-,F,F,B,B+,C-
+2022,Stanford,C-,C-,D+,C,D,C+
+2022,Syracuse,C-,D,B+,C-,B-,B
+2022,TCU,A-,C+,A-,B+,C,C
+2022,Temple,C-,D+,F,C-,B+,D
+2022,Tennessee,A+,B,B+,A+,B,C
+2022,Texas,C,B,B+,D,C+,B-
+2022,Texas A&M,D+,C,B-,D,C,B-
+2022,Texas State,C-,C,D,D+,D,C+
+2022,Texas Tech,D+,C-,D+,D-,B+,C-
+2022,Toledo,D,D+,D,C-,C,B+
+2022,Troy,C+,D,D-,B-,B-,B-
+2022,Tulane,B-,B-,B-,B,C,B+
+2022,Tulsa,C,C,B-,B-,D,D+
+2022,UAB,B+,A,A-,B,D-,B+
+2022,UCF,C+,C+,B-,C+,D+,C
+2022,UCLA,B+,A-,A,A-,C,C
+2022,UConn,D-,C-,B,F,D+,C+
+2022,UL Monroe,B-,D,D+,B,C,D-
+2022,UNLV,C+,C,B-,C,D,C
+2022,USC,A,B,A-,A,C,C-
+2022,UTEP,D-,B-,C-,D+,C+,D-
+2022,UTSA,A-,B-,C,B,F,C+
+2022,Utah,B+,B+,B-,B,B,C
+2022,Utah State,D-,D+,F,D+,B-,B-
+2022,Vanderbilt,D+,C+,C+,C,F,F
+2022,Virginia,D-,C+,C-,D-,C,C+
+2022,Virginia Tech,D-,D+,D,C-,B-,C+
+2022,Wake Forest,B,D,D-,B,C+,D
+2022,Washington,A-,B+,C+,A+,C,F
+2022,Washington State,C,C+,B-,D,B-,D+
+2022,West Virginia,D+,B-,B-,C-,C,D-
+2022,Western Kentucky,B,A-,C+,B,D+,B
+2022,Western Michigan,F,D,C-,D,D,C-
+2022,Wisconsin,C,C,A-,C+,A-,B
+2022,Wyoming,F,B-,A-,F,C,C
+2023,Air Force,B,C,C,A+,C,C
+2023,Akron,F,D+,C,D-,C,C+
+2023,Alabama,A,D,B+,A,C+,B+
+2023,App State,B-,B,C,B-,D,B+
+2023,Arizona,B+,B-,B-,B,B-,D+
+2023,Arizona State,D-,B-,C,F,D-,D
+2023,Arkansas,C,D+,C-,D+,B-,D+
+2023,Arkansas State,D+,C-,C+,C-,C,D-
+2023,Army,C,C,D+,C+,F,C-
+2023,Auburn,D,D+,B+,F,B,C+
+2023,BYU,D-,C,D,F,F,C-
+2023,Ball State,F,C+,C-,F,D,C+
+2023,Baylor,C,D,F,C-,D,F
+2023,Boise State,B-,B-,B-,A-,B-,C-
+2023,Boston College,C-,C,C,D-,D,F
+2023,Bowling Green,D+,C,C,D,D+,B+
+2023,Buffalo,F,D+,D-,F,C-,B
+2023,California,D+,B+,C,D-,D,C
+2023,Central Michigan,D+,C+,C,D,D-,D-
+2023,Charlotte,D-,F,D,F,C,D+
+2023,Cincinnati,C-,B-,B,D+,D,D+
+2023,Clemson,D+,B,D,D+,C,A
+2023,Coastal Carolina,A-,C-,B-,C+,D+,B
+2023,Colorado,B-,D,F,C+,C+,D
+2023,Colorado State,C,D+,F,C,A-,D-
+2023,Duke,D+,C+,B,D+,C+,B
+2023,East Carolina,F,D+,D,F,B,D-
+2023,Eastern Michigan,F,D+,D,F,D-,C-
+2023,Florida,B,C,C+,C-,C,F
+2023,Florida Atlantic,D+,B,B,D+,D+,C
+2023,Florida International,D+,D-,D,D+,C-,D
+2023,Florida State,B-,D+,B+,B,A-,A-
+2023,Fresno State,C,C+,C+,C-,B-,C-
+2023,Georgia,A,B-,C+,B,C+,A
+2023,Georgia Southern,C-,B-,D,C,C,C-
+2023,Georgia State,B-,C,C-,B,C+,F
+2023,Georgia Tech,C,B+,B+,C-,D-,C+
+2023,Hawai'i,C-,D,F,D,C,F
+2023,Houston,C-,D+,C-,D,C+,D-
+2023,Illinois,C,C+,C,B-,D+,C+
+2023,Indiana,D+,C+,D-,B-,D,D+
+2023,Iowa,F,F,C-,F,C+,A
+2023,Iowa State,B,D+,C,B-,C,A-
+2023,Jacksonville State,D-,C,C+,D-,A,B
+2023,James Madison,B+,D,D,B,A+,C+
+2023,Kansas,B+,A-,A,A-,D,B-
+2023,Kansas State,C,C,B-,C,C,B
+2023,Kent State,D-,F,F,F,F,D+
+2023,Kentucky,D,C+,B+,D-,B,C-
+2023,LSU,A,A+,A+,A+,D+,F
+2023,Liberty,A,A-,B-,A-,C,B+
+2023,Louisiana,B-,B+,B,B,C-,C-
+2023,Louisiana Tech,C-,C-,C-,C,D+,C-
+2023,Louisville,B-,C,B,B,A-,B
+2023,Marshall,C-,C-,C,D+,C,B
+2023,Maryland,C+,C,D-,C,B-,A-
+2023,Massachusetts,C-,B,C+,C-,F,D-
+2023,Memphis,B,C-,C,B,C,C
+2023,Miami,C+,B-,C-,B,A-,C+
+2023,Miami (OH),C,C,C,B+,C,B
+2023,Michigan,A+,C,C-,C+,B+,A-
+2023,Michigan State,D-,F,F,D-,C+,C
+2023,Middle Tennessee,C+,C-,C,C,C,C
+2023,Minnesota,D-,D+,D-,F,D+,C
+2023,Mississippi State,D,C-,C,F,B-,C
+2023,Missouri,B+,D+,C-,B+,B,B
+2023,NC State,C-,C-,C,C-,C-,A
+2023,Navy,F,F,C-,F,B,D+
+2023,Nebraska,D-,C+,C,D+,C-,B
+2023,Nevada,F,F,F,D,D-,F
+2023,New Mexico,D,B-,B-,C,F,F
+2023,New Mexico State,B-,B+,A,B,C-,D+
+2023,North Carolina,B,B-,B,B+,D,B-
+2023,North Texas,C+,B,A,B-,D-,D+
+2023,Northern Illinois,C-,A-,B+,C-,D,B+
+2023,Northwestern,D+,F,D-,C+,C,B-
+2023,Notre Dame,B,B,A-,B+,B-,A
+2023,Ohio,C-,C-,D,D,B+,B+
+2023,Ohio State,A-,B-,B-,B+,C-,A
+2023,Oklahoma,A,D+,C-,B+,B,B
+2023,Oklahoma State,D+,B-,B,D+,D+,F
+2023,Old Dominion,C,D-,A-,C,C-,C
+2023,Ole Miss,A-,D,B-,B-,B-,B-
+2023,Oregon,A+,A,B,A,B-,B+
+2023,Oregon State,B,C+,B-,B-,B,B-
+2023,Penn State,D+,B-,C-,D+,A+,B
+2023,Pittsburgh,D-,D+,D-,D+,B,D-
+2023,Purdue,C-,D+,C,C-,C+,D+
+2023,Rice,B+,C+,C,B-,D,C+
+2023,Rutgers,F,D+,C,D,C-,B
+2023,SMU,B,C+,B,A-,A,B
+2023,Sam Houston,D,D+,F,F,D,C
+2023,San Diego State,C-,C+,C-,D+,F,B-
+2023,San José State,B,B-,B+,C,C-,C+
+2023,South Alabama,B,B+,C+,B,C+,D
+2023,South Carolina,B,D,C-,C+,D+,C-
+2023,South Florida,C-,D,D+,B-,B-,D-
+2023,Southern Miss,D-,D,C+,C-,D,F
+2023,Stanford,D,F,D,C+,D+,F
+2023,Syracuse,C,D+,C-,B-,B,C-
+2023,TCU,C,A-,B,B-,D+,D+
+2023,Temple,D,C-,F,D+,C+,F
+2023,Tennessee,B-,A-,A-,B-,B-,C
+2023,Texas,B,C+,B-,B-,B+,B
+2023,Texas A&M,B,C-,C,D+,A+,C
+2023,Texas State,B,B-,C,B+,C-,D
+2023,Texas Tech,D,B,C,D+,D+,B-
+2023,Toledo,B-,B+,B-,C+,B-,B+
+2023,Troy,B-,C+,C,C,A-,B
+2023,Tulane,B-,C-,D+,C,C,B+
+2023,Tulsa,C-,C-,C-,B-,D-,D-
+2023,UAB,B+,B+,B,B,D-,D+
+2023,UCF,A-,C+,A+,A,C,B
+2023,UCLA,D,C,B-,B-,A,C+
+2023,UConn,D,D+,D,F,D+,F
+2023,UL Monroe,F,C,C+,D-,B-,F
+2023,UNLV,B-,C+,C+,A-,D,C-
+2023,USC,A-,A-,B,B+,C,D-
+2023,UTEP,D+,D-,D,C,D,D
+2023,UTSA,C,C-,C-,B-,B,B-
+2023,Utah,D,D+,C+,D+,B-,C
+2023,Utah State,C-,C+,B,C,C-,B
+2023,Vanderbilt,D-,C-,F,C,D,D
+2023,Virginia,C-,D,F,C,F,C
+2023,Virginia Tech,C,C,C-,C+,A,C+
+2023,Wake Forest,D,F,C,C-,C,D
+2023,Washington,B+,B-,D+,A,F,A
+2023,Washington State,B,D,F,C,C-,C
+2023,West Virginia,C,C,C,C+,C+,C-
+2023,Western Kentucky,C+,B,D+,C,D,B-
+2023,Western Michigan,D+,C,C,D-,D,D
+2023,Wisconsin,D,B+,B,F,B-,B
+2023,Wyoming,C-,C-,B-,C+,C,C+
+2024,Air Force,D,F,F,B,C-,F
+2024,Akron,D-,C,D+,F,C-,D-
+2024,Alabama,A-,D+,B-,A,C+,A-
+2024,App State,C-,B,D+,B,D,F
+2024,Arizona,C+,C-,D+,C,C-,D
+2024,Arizona State,A-,C,C,B+,D,B+
+2024,Arkansas,B,C,B-,B,B,D+
+2024,Arkansas State,D+,C,C,D,D,D+
+2024,Army,A,B,B,A-,D-,A-
+2024,Auburn,B-,C+,C-,B,A,D+
+2024,BYU,C,C,D+,C-,D+,A-
+2024,Ball State,C,C,D+,C-,D,D-
+2024,Baylor,B,B,C+,C,C,C-
+2024,Boise State,C+,B+,A-,C-,A-,F
+2024,Boston College,B-,D,D,B-,B-,C
+2024,Bowling Green,C,C,B,C-,C-,B
+2024,Buffalo,D-,D,C-,C-,C,C-
+2024,California,B-,D,C+,C,C+,C
+2024,Central Michigan,D-,B,C+,D+,C,C
+2024,Charlotte,D+,D-,C-,C,D,D
+2024,Cincinnati,C,C,C,C+,C-,D
+2024,Clemson,C+,B+,A-,C+,C-,B+
+2024,Coastal Carolina,C-,B-,C+,C-,C-,D-
+2024,Colorado,A-,D+,F,B-,B+,B
+2024,Colorado State,C,C,C-,C,D+,C+
+2024,Duke,D+,D-,F,C,A,A-
+2024,East Carolina,C+,C+,C-,B-,B+,C
+2024,Eastern Michigan,C-,D,F,C+,C,F
+2024,Florida,C+,C-,C,B+,B-,C
+2024,Florida Atlantic,D+,C+,A-,C,D+,C
+2024,Florida International,C,F,F,C-,D,A-
+2024,Florida State,F,D-,F,F,C+,D
+2024,Fresno State,C+,C-,D-,C,C-,B+
+2024,Georgia,C+,C,C-,C,B,C+
+2024,Georgia Southern,C,D,F,D+,D-,C
+2024,Georgia State,D+,C,C,C-,D,D+
+2024,Georgia Tech,B-,B-,B-,C-,C+,C
+2024,Hawai'i,D,C-,D+,C-,C,C
+2024,Houston,F,D,D,F,C+,B
+2024,Illinois,B,B-,B-,C+,F,B+
+2024,Indiana,A+,D+,C-,A+,A-,A-
+2024,Iowa,D+,C,B,D+,C-,A-
+2024,Iowa State,C,C-,C,C+,D+,B+
+2024,Jacksonville State,C+,B,B+,A-,C,C-
+2024,James Madison,C+,C,B-,C,B,A-
+2024,Kansas,B,B+,C+,B,D+,C-
+2024,Kansas State,C-,B,B+,C-,B,C
+2024,Kennesaw State,F,F,F,F,C+,C-
+2024,Kent State,F,F,F,D,F,F
+2024,Kentucky,D-,D,D+,C,B-,C-
+2024,LSU,B-,B-,B-,B,C+,D+
+2024,Liberty,D+,B-,C-,C,B-,C-
+2024,Louisiana,B+,B-,A-,B+,D-,B+
+2024,Louisiana Tech,B-,F,F,B-,B-,B
+2024,Louisville,A-,A-,A-,B+,B-,C+
+2024,Marshall,C,B-,B,C,B-,B
+2024,Maryland,C-,C-,D+,C-,C+,C
+2024,Massachusetts,D+,C-,C,C-,F,D+
+2024,Memphis,B-,B-,B-,C,C,C-
+2024,Miami,A,A-,A,A+,B,B
+2024,Miami (OH),C-,B,B,C,D+,B+
+2024,Michigan,F,B-,C-,F,C,B-
+2024,Michigan State,D+,D-,D+,C,B-,D+
+2024,Middle Tennessee,C,D,D,C-,C-,F
+2024,Minnesota,C,D,C-,F,C,B+
+2024,Mississippi State,C-,C,C,B-,D,F
+2024,Missouri,B-,C-,C-,B-,C+,C
+2024,NC State,B-,B-,B,B-,F,C-
+2024,Navy,B-,B-,B+,B+,D+,C
+2024,Nebraska,D+,B-,D,D+,C,C
+2024,Nevada,B-,C,C+,C,D+,D+
+2024,New Mexico,D+,A+,A,D-,F,F
+2024,New Mexico State,F,C-,C,F,D,D-
+2024,North Carolina,C,B+,B+,C-,B-,D+
+2024,North Texas,C-,B-,B+,B,C-,D+
+2024,Northern Illinois,D,B+,B-,C,C-,A-
+2024,Northwestern,F,D,F,F,C-,C
+2024,Notre Dame,B,B+,A-,D-,C+,A
+2024,Ohio,C,C,C,B-,B-,B-
+2024,Ohio State,A-,A-,A-,B+,B+,B
+2024,Oklahoma,D-,D-,D+,C,A,C-
+2024,Oklahoma State,D+,B-,D,C,D,F
+2024,Old Dominion,D+,B,A-,C,D+,D+
+2024,Ole Miss,A,C,B,A,A+,C+
+2024,Oregon,A,B+,C+,B+,C-,A
+2024,Oregon State,D+,C+,B-,D-,D,D-
+2024,Penn State,B+,B,B,B,A-,A-
+2024,Pittsburgh,D+,C,B,C+,A,D
+2024,Purdue,D,D+,D+,D-,C,F
+2024,Rice,D,B,C,D,C+,B
+2024,Rutgers,D+,C,C-,D+,F,C-
+2024,SMU,A-,C,C-,A,A-,C+
+2024,Sam Houston,D-,C-,C+,D-,D+,A-
+2024,San Diego State,C-,C,D+,F,D+,D
+2024,San José State,C+,D+,F,C-,B+,B-
+2024,South Alabama,B,A-,A-,B-,D+,B-
+2024,South Carolina,B+,D,C,C+,B-,B
+2024,South Florida,C,B-,B,D+,B+,C
+2024,Southern Miss,F,F,D-,D,D+,F
+2024,Stanford,F,D-,C-,F,C+,F
+2024,Syracuse,B-,C-,F,B-,D+,C+
+2024,TCU,B+,C+,F,A-,D+,C+
+2024,Temple,D-,D-,F,C-,F,C+
+2024,Tennessee,B,B-,C,A-,A-,B
+2024,Texas,A-,D,C-,B,A-,A+
+2024,Texas A&M,B-,C,B-,B-,B,C+
+2024,Texas State,B-,B,C+,C+,B,B-
+2024,Texas Tech,B-,C,D,C+,D,D
+2024,Toledo,C,C,F,C,C+,B+
+2024,Troy,B-,C,C-,A,C-,D
+2024,Tulane,A,B-,C,A-,C,B
+2024,Tulsa,D,C+,C,D+,D,F
+2024,UAB,D+,B,C-,C-,D-,C
+2024,UCF,D,B,A-,C+,B,C
+2024,UCLA,C+,D,D,C,C+,C-
+2024,UConn,D+,B-,B-,D,B-,B
+2024,UL Monroe,D-,D+,B-,D-,C,C
+2024,UNLV,C,C+,A,C-,B-,B
+2024,USC,C,A,A-,C,D-,B-
+2024,UTEP,D,D,F,D+,A-,C-
+2024,UTSA,C,C-,C+,C,A-,D
+2024,Utah,D-,D,C-,D+,B,A-
+2024,Utah State,C-,B+,B+,C,D+,C-
+2024,Vanderbilt,C,D-,D+,C,B-,F
+2024,Virginia,D,C,C+,D+,D,D+
+2024,Virginia Tech,C,C-,B-,C-,B-,C-
+2024,Wake Forest,D+,D+,D,D-,D-,C+
+2024,Washington,B,B-,C+,C-,D-,B
+2024,Washington State,B+,C-,B,B-,D-,B
+2024,West Virginia,C,D+,C,D,C,F
+2024,Western Kentucky,B,C,F,B-,D,D-
+2024,Western Michigan,C+,B-,A-,D,C-,D-
+2024,Wisconsin,D,C+,D,D,D,B-
+2024,Wyoming,D-,D-,D,D+,D,C
+2025,Air Force,B+,C,C,A,F,F
+2025,Akron,D-,D-,F,D,C,C
+2025,Alabama,B-,C,D+,B-,B-,B-
+2025,App State,D-,C+,D-,D,C,C-
+2025,Arizona,B-,C,C+,B-,C,A+
+2025,Arizona State,D+,C+,B-,D,B-,C
+2025,Arkansas,C+,A-,A-,C+,C+,D-
+2025,Arkansas State,C-,D+,F,D-,B,D+
+2025,Army,C+,C-,D+,C+,F,C
+2025,Auburn,C-,C-,B+,C+,A-,C
+2025,BYU,B-,C+,C,B,B-,B
+2025,Ball State,F,F,C-,F,D+,D
+2025,Baylor,D+,B-,D,C-,D-,B
+2025,Boise State,C,C+,B-,C+,C,A-
+2025,Boston College,C,D+,D+,D,D-,D
+2025,Bowling Green,D,D,C+,C,B-,D+
+2025,Buffalo,D-,C,D+,D+,B+,C+
+2025,California,C-,D+,F,D-,D-,B
+2025,Central Michigan,B+,F,D,B,C-,C+
+2025,Charlotte,D+,F,F,D-,F,D
+2025,Cincinnati,B,A,B-,B+,D+,D
+2025,Clemson,B-,B-,F,C,C,B-
+2025,Coastal Carolina,D-,C,C+,D,D,C+
+2025,Colorado,D+,F,D-,D+,C-,C-
+2025,Colorado State,D,C-,C-,C-,D,D-
+2025,Delaware,C,D+,D+,C-,C-,D+
+2025,Duke,B,C,C,C+,B,D-
+2025,East Carolina,B+,C,D,B+,B+,C+
+2025,Eastern Michigan,C+,B,C-,C-,D,D+
+2025,Florida,D,C+,D+,D,C,D
+2025,Florida Atlantic,D+,C+,D-,C+,D+,D+
+2025,Florida International,D,C+,B+,D,D,C+
+2025,Florida State,A-,B,B,A-,B,B-
+2025,Fresno State,D,C-,C,F,C,A
+2025,Georgia,B,D,C-,C,C,B
+2025,Georgia Southern,C+,C,C,C+,F,D+
+2025,Georgia State,C-,B,C+,D+,C-,F
+2025,Georgia Tech,A-,B+,C,A,C-,D-
+2025,Hawai'i,C+,C-,F,B-,C-,C
+2025,Houston,C-,D,D,C,C-,B+
+2025,Illinois,B,D,D+,B-,C-,C+
+2025,Indiana,A+,B+,A,A-,A,B+
+2025,Iowa,D+,B-,C,F,D+,A
+2025,Iowa State,C-,C-,C+,C,D+,C
+2025,Jacksonville State,D+,C+,B,C,C,C
+2025,James Madison,C,C-,B+,B,A-,B+
+2025,Kansas,C,B,C,B,C,D
+2025,Kansas State,C-,C,B+,C-,C+,C-
+2025,Kennesaw State,B-,C-,C-,B-,C+,C+
+2025,Kent State,C-,F,F,B-,C,D+
+2025,Kentucky,D,C,C,C-,B,C-
+2025,LSU,C-,D+,D+,D,B,B+
+2025,Liberty,C-,C,B,C,D,C+
+2025,Louisiana,D,C,B+,D,D,F
+2025,Louisiana Tech,C,C,A-,C,C,B
+2025,Louisville,C,B,B+,D+,C,A
+2025,Marshall,B-,C-,C-,C,B,F
+2025,Maryland,D+,B,C-,D-,C+,C+
+2025,Massachusetts,F,D-,C-,F,F,C-
+2025,Memphis,B,B-,A+,C,B-,C-
+2025,Miami,A-,B-,D,B-,B+,A-
+2025,Miami (OH),D,C,C-,D+,C,B-
+2025,Michigan,C,B+,B+,C+,B-,B
+2025,Michigan State,C-,D-,B-,C-,D,D-
+2025,Middle Tennessee,D+,B,C,D,C+,D-
+2025,Minnesota,D+,C,C-,C-,A-,D
+2025,Mississippi State,C,D,D,B-,D,C-
+2025,Missouri,C-,B,A-,D,A-,C
+2025,Missouri State,B,F,C+,B-,D-,D+
+2025,NC State,B,C,C+,C+,D,D-
+2025,Navy,B+,A,A-,A,C-,F
+2025,Nebraska,B,C,C+,C+,C-,B
+2025,Nevada,F,C,C-,F,C-,C-
+2025,New Mexico,C+,C,D+,B,B,D+
+2025,New Mexico State,D,D-,F,D,D,B-
+2025,North Carolina,C-,C-,F,D+,C,C
+2025,North Texas,A,B,C,A,D+,B+
+2025,Northern Illinois,F,D+,C+,F,D,B-
+2025,Northwestern,D,C+,C,D-,F,C-
+2025,Notre Dame,A-,C+,A,A,C+,A-
+2025,Ohio,C-,B,B,C,C-,C
+2025,Ohio State,A+,C+,C+,A+,B,A-
+2025,Oklahoma,C+,D,D+,C+,A+,B
+2025,Oklahoma State,D-,D,F,F,B-,F
+2025,Old Dominion,B,A-,A-,A,B,A-
+2025,Ole Miss,B+,C-,C,A,C-,B
+2025,Oregon,A+,A-,A-,B,C+,A
+2025,Oregon State,D,C+,D-,F,C,C
+2025,Penn State,C,B,C+,C,B-,C+
+2025,Pittsburgh,C-,C-,D+,B-,A-,B
+2025,Purdue,D+,C,C-,D-,C,F
+2025,Rice,D,F,C-,D-,C-,F
+2025,Rutgers,C+,D,D,B-,F,D-
+2025,SMU,B,B,B,B-,C,C+
+2025,Sam Houston,F,C-,B+,F,D,D-
+2025,San Diego State,D,C,C,C,B-,A+
+2025,San José State,D+,B+,C+,C,D,D-
+2025,South Alabama,C,C,C-,C,D,D
+2025,South Carolina,C-,D-,C-,C+,C+,C
+2025,South Florida,A-,A-,B,B,C,B-
+2025,Southern Miss,B+,C-,F,A-,C-,B-
+2025,Stanford,D,F,C-,D+,D,D-
+2025,Syracuse,F,D+,F,F,D,D
+2025,TCU,B,D+,C-,B+,C+,C
+2025,Temple,C,C-,C+,D-,D,D-
+2025,Tennessee,B+,B-,C,B+,C,C-
+2025,Texas,C+,D+,D+,B-,B,B-
+2025,Texas A&M,B-,B-,C,B+,A-,B
+2025,Texas State,A-,C+,C+,A-,B,C
+2025,Texas Tech,A-,C,C+,B,B,A
+2025,Toledo,B,B,B-,C+,A+,A-
+2025,Troy,D,F,F,C,C,C+
+2025,Tulane,B-,C+,C-,C+,C+,C
+2025,Tulsa,D,D-,D,D+,B-,C-
+2025,UAB,C+,C+,B-,C,D,F
+2025,UCF,D+,B-,B,C,B-,B-
+2025,UCLA,D-,B-,C-,F,F,D+
+2025,UConn,A-,B,B+,B,C,C+
+2025,UL Monroe,D,D,C+,D,C,D+
+2025,UNLV,B,B+,B+,A-,D-,C
+2025,USC,A,A,B+,A-,D,C
+2025,UTEP,F,D,C,D,A-,C
+2025,UTSA,C+,B-,B+,C,C+,D
+2025,Utah,C+,B+,B+,C,C,B
+2025,Utah State,C,D+,B-,C,C-,C+
+2025,Vanderbilt,A,B,A,A-,C-,C-
+2025,Virginia,C,B-,A-,C+,C,B
+2025,Virginia Tech,F,B-,A-,D,C-,F
+2025,Wake Forest,C,B-,C,B,B,B-
+2025,Washington,A-,C+,B,B,D+,B-
+2025,Washington State,D+,D+,F,F,C+,C+
+2025,West Virginia,D,D,D+,C,B,F
+2025,Western Kentucky,C,C+,C,C+,D,B
+2025,Western Michigan,D-,C-,C,D,B-,B+
+2025,Wisconsin,F,D,C,D-,B-,D
+2025,Wyoming,D-,C,D+,F,D+,B+
+2026,Eastern Michigan,C+,D,D-,C,C+,B+
+2026,Florida State,B-,A-,A,B,D+,C-
+2026,Hawai'i,C-,D+,F,D,C-,F
+2026,Jacksonville State,F,D,D+,F,B-,B-
+2026,Memphis,C-,A-,B,B-,C,D+
+2026,NC State,D-,C-,D-,F,C+,F
+2026,New Mexico State,B-,C+,D,C+,F,D+
+2026,North Carolina,C-,D+,F,C,C+,C+
+2026,North Dakota State,C-,C-,B-,C+,B,A-
+2026,Sacramento State,D,C-,C,F,B-,C
+2026,San José State,C+,C-,C,C+,C-,C-
+2026,Stanford,B+,C,C+,A-,C,C+
+2026,TCU,C-,C-,B,C-,B,C
+2026,UNLV,C+,C+,A,C,F,C
+2026,USC,B+,C+,C,B,C+,C-
+2026,Virginia,A-,C,C,A,C,A-
