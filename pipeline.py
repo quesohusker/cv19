@@ -144,6 +144,8 @@ def build_stages(season):
         Stage("download_wp",     "collect", ["-m", "scripts.cfbd.download_win_probability"], optional=True),
         Stage("scrape_win_totals", "collect", ["-m", "scripts.cfbd.scrape_win_totals"], optional=True,
               note="preseason lines; usually a no-op in-season"),
+        Stage("download_rankings", "collect", ["-m", "scripts.cfbd.download_rankings"], optional=True,
+              note="AP Top 25 poll for the current season (for team-name labels)"),
         # ---- build source files ----
         Stage("combine",         "build", ["-m", "scripts.cfbd.combine"]),
         Stage("verify",          "build", ["-m", "scripts.cfbd.verify"]),
@@ -195,6 +197,7 @@ COMMIT_GLOBS = [
     "data/cfbd/master/pregame_win_probability_all_seasons.csv",
     "data/cfbd/master/season_win_totals.csv",
     "data/cfbd/master/team_conferences.csv",
+    "data/cfbd/master/ap_rankings.csv",
     "data/cfbd/predictions/*.csv",
     "data/cfbd/projections/*.csv",
     "scratchpad/benchmark_winpct_seasons.csv",
