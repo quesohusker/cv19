@@ -49,6 +49,28 @@ Measured on 37,118 team-matches (women's D1, 2021-2024):
 THRESHOLDS ARE EMPIRICAL. Each is the value maximizing win/loss discrimination across
 2021-2023, constrained to a 30-70% hit rate, then validated out-of-sample on 2024.
 
+TRANSITION SHARE: TESTED AND REJECTED
+------------------------------------
+Share of a team's attacks that come in transition rather than off serve receive
+correlates +0.459 with winning a match, higher than most graded benchmarks. It is
+nonetheless an artifact of rally scoring, not a measure of defense.
+
+Decomposing it, the denominator does the work: transition attacks per set correlates
+only +0.267 with winning, while FIRST-BALL attacks per set correlates -0.420. The
+cause is structural -- a team serves only after winning a rally, so a dominant team
+serves more and receives less. Receive rallies per set correlates -0.692 with winning
+(winners 19.7 per set, losers 23.7), and first-ball attacks track receive rallies at
++0.719. Winning therefore shrinks the denominator and inflates transition share with
+no change in defensive quality.
+
+Confirmed by the forward test, which strips same-match tautology: transition share
+predicts second-half win% at only r=+0.291, well below win-loss record (+0.487) and
+side-out% (+0.509). It is also largely redundant with what is already graded
+(r=+0.742 with digs per set, -0.596 with opponent hitting efficiency, +0.540 with
+point-score%). Its margin form scores better (+60.5 lift, AUC 0.9659) but that is the
+antisymmetry effect described above, and it still fails to beat the raw record
+forward (+0.473). Not added.
+
 WHY ONLY HITTING IS EXPRESSED AS A MARGIN
 ----------------------------------------
 Every benchmark here has a relative form (out-do the opponent rather than clear a
