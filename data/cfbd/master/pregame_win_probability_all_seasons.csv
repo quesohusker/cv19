@@ -8251,9 +8251,13 @@ game_id,season,week,season_type,home_team,away_team,spread,home_win_probability
 401762521,2025,16,regular,Navy,Army,-6.0,0.66
 401856634,2026,1,regular,Alabama,East Carolina,-28.0,0.973
 401856636,2026,1,regular,Auburn,Baylor,-6.5,0.673
+401856637,2026,1,regular,Florida,Florida Atlantic,-26.5,0.966
+401856660,2026,1,regular,LSU,Clemson,-10.0,0.755
+401856662,2026,1,regular,Mississippi State,UL Monroe,-28.5,0.975
 401856664,2026,1,regular,Oklahoma,UTEP,-41.0,0.998
 401856665,2026,1,regular,South Carolina,Kent State,-36.5,0.994
 401856667,2026,1,regular,Texas,Texas State,-29.5,0.979
+401856668,2026,1,regular,Texas A&M,Missouri State,-40.5,0.997
 401856766,2026,1,regular,TCU,North Carolina,-7.5,0.698
 401856772,2026,1,regular,Tulsa,Oklahoma State,13.0,0.185
 401856776,2026,1,regular,Georgia Tech,Colorado,-6.5,0.673
@@ -8266,20 +8270,29 @@ game_id,season,week,season_type,home_team,away_team,spread,home_win_probability
 401858206,2026,1,regular,Stanford,Miami,24.5,0.046
 401858207,2026,1,regular,Pittsburgh,Miami (OH),-16.0,0.865
 401858209,2026,1,regular,Duke,Tulane,-8.0,0.709
+401858210,2026,1,regular,California,UCLA,2.5,0.432
 401858423,2026,1,regular,Rutgers,Massachusetts,-29.0,0.977
 401858424,2026,1,regular,Illinois,UAB,-26.5,0.966
 401858425,2026,1,regular,Indiana,North Texas,-40.5,0.997
 401858426,2026,1,regular,Iowa,Northern Illinois,-32.0,0.986
+401858428,2026,1,regular,Michigan,Western Michigan,-27.5,0.971
 401858429,2026,1,regular,Michigan State,Toledo,-10.0,0.755
 401858430,2026,1,regular,Nebraska,Ohio,-24.0,0.951
 401858432,2026,1,regular,Ohio State,Ball State,-51.0,1.0
 401858433,2026,1,regular,Oregon,Boise State,-25.0,0.958
 401858434,2026,1,regular,Penn State,Marshall,-23.0,0.944
 401858436,2026,1,regular,USC,Fresno State,-22.5,0.94
+401860878,2026,1,regular,Colorado State,Wyoming,-3.0,0.582
 401862693,2026,1,regular,UNLV,Memphis,-5.0,0.635
+401862695,2026,1,regular,Memphis,Arkansas State,-10.5,0.766
+401862699,2026,1,regular,South Florida,Florida International,-14.5,0.841
+401864432,2026,1,regular,Nevada,Western Kentucky,-1.0,0.527
 401864494,2026,1,regular,USC,San José State,-37.0,0.995
 401864495,2026,1,regular,Eastern Michigan,San José State,-1.5,0.541
+401864497,2026,1,regular,Hawai'i,UNLV,3.0,0.418
+401864498,2026,1,regular,New Mexico,Central Michigan,-11.0,0.776
 401864570,2026,1,regular,Florida State,New Mexico State,-31.0,0.984
 401864577,2026,1,regular,North Dakota State,Jacksonville State,-7.0,0.685
 401866408,2026,1,regular,Eastern Michigan,Sacramento State,-9.0,0.733
 401869960,2026,1,regular,James Madison,Liberty,-6.0,0.66
+401870763,2026,1,regular,Troy,Sam Houston,-16.5,0.872
