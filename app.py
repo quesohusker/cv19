@@ -37,6 +37,7 @@ PATHS = {
     "stats": os.path.join(MASTER, "team_stats_all_seasons.csv"),
     "ranks": os.path.join(MASTER, "team_ranks_all_seasons.csv"),
     "power": os.path.join(MASTER, "power_ratings_weekly.csv"),
+    "conf": os.path.join(MASTER, "team_conferences.csv"),
     "bench": os.path.join(SCRATCH, "benchmark_winpct_seasons.csv"),
     "margin": os.path.join(PRED, "margin_predictor_2026.csv"),
     "wp": os.path.join(PRED, "in_game_wp_2026.csv"),
@@ -178,6 +179,12 @@ def load_bench():
 @st.cache_data(show_spinner=False)
 def load_power():
     return _read(PATHS["power"])
+
+
+@st.cache_data(show_spinner=False)
+def load_conferences():
+    """(season, team, conference) lookup, or None if not built yet."""
+    return _read(PATHS["conf"])
 
 
 @st.cache_data(show_spinner=False)
@@ -323,11 +330,26 @@ with tab_power:
             wk = int(ps["week"].max())
             latest = ps[ps["week"] == wk].copy()
             latest = latest.sort_values("rating_overall", ascending=False).reset_index(drop=True)
-            latest.insert(0, "Rank", latest.index + 1)
+            latest.insert(0, "Rank", latest.index + 1)   # national rank
+
+            # conference filter (rows are filtered but Rank stays NATIONAL, so
+            # "Ohio State #2 nationally" still reads true inside a conference view)
+            confs = load_conferences()
+            cols = ["Rank", "team", "rating_overall", "rating_off", "rating_def"]
+            csel = "All"
+            if confs is not None:
+                cmap = (confs[confs["season"] == season]
+                        .set_index("team")["conference"].to_dict())
+                latest["Conference"] = latest["team"].map(cmap)
+                opts = ["All"] + sorted(latest["Conference"].dropna().unique())
+                csel = st.selectbox("Conference", opts, index=0)
+                cols.insert(2, "Conference")
+
             st.markdown(f"**Power ratings — {season}, through week {wk-1}** "
                         f"(points vs. an average FBS team; higher is better).")
-            show = latest[["Rank", "team", "rating_overall", "rating_off",
-                           "rating_def"]].rename(columns={
+
+            view = latest if csel == "All" else latest[latest["Conference"] == csel]
+            show = view[cols].rename(columns={
                 "team": "Team", "rating_overall": "Overall",
                 "rating_off": "Offense", "rating_def": "Defense"})
             hi = {team_a, team_b}
@@ -341,6 +363,9 @@ with tab_power:
             st.dataframe(show.style.apply(_hl, axis=1).format(
                 {"Overall": "{:+.1f}", "Offense": "{:+.1f}", "Defense": "{:+.1f}"}),
                 use_container_width=True, hide_index=True, height=700)
+            if csel != "All":
+                st.caption(f"{len(show)} {csel} team(s); Rank is national (of "
+                           f"{len(latest)} FBS teams).")
 
 
 # --------------------------------------------------------------------------- #
