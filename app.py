@@ -85,6 +85,79 @@ def team_colors(team):
     return TEAM_COLORS.get(team, NEUTRAL)
 
 
+# --------------------------------------------------------------------------- #
+# team logos -- ESPN's public CDN, keyed by ESPN team id (= CFBD team `id`).
+#   https://a.espncdn.com/i/teamlogos/ncaa/500/<espn_id>.png   (500-dark variant
+#   also exists). This embedded map works out of the box; the pipeline also
+#   writes espn_id into team_conferences.csv, which overrides/extends it.
+# --------------------------------------------------------------------------- #
+ESPN_VARIANT = "500"        # switch to "500-dark" for dark-recolored logos
+TEAM_ESPN_ID = {
+    "Air Force": 2005, "Akron": 2006, "Alabama": 333,
+    "App State": 2026, "Arizona": 12, "Arizona State": 9,
+    "Arkansas": 8, "Arkansas State": 2032, "Army": 349,
+    "Auburn": 2, "BYU": 252, "Ball State": 2050,
+    "Baylor": 239, "Boise State": 68, "Boston College": 103,
+    "Bowling Green": 189, "Buffalo": 2084, "California": 25,
+    "Central Michigan": 2117, "Charlotte": 2429, "Cincinnati": 2132,
+    "Clemson": 228, "Coastal Carolina": 324, "Colorado": 38,
+    "Colorado State": 36, "Delaware": 48, "Duke": 150,
+    "East Carolina": 151, "Eastern Michigan": 2199, "Florida": 57,
+    "Florida Atlantic": 2226, "Florida International": 2229, "Florida State": 52,
+    "Fresno State": 278, "Georgia": 61, "Georgia Southern": 290,
+    "Georgia State": 2247, "Georgia Tech": 59, "Hawai'i": 62,
+    "Houston": 248, "Illinois": 356, "Indiana": 84,
+    "Iowa": 2294, "Iowa State": 66, "Jacksonville State": 55,
+    "James Madison": 256, "Kansas": 2305, "Kansas State": 2306,
+    "Kennesaw State": 338, "Kent State": 2309, "Kentucky": 96,
+    "LSU": 99, "Liberty": 2335, "Louisiana": 309,
+    "Louisiana Tech": 2348, "Louisville": 97, "Marshall": 276,
+    "Maryland": 120, "Massachusetts": 113, "Memphis": 235,
+    "Miami": 2390, "Miami (OH)": 193, "Michigan": 130,
+    "Michigan State": 127, "Middle Tennessee": 2393, "Minnesota": 135,
+    "Mississippi State": 344, "Missouri": 142, "Missouri State": 2623,
+    "NC State": 152, "Navy": 2426, "Nebraska": 158,
+    "Nevada": 2440, "New Mexico": 167, "New Mexico State": 166,
+    "North Carolina": 153, "North Texas": 249, "Northern Illinois": 2459,
+    "Northwestern": 77, "Notre Dame": 87, "Ohio": 195,
+    "Ohio State": 194, "Oklahoma": 201, "Oklahoma State": 197,
+    "Old Dominion": 295, "Ole Miss": 145, "Oregon": 2483,
+    "Oregon State": 204, "Penn State": 213, "Pittsburgh": 221,
+    "Purdue": 2509, "Rice": 242, "Rutgers": 164,
+    "SMU": 2567, "Sam Houston": 2534, "San Diego State": 21,
+    "San José State": 23, "South Alabama": 6, "South Carolina": 2579,
+    "South Florida": 58, "Southern Miss": 2572, "Stanford": 24,
+    "Syracuse": 183, "TCU": 2628, "Temple": 218,
+    "Tennessee": 2633, "Texas": 251, "Texas A&M": 245,
+    "Texas State": 326, "Texas Tech": 2641, "Toledo": 2649,
+    "Troy": 2653, "Tulane": 2655, "Tulsa": 202,
+    "UAB": 5, "UCF": 2116, "UCLA": 26,
+    "UConn": 41, "UL Monroe": 2433, "UNLV": 2439,
+    "USC": 30, "UTEP": 2638, "UTSA": 2636,
+    "Utah": 254, "Utah State": 328, "Vanderbilt": 238,
+    "Virginia": 258, "Virginia Tech": 259, "Wake Forest": 154,
+    "Washington": 264, "Washington State": 265, "West Virginia": 277,
+    "Western Kentucky": 98, "Western Michigan": 2711, "Wisconsin": 275,
+    "Wyoming": 2751,
+}
+
+
+def logo_url(team):
+    """ESPN CDN logo URL for a team, or None if we don't know its id."""
+    tid = _espn_ids().get(team)
+    if tid is None:
+        return None
+    return f"https://a.espncdn.com/i/teamlogos/ncaa/{ESPN_VARIANT}/{int(tid)}.png"
+
+
+def logo_img(team, h=20):
+    u = logo_url(team)
+    if not u:
+        return ""
+    return (f"<img src='{u}' height='{h}' loading='lazy' "
+            f"style='vertical-align:middle;margin-right:6px'>")
+
+
 def chip(team, big=False):
     """Return an HTML pill in the team's colors."""
     fg, bg = team_colors(team)
@@ -93,6 +166,12 @@ def chip(team, big=False):
     return (f"<span style='background:{fg};color:#fff;padding:{pad};"
             f"border-radius:8px;font-weight:700;font-size:{size};"
             f"box-shadow:inset 0 0 0 2px {bg}55;white-space:nowrap'>{team}</span>")
+
+
+def team_block(team, big=False):
+    """Logo + colored chip, side by side."""
+    return (f"<span style='white-space:nowrap'>"
+            f"{logo_img(team, 26 if big else 20)}{chip(team, big)}</span>")
 
 
 # --------------------------------------------------------------------------- #
@@ -196,8 +275,24 @@ def load_power():
 
 @st.cache_data(show_spinner=False)
 def load_conferences():
-    """(season, team, conference) lookup, or None if not built yet."""
+    """(season, team, conference[, espn_id]) lookup, or None if not built yet."""
     return _read(PATHS["conf"])
+
+
+@st.cache_data(show_spinner=False)
+def _espn_ids():
+    """Team -> ESPN id: the embedded map, extended/overridden by any espn_id
+    column the pipeline wrote into team_conferences.csv."""
+    m = dict(TEAM_ESPN_ID)
+    c = load_conferences()
+    if c is not None and "espn_id" in c.columns:
+        ids = c.dropna(subset=["espn_id"]).groupby("team")["espn_id"].first()
+        for t, i in ids.items():
+            try:
+                m[t] = int(i)
+            except (TypeError, ValueError):
+                pass
+    return m
 
 
 @st.cache_data(show_spinner=False)
@@ -369,8 +464,8 @@ def render_matchup_stats(season, ta, tb):
     lb_lbl = f"Last Game ({oppb})" if oppb else "Last Game"
     header = (
         "<table class='cmp'><thead>"
-        f"<tr><th></th><th class='grp' colspan='2'>{chip(ta)}</th>"
-        f"<th class='grp sep' colspan='2'>{chip(tb)}</th></tr>"
+        f"<tr><th></th><th class='grp' colspan='2'>{team_block(ta)}</th>"
+        f"<th class='grp sep' colspan='2'>{team_block(tb)}</th></tr>"
         "<tr><th class='lab'>Stat</th>"
         f"<th class='sub'>{la_lbl}</th><th class='sub'>Season</th>"
         f"<th class='sub sep'>{lb_lbl}</th><th class='sub'>Season</th></tr>"
@@ -437,8 +532,8 @@ def render_matchup_bench(season, ta, tb):
 
     header = (
         "<table class='cmp'><thead>"
-        f"<tr><th></th><th class='grp' colspan='2'>{chip(ta)}</th>"
-        f"<th class='grp sep' colspan='2'>{chip(tb)}</th></tr>"
+        f"<tr><th></th><th class='grp' colspan='2'>{team_block(ta)}</th>"
+        f"<th class='grp sep' colspan='2'>{team_block(tb)}</th></tr>"
         "<tr><th class='lab'>Benchmark</th>"
         f"<th class='sub'>{la_lbl}</th><th class='sub'>Season</th>"
         f"<th class='sub sep'>{lb_lbl}</th><th class='sub'>Season</th></tr>"
@@ -487,11 +582,11 @@ seasons = sorted(stats["season"].unique(), reverse=True) if stats is not None el
 with st.sidebar:
     st.header("Selection")
     season = st.selectbox("Season", seasons, index=0)
-    default_a = all_teams.index("Nebraska") if "Nebraska" in all_teams else 0
-    team_a = st.selectbox("Team A", all_teams, index=default_a) if all_teams else None
+    team_a = st.selectbox("Home Team", all_teams, index=None,
+                          placeholder="Home Team") if all_teams else None
     b_opts = [t for t in all_teams if t != team_a]
-    default_b = b_opts.index("Ohio State") if "Ohio State" in b_opts else 0
-    team_b = st.selectbox("Team B", b_opts, index=default_b) if b_opts else None
+    team_b = st.selectbox("Away Team", b_opts, index=None,
+                          placeholder="Away Team") if b_opts else None
 
 tab_cmp, tab_bench, tab_power, tab_pred = st.tabs(
     ["\U0001F4CA Stat Comparison", "\U0001F3C6 Jon's 14", "\U0001F4C8 Power Rankings",
@@ -508,6 +603,8 @@ with tab_cmp:
         st.markdown(render_matchup_stats(season, team_a, team_b), unsafe_allow_html=True)
         st.caption("Green = better of the two on the season. Offense = the team's "
                    "own production; def/allowed = what it gave up.")
+    else:
+        st.info("Pick a **Home Team** and an **Away Team** in the sidebar to compare.")
 
 
 # --------------------------------------------------------------------------- #
@@ -520,6 +617,8 @@ with tab_bench:
         st.markdown("How each team stacks up against the 14 elite-program "
                     "benchmarks (explosive plays set at 9+/game). ✓ = benchmark met.")
         st.markdown(render_matchup_bench(season, team_a, team_b), unsafe_allow_html=True)
+    else:
+        st.info("Pick a **Home Team** and an **Away Team** in the sidebar to compare.")
 
 
 # --------------------------------------------------------------------------- #
@@ -553,8 +652,11 @@ with tab_power:
             st.markdown(f"**Power ratings — {season}, through week {wk-1}** "
                         f"(points vs. an average FBS team; higher is better).")
 
-            view = latest if csel == "All" else latest[latest["Conference"] == csel]
-            show = view[cols].rename(columns={
+            view = (latest if csel == "All"
+                    else latest[latest["Conference"] == csel]).copy()
+            view["Logo"] = view["team"].map(logo_url)
+            disp_cols = ["Rank", "Logo"] + [c for c in cols if c != "Rank"]
+            show = view[disp_cols].rename(columns={
                 "team": "Team", "rating_overall": "Overall",
                 "rating_off": "Offense", "rating_def": "Defense"})
             hi = {team_a, team_b}
@@ -565,8 +667,10 @@ with tab_power:
                     return [f"background-color:{fg}22"] * len(row)
                 return [""] * len(row)
 
-            st.dataframe(show.style.apply(_hl, axis=1).format(
-                {"Overall": "{:+.1f}", "Offense": "{:+.1f}", "Defense": "{:+.1f}"}),
+            st.dataframe(
+                show.style.apply(_hl, axis=1).format(
+                    {"Overall": "{:+.1f}", "Offense": "{:+.1f}", "Defense": "{:+.1f}"}),
+                column_config={"Logo": st.column_config.ImageColumn("", width="small")},
                 use_container_width=True, hide_index=True, height=700)
             if csel != "All":
                 st.caption(f"{len(show)} {csel} team(s); Rank is national (of "
@@ -583,9 +687,10 @@ def _game_row(g):
     favp = ph if pm >= 0 else 1 - ph
     cols = st.columns([1.4, 3, 2.4])
     cols[0].markdown(f"Wk {int(g['week'])}")
-    cols[1].markdown(f"{chip(away)} &nbsp;at&nbsp; {chip(home)}", unsafe_allow_html=True)
+    cols[1].markdown(f"{team_block(away)} &nbsp;at&nbsp; {team_block(home)}",
+                     unsafe_allow_html=True)
     cols[2].markdown(
-        f"<div style='text-align:right'>{chip(fav)} by <b>{abs(pm):.1f}</b> "
+        f"<div style='text-align:right'>{team_block(fav)} by <b>{abs(pm):.1f}</b> "
         f"&nbsp;|&nbsp; win prob <b>{favp:.0%}</b></div>", unsafe_allow_html=True)
     if pd.notna(g.get("actual_margin", np.nan)):
         res_home = g["actual_margin"] > 0
