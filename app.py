@@ -441,9 +441,8 @@ def bench_last_game(bgames, sched, season, team):
     if bgames is None:
         return None, None, None
     bg = bgames[(bgames["season"] == season) & (bgames["team"] == team)].copy()
-    for c in ("team_fbs", "opp_fbs"):
-        if c in bg.columns:
-            bg = bg[bg[c] == True]  # noqa: E712
+    if "team_fbs" in bg.columns:      # keep the FBS team; allow FCS opponents
+        bg = bg[bg["team_fbs"] == True]  # noqa: E712
     if not len(bg):
         return None, None, None
 
