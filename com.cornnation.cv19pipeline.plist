@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  launchd job: run the cv19 pipeline every day at 03:00. The pipeline's own
+  game-day gate makes it a no-op on mornings after a day with no FBS game, so a
+  plain daily trigger effectively fires only after game days.
+
+  Install:
+    cp com.cornnation.cv19pipeline.plist ~/Library/LaunchAgents/
+    launchctl load  ~/Library/LaunchAgents/com.cornnation.cv19pipeline.plist
+  Remove:
+    launchctl unload ~/Library/LaunchAgents/com.cornnation.cv19pipeline.plist
+  Run once now (test):
+    launchctl start com.cornnation.cv19pipeline
+-->
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.cornnation.cv19pipeline</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/bash</string>
+        <string>/Users/pauldalen/Claude/Projects/cv19/pipeline.sh</string>
+    </array>
+
+    <key>WorkingDirectory</key>
+    <string>/Users/pauldalen/Claude/Projects/cv19</string>
+
+    <!-- launchd starts with a minimal PATH; add the usual tool locations so
+         git and the Python interpreters resolve. -->
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PATH</key>
+        <string>/usr/local/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+    </dict>
+
+    <!-- Daily at 03:00 local time. -->
+    <key>StartCalendarInterval</key>
+    <dict>
+        <key>Hour</key>
+        <integer>3</integer>
+        <key>Minute</key>
+        <integer>0</integer>
+    </dict>
+
+    <key>RunAtLoad</key>
+    <false/>
+
+    <key>StandardOutPath</key>
+    <string>/Users/pauldalen/Claude/Projects/cv19/logs/launchd.out.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/pauldalen/Claude/Projects/cv19/logs/launchd.err.log</string>
+</dict>
+</plist>

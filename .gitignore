@@ -1,0 +1,25 @@
+# Local CFDB data + generated stat outputs (never committed; live locally)
+CFDB_sample/
+*.pyc
+__pycache__/
+
+# Season data + per-season outputs. The base dir defaults to the project folder,
+# so raw season data may live at <project>/<year>/combined.csv -- keep all of it
+# (and the per-season CSVs the pipeline writes beside it) out of git.
+/20[0-9][0-9]/
+
+# Per-season output CSVs (written into each <year>/ folder)
+team_ranks.csv
+team_zscores.csv
+team_stats.csv
+
+# Master files across all seasons
+team_ranks_all_seasons.csv
+team_zscores_all_seasons.csv
+team_stats_all_seasons.csv
+
+# position-group grade outputs
+position_grades_*.csv
+
+# pipeline run logs
+logs/
