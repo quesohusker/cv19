@@ -42,6 +42,7 @@ PATHS = {
     "bench": os.path.join(SCRATCH, "benchmark_winpct_seasons.csv"),
     "bench_games": os.path.join(SCRATCH, "benchmark_winpct_games.csv"),
     "margin": os.path.join(PRED, "margin_predictor_2026.csv"),
+    "ap": os.path.join(MASTER, "ap_rankings.csv"),   # season,week,team,rank (AP Top 25)
 }
 
 # --------------------------------------------------------------------------- #
@@ -168,10 +169,16 @@ def chip(team, big=False):
             f"box-shadow:inset 0 0 0 2px {bg}55;white-space:nowrap'>{team}</span>")
 
 
-def team_block(team, big=False):
-    """Logo + colored chip, side by side."""
+def team_block(team, big=False, season=None):
+    """Logo + colored chip, plus record/AP suffix when `season` is given."""
+    suffix = ""
+    if season is not None:
+        s = team_suffix(season, team)
+        if s:
+            suffix = (f" <span style='color:#9aa0a6;font-weight:600;"
+                      f"font-size:0.8em'>{s}</span>")
     return (f"<span style='white-space:nowrap'>"
-            f"{logo_img(team, 26 if big else 20)}{chip(team, big)}</span>")
+            f"{logo_img(team, 26 if big else 20)}{chip(team, big)}{suffix}</span>")
 
 
 # --------------------------------------------------------------------------- #
@@ -299,6 +306,49 @@ def _espn_ids():
 def load_sched():
     """Universal (game_id, season, week, home_team, away_team) schedule."""
     return _read(PATHS["sched"])
+
+
+@st.cache_data(show_spinner=False)
+def records_map(season):
+    """team -> (wins, losses, ties) as of the latest week of `season`."""
+    raw = load_stats_raw()
+    if raw is None:
+        return {}
+    sub = (raw[raw["season"] == season].sort_values("week")
+           .groupby("team", as_index=False).tail(1))
+    out = {}
+    for _, r in sub.iterrows():
+        def _i(v):
+            return int(v) if pd.notna(v) else 0
+        out[r["team"]] = (_i(r.get("wins")), _i(r.get("losses")), _i(r.get("ties")))
+    return out
+
+
+@st.cache_data(show_spinner=False)
+def ap_map(season):
+    """team -> AP rank for the latest available AP week of `season` (empty until
+    the pipeline writes ap_rankings.csv)."""
+    df = _read(PATHS["ap"])
+    if df is None or "season" not in df.columns:
+        return {}
+    d = df[df["season"] == season]
+    if not len(d):
+        return {}
+    d = d[d["week"] == d["week"].max()]
+    return {t: int(r) for t, r in zip(d["team"], d["rank"]) if pd.notna(r)}
+
+
+def team_suffix(season, team):
+    """'(1-0, #3)' / '(1-0)' / '' — record and (when available) AP rank."""
+    rec = records_map(season).get(team)
+    if rec is None:
+        return ""
+    w, l, t = rec
+    body = f"{w}-{l}" + (f"-{t}" if t else "")
+    ap = ap_map(season).get(team)
+    if ap:
+        body += f", #{ap}"
+    return f"({body})"
 
 
 @st.cache_data(show_spinner=False)
@@ -464,8 +514,8 @@ def render_matchup_stats(season, ta, tb):
     lb_lbl = f"Last Game ({oppb})" if oppb else "Last Game"
     header = (
         "<table class='cmp'><thead>"
-        f"<tr><th></th><th class='grp' colspan='2'>{team_block(ta)}</th>"
-        f"<th class='grp sep' colspan='2'>{team_block(tb)}</th></tr>"
+        f"<tr><th></th><th class='grp' colspan='2'>{team_block(ta, season=season)}</th>"
+        f"<th class='grp sep' colspan='2'>{team_block(tb, season=season)}</th></tr>"
         "<tr><th class='lab'>Stat</th>"
         f"<th class='sub'>{la_lbl}</th><th class='sub'>Season</th>"
         f"<th class='sub sep'>{lb_lbl}</th><th class='sub'>Season</th></tr>"
@@ -532,8 +582,8 @@ def render_matchup_bench(season, ta, tb):
 
     header = (
         "<table class='cmp'><thead>"
-        f"<tr><th></th><th class='grp' colspan='2'>{team_block(ta)}</th>"
-        f"<th class='grp sep' colspan='2'>{team_block(tb)}</th></tr>"
+        f"<tr><th></th><th class='grp' colspan='2'>{team_block(ta, season=season)}</th>"
+        f"<th class='grp sep' colspan='2'>{team_block(tb, season=season)}</th></tr>"
         "<tr><th class='lab'>Benchmark</th>"
         f"<th class='sub'>{la_lbl}</th><th class='sub'>Season</th>"
         f"<th class='sub sep'>{lb_lbl}</th><th class='sub'>Season</th></tr>"
@@ -655,7 +705,20 @@ with tab_power:
             view = (latest if csel == "All"
                     else latest[latest["Conference"] == csel]).copy()
             view["Logo"] = view["team"].map(logo_url)
-            disp_cols = ["Rank", "Logo"] + [c for c in cols if c != "Rank"]
+            recs, aps = records_map(season), ap_map(season)
+
+            def _rec(t):
+                r = recs.get(t)
+                return "" if not r else f"{r[0]}-{r[1]}" + (f"-{r[2]}" if r[2] else "")
+
+            view["Record"] = view["team"].map(_rec)
+            has_ap = bool(aps)
+            if has_ap:
+                view["AP"] = view["team"].map(lambda t: f"#{aps[t]}" if t in aps else "")
+            mid = [c for c in cols if c != "Rank"]
+            ti = mid.index("team") + 1
+            mid = mid[:ti] + ["Record"] + (["AP"] if has_ap else []) + mid[ti:]
+            disp_cols = ["Rank", "Logo"] + mid
             show = view[disp_cols].rename(columns={
                 "team": "Team", "rating_overall": "Overall",
                 "rating_off": "Offense", "rating_def": "Defense"})
@@ -680,18 +743,20 @@ with tab_power:
 # --------------------------------------------------------------------------- #
 # view: Game Predictions
 # --------------------------------------------------------------------------- #
-def _game_row(g):
+def _game_row(g, season=None):
     home, away = g["home_team"], g["away_team"]
     pm, ph = g["predicted_margin"], g["p_home_win"]
     fav = home if pm >= 0 else away
     favp = ph if pm >= 0 else 1 - ph
     cols = st.columns([1.4, 3, 2.4])
     cols[0].markdown(f"Wk {int(g['week'])}")
-    cols[1].markdown(f"{team_block(away)} &nbsp;at&nbsp; {team_block(home)}",
-                     unsafe_allow_html=True)
+    cols[1].markdown(
+        f"{team_block(away, season=season)} &nbsp;at&nbsp; "
+        f"{team_block(home, season=season)}", unsafe_allow_html=True)
     cols[2].markdown(
-        f"<div style='text-align:right'>{team_block(fav)} by <b>{abs(pm):.1f}</b> "
-        f"&nbsp;|&nbsp; win prob <b>{favp:.0%}</b></div>", unsafe_allow_html=True)
+        f"<div style='text-align:right'>{team_block(fav, season=season)} "
+        f"by <b>{abs(pm):.1f}</b> &nbsp;|&nbsp; win prob <b>{favp:.0%}</b></div>",
+        unsafe_allow_html=True)
     if pd.notna(g.get("actual_margin", np.nan)):
         res_home = g["actual_margin"] > 0
         hit = res_home == (pm >= 0)
@@ -763,7 +828,7 @@ with tab_pred:
                 if group_by_conf and g["home_conf"] != cur_conf:
                     cur_conf = g["home_conf"]
                     st.markdown(f"##### {cur_conf or 'Other / independent'}")
-                _game_row(g)
+                _game_row(g, season=pred_season)
                 if show_detail:
                     with st.expander("▸ Stats comparison & Jon's 14"):
                         st.markdown("**Stat comparison**")
