@@ -91,7 +91,7 @@ def team_colors(team):
 #   also exists). This embedded map works out of the box; the pipeline also
 #   writes espn_id into team_conferences.csv, which overrides/extends it.
 # --------------------------------------------------------------------------- #
-ESPN_VARIANT = "500"        # switch to "500-dark" for dark-recolored logos
+ESPN_VARIANT = "500-dark"   # dark-recolored logos for the dark theme ("500" = full color)
 TEAM_ESPN_ID = {
     "Air Force": 2005, "Akron": 2006, "Alabama": 333,
     "App State": 2026, "Arizona": 12, "Arizona State": 9,
