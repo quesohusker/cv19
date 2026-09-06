@@ -49,6 +49,40 @@ Measured on 37,118 team-matches (women's D1, 2021-2024):
 THRESHOLDS ARE EMPIRICAL. Each is the value maximizing win/loss discrimination across
 2021-2023, constrained to a 30-70% hit rate, then validated out-of-sample on 2024.
 
+WHY ONLY HITTING IS EXPRESSED AS A MARGIN
+----------------------------------------
+Every benchmark here has a relative form (out-do the opponent rather than clear a
+fixed bar), and every one of those has larger lift than the absolute it replaces:
+rally margin +84.4, hitting +81.1, kill% +76.4, transition +68.9, first-ball +62.3,
+against +64.6 for the best absolute. Converting the whole set anyway makes it worse.
+
+The reason is that a margin is ANTISYMMETRIC: one team's margin is exactly minus the
+other's, so the two teams' scores correlate at r = -1.00 and both sides can never
+clear the same bar. Absolute benchmarks are not zero-sum -- both teams clear
+"hitting eff >= .199" in 21% of matches and "side-out% >= 58.3%" in 12%. A margin
+therefore asks "did you win this phase", which is close to asking "did you win the
+match": high lift, little information. Measured:
+
+    all-absolute 6   AUC 0.9540   forward r +0.500   quality-in-defeat 0.148
+    current 7 (mix)  AUC 0.9643   forward r +0.501   quality-in-defeat 0.154
+    all-relative 6   AUC 0.9540   forward r +0.481   quality-in-defeat 0.131
+
+Going fully relative gains no discrimination and loses forward prediction and the
+ability to recognize a good team playing well in defeat. Adding further margins to
+the current seven moves forward r only from +0.501 to at most +0.505 -- noise.
+
+Hitting was the exception because own hit% and opp hit% were two absolutes testing
+the SAME battle from opposite ends, so their relationship was information the pair
+had discarded. Side-out% and point-score% are not two ends of one battle; they are
+two different phases (receiving vs serving). Their margin is literally their sum
+minus one, so collapsing them destroys the most actionable split in the sport --
+"our side-out is elite but we cannot score on serve" -- in exchange for a number
+that mostly restates the result.
+
+A caution that applies to the grade however it is built: season grade correlates
+about 0.95 with season win% for every variant tested. At season level this scorecard
+largely restates the standings. Its value is per-match diagnosis, not ranking.
+
 WHAT THE GRADE IS FOR, AND WHAT IT ISN'T
 ----------------------------------------
   * Diagnostic: it localizes *where* a team wins or loses. That is the reason to keep
