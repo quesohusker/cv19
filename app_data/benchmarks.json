@@ -1,0 +1,137 @@
+[
+  {
+    "metric": "sideout_pct",
+    "label": "Side-out % >= 58.3%",
+    "phase": "side-out",
+    "graded": true,
+    "direction": "higher_is_better",
+    "threshold": 0.5833,
+    "flag_column": "b_sideout_pct"
+  },
+  {
+    "metric": "fbso_pct",
+    "label": "First-ball side-out % >= 32.5%",
+    "phase": "in-system offense",
+    "graded": true,
+    "direction": "higher_is_better",
+    "threshold": 0.3247,
+    "flag_column": "b_fbso_pct"
+  },
+  {
+    "metric": "hit_pct",
+    "label": "Hitting efficiency >= .199",
+    "phase": "attack",
+    "graded": true,
+    "direction": "higher_is_better",
+    "threshold": 0.1987,
+    "flag_column": "b_hit_pct"
+  },
+  {
+    "metric": "point_score_pct",
+    "label": "Point-score % >= 41.9%",
+    "phase": "serve phase",
+    "graded": true,
+    "direction": "higher_is_better",
+    "threshold": 0.4189,
+    "flag_column": "b_point_score_pct"
+  },
+  {
+    "metric": "opp_hit_pct",
+    "label": "Opp hitting efficiency <= .199",
+    "phase": "defense",
+    "graded": true,
+    "direction": "lower_is_better",
+    "threshold": 0.1987,
+    "flag_column": "b_opp_hit_pct"
+  },
+  {
+    "metric": "ace_to_err",
+    "label": "Ace-to-service-error >= 0.53",
+    "phase": "serve",
+    "graded": true,
+    "direction": "higher_is_better",
+    "threshold": 0.5333,
+    "flag_column": "b_ace_to_err"
+  },
+  {
+    "metric": "hit_margin",
+    "label": "Out-hit the opponent",
+    "phase": "attack vs defense",
+    "graded": true,
+    "direction": "higher_is_better",
+    "threshold": 0.0,
+    "flag_column": "b_hit_margin"
+  },
+  {
+    "metric": "trans_so_pct",
+    "label": "Transition side-out % >= 44.2%",
+    "phase": "scramble offense",
+    "graded": false,
+    "direction": "higher_is_better",
+    "threshold": 0.4416,
+    "flag_column": "b_trans_so_pct"
+  },
+  {
+    "metric": "kill_pct",
+    "label": "Kill % of attacks >= 36.6%",
+    "phase": "attack",
+    "graded": false,
+    "direction": "higher_is_better",
+    "threshold": 0.3662,
+    "flag_column": "b_kill_pct"
+  },
+  {
+    "metric": "att_err_pct",
+    "label": "Attack error rate <= 16.9%",
+    "phase": "attack",
+    "graded": false,
+    "direction": "lower_is_better",
+    "threshold": 0.1687,
+    "flag_column": "b_att_err_pct"
+  },
+  {
+    "metric": "rec_err_pct",
+    "label": "Reception error rate <= 5.6%",
+    "phase": "ball control",
+    "graded": false,
+    "direction": "lower_is_better",
+    "threshold": 0.0556,
+    "flag_column": "b_rec_err_pct"
+  },
+  {
+    "metric": "opp_fbso_allowed",
+    "label": "Opp first-ball side-out <= 32.5%",
+    "phase": "serve phase",
+    "graded": false,
+    "direction": "lower_is_better",
+    "threshold": 0.3247,
+    "flag_column": "b_opp_fbso_allowed"
+  },
+  {
+    "metric": "blocks_per_set",
+    "label": "Blocks per set >= 1.6",
+    "phase": "block",
+    "graded": false,
+    "direction": "higher_is_better",
+    "threshold": 1.6,
+    "flag_column": "b_blocks_per_set"
+  },
+  {
+    "metric": "digs_per_set",
+    "label": "Digs per set >= 12.7",
+    "phase": "floor defense",
+    "graded": false,
+    "direction": "higher_is_better",
+    "threshold": 12.667,
+    "flag_column": "b_digs_per_set"
+  },
+  {
+    "metric": "ace_pct",
+    "label": "Ace % of serves >= 5.1%",
+    "phase": "serve",
+    "graded": false,
+    "direction": "higher_is_better",
+    "threshold": 0.051,
+    "flag_column": "b_ace_pct"
+  }
+]

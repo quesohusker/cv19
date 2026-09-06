@@ -1,0 +1,29 @@
+{
+  "built_at": "2026-09-06T17:28:53.503874+00:00",
+  "source": "NCAA play-by-play and box scores via JeffreyRStevens/ncaavolleyballr",
+  "sport": "women's volleyball",
+  "division": "D1",
+  "seasons": [
+    "2021",
+    "2022",
+    "2023",
+    "2024",
+    "2025"
+  ],
+  "team_match_rows": 45288,
+  "team_seasons": 1688,
+  "median_graded_share": 0.931,
+  "graded_benchmarks": 7,
+  "grade_vs_win_pct_by_season": {
+    "2021": 0.9488,
+    "2022": 0.9552,
+    "2023": 0.9605,
+    "2024": 0.9586,
+    "2025": 0.9549
+  },
+  "caveats": [
+    "Thresholds are calibrated on women's D1; men's and D2/D3 need recalibration.",
+    "Matches join pbp to box scores on (date, unordered team pair) because neither source carries a contest ID; roughly 6% of team-matches drop out, mostly same-day repeat pairings in tournaments.",
+    "The grade describes a match; it is not a forecast of the next one."
+  ]
+}

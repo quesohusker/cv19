@@ -141,13 +141,34 @@ def build(pbp_parquet: Path, teammatch_csv: Path, season_label: str) -> pd.DataF
     return d
 
 
+# Columns mirrored from the opponent's row of the same match. Several graded
+# benchmarks are defined against the opponent (opp hitting efficiency, hitting
+# margin), so the table is not self-contained without them.
+MIRRORED = ["hit_pct", "kill_pct", "sideout_pct", "fbso_pct", "point_score_pct",
+            "ace_pct", "blocks_per_set", "digs_per_set", "rec_err_pct"]
+
+
+def add_opponent_columns(df: pd.DataFrame) -> pd.DataFrame:
+    """Attach opp_* columns and the derived metrics the benchmarks need."""
+    keys = ["date", "away_team", "home_team", "season_label"]
+    mirror = df[keys + ["team"] + MIRRORED].rename(
+        columns={"team": "opponent_matched", **{c: f"opp_{c}" for c in MIRRORED}})
+    out = df.merge(mirror, on=keys, how="inner")
+    out = out[out.team != out.opponent_matched].copy()
+
+    # aces earned per service error committed; a team with zero errors keeps its ace count
+    out["ace_to_err"] = (out.aces / out.serve_errs.replace(0, pd.NA)).fillna(out.aces)
+    out["hit_margin"] = out.hit_pct - out.opp_hit_pct
+    return out
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--rally-dir", type=Path, default=Path("data/rallies"))
     ap.add_argument("--box-dir", type=Path, default=Path("data/ncaavolleyballr/data-csv"))
     ap.add_argument("--sport", default="wvb")
     ap.add_argument("--division", default="div1")
-    ap.add_argument("--years", nargs="+", type=int, default=[2021, 2022, 2023, 2024])
+    ap.add_argument("--years", nargs="+", type=int, default=[2021, 2022, 2023, 2024, 2025])
     ap.add_argument("--out", type=Path, default=Path("data/match_metrics.parquet"))
     args = ap.parse_args()
 
@@ -158,7 +179,7 @@ def main() -> None:
         if not pq_path.exists() or not box_path.exists():
             print(f"skip {year}: missing {pq_path if not pq_path.exists() else box_path}")
             continue
-        df = build(pq_path, box_path, str(year))
+        df = add_opponent_columns(build(pq_path, box_path, str(year)))
         frames.append(df)
         print(f"{year}: {len(df):,} team-match rows  (box rows {len(box_scores(box_path)):,})")
 
