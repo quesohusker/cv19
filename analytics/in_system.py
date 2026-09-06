@@ -31,6 +31,40 @@ Middle usage is the cleanest visible tell: 28.6% of in-system first-ball attacks
 to a middle, against 8.1% out of system. If the middle is being used, the pass was
 good. Middles also finish best of any position (40.3% kill, .262 efficiency).
 
+THE POSSESSION-LEVEL VARIANT (also tested, also rejected)
+--------------------------------------------------------
+Measuring in-system as a share of POSSESSIONS rather than of attacks is the better
+construction, and worth recording because it fixes a real flaw. The attack-level rate
+conditions on an attack having happened, so possessions that produced no attack at
+all -- aces, reception errors, overpasses -- silently leave the denominator. Putting
+them back in gives "of all serve-receive possessions, how many produced a designated
+setter -> hitter attack".
+
+That change fixes the sign. The attack-level rate correlates NEGATIVELY with winning
+and shows negative benchmark lift; the possession rate correlates +0.130 with winning,
++0.296 with first-ball side-out%, -0.361 with reception error rate, and carries
+positive lift (+13 to +22 depending on threshold).
+
+It still does not earn a place in the graded set:
+
+  * League mean is 67.4%, not 80%. Across 2024 D1, ZERO of 340 teams averaged 80%,
+    and the 95th percentile is 73.6%. An 80% bar is cleared in 6.3% of team-matches --
+    a blowout flag, not a standard.
+  * Adding it at any threshold LOWERS set AUC (0.9623 -> 0.9572-0.9615).
+  * It is the weakest forward predictor measured in this project: first-half
+    possession rate predicts second-half win% at r=+0.155 (r2=0.024), against +0.487
+    for raw win-loss record and +0.509 for side-out%.
+  * Between-team spread is still small: CV 11.0%, versus 21.9% for hitting efficiency.
+
+Split-half reliability is again high (+0.769), reinforcing the same conclusion as the
+attack-level version: system rate is a real and stable team property that does not
+vary enough between D1 teams to grade on.
+
+The general lesson, visible across every ball-control metric tested here: at D1 level
+getting in system is close to table stakes (67-83% for nearly everyone, CV 3-11%),
+while what a team DOES with an in-system ball varies far more (hitting efficiency
+CV 21.9%). Terminating separates teams; passing mostly does not.
+
 WHY IT IS NOT A TEAM BENCHMARK
 ------------------------------
 The effect is large but the BETWEEN-TEAM VARIATION is not. Every D1 team runs in
